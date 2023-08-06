@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Sigin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h1>You are signed in</h1>
+    <h2>
+        <a asp-action="Privacy">
+            Go to protected page
+        </a>
+    </h2>
+    <form asp-controller="Home"
+          asp-action="SignOut">
+        <button type="submit" name="signOutType"
+                value="app">
+            Sign Out
+        </button>
+        <button type="submit" name="signOutType"
+                value="all">
+            Sign Out Completely
+        </button>
+    </form>
+}
+else
+{
+    <h1>You are not signed in</h1>
+    <form asp-controller="Accounts"
+          asp-action="Login">
+        <button type="submit">
+            Sign In
+        </button>
+    </form>
+}
+
