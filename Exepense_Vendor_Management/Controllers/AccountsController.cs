@@ -1,21 +1,20 @@
-﻿using Exepense_Vendor_Management.Models;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
+using Exepense_Vendor_Management.Models;
 
 namespace Exepense_Vendor_Management.Controllers
 {
-    [AllowAnonymous]
     public class AccountsController : Controller
     {
-      
+
         private SignInManager<IdentityUser> signInManager;
         private UserManager<IdentityUser> UserManager;
-        public AccountsController( SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+        public AccountsController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
         {
-          
+
             this.signInManager = signInManager;
             this.UserManager = userManager;
         }
@@ -31,17 +30,16 @@ namespace Exepense_Vendor_Management.Controllers
         }
 
         //[HttpPost]
-        //public async Task<IActionResult> AddnewUser(AllUser allUser, ValidationResponse recaptchaResponse)
+        //public async Task<IActionResult> AddnewUser(AllUser allUser)
         //{
-        //    var user = new ApplicationUser { UserName = allUser.UserName, Email = allUser.UserEmail, Purpose = "NormalUser", PhoneNumber = allUser.ContactNo, PasswordHash = allUser.UserPass };
+        //    var user = new IdentityUser { UserName = allUser.UserName, Email = allUser.UserEmail, PhoneNumber = allUser.ContactNo, PasswordHash = allUser.UserPass };
 
         //    await UserManager.CreateAsync(user);
         //    await signInManager.SignInAsync(user, isPersistent: false);
         //    var dt = accountside.AddnewUser(allUser);
         //    return View();
         //}
-   
-        public async Task<IActionResult> Login(string returnUrl="sfd")
+        public async Task<IActionResult> Login(string returnUrl)
         {
             LoginViewModel loginViewModel = new LoginViewModel
             {
@@ -53,12 +51,25 @@ namespace Exepense_Vendor_Management.Controllers
         }
         public IActionResult ExternalLogin(string provider, string returnUrl)
         {
-            var redirectUri = Url.Action("ExternalLoginCallBack", "AccountsSide", new { RetunrUrl = returnUrl });
+            var redirectUri = Url.Action("ExternalLoginCallBack", "Accounts", new { RetunrUrl = returnUrl });
             var prop = signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUri);
             return new ChallengeResult(provider, prop);
         }
+        //[HttpPost]
+        //public IActionResult Login(string UserEmail, string userPassword)
+        //{
+        //    var data = accountside.ValidateUser(UserEmail, userPassword);
+        //    if (data != null)
+        //    {
+        //        if (data.UserRole == 1)
+        //        {
+        //            return RedirectToAction("Index", "Adminside");
+        //        }
 
-        public async Task<IActionResult> ExternalLoginCallBack(string RetunrUrl = null, string remoteError = null)
+        //    }
+        //    return View();
+        //}
+        public async Task<IActionResult> ExternalLoginCallBack(string? RetunrUrl = null, string? remoteError = null)
         {
             RetunrUrl = RetunrUrl ?? Url.Content("~/");
             LoginViewModel loginViewModel = new LoginViewModel
@@ -94,7 +105,7 @@ namespace Exepense_Vendor_Management.Controllers
                         {
                             UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
                             Email = info.Principal.FindFirstValue(ClaimTypes.Email),
-                          
+
                         };
                         await UserManager.CreateAsync(user);
                     }
@@ -108,65 +119,7 @@ namespace Exepense_Vendor_Management.Controllers
             }
 
         }
-        //public async Task GoogleLogin()
-        //{
-        //    await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme, new AuthenticationProperties()
-        //    {
 
-        //        RedirectUri = Url.Action("GoogleResponse")
-        //    });
-
-        //}
-
-        //public async Task<IActionResult> GoogleResponse()
-        //{
-        //    var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        //    var claims = result.Principal.Identities.FirstOrDefault().Claims.Select(claim => new
-        //        {
-        //            claim.Issuer,
-        //            claim.OriginalIssuer,
-        //            claim.Type,
-        //            claim.Value
-        //        });
-        //    return Json(claims);
-        //}
-        //public IActionResult FacebookLogin()
-        //{
-        //    var prop = new AuthenticationProperties
-        //    {
-        //        RedirectUri = Url.Action("FacebookResponse")
-        //    };
-        //    return Challenge(prop, FacebookDefaults.AuthenticationScheme);
-        //}
-        //public async Task<IActionResult> FacebookResponse()
-        //{
-        //    var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        //    var claims = result.Principal.Identities.FirstOrDefault().Claims.Select(claim => new
-        //    {
-        //        claim.Issuer,
-        //        claim.OriginalIssuer,
-        //        claim.Type,
-        //        claim.Value
-        //    });
-        //    return Json(claims);
-        //}
-        //public IActionResult LinkedLogin()
-        //{
-        //             //  return Challenge(LinkedResponse);
-        //    return Challenge(LinkedInAuthenticationDefaults.AuthenticationScheme);
-        //}
-        //public async Task<IActionResult> LinkedResponse()
-        //{
-        //    var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        //    var claims = result.Principal.Identities.FirstOrDefault().Claims.Select(claim => new
-        //    {
-        //        claim.Issuer,
-        //        claim.OriginalIssuer,
-        //        claim.Type,
-        //        claim.Value
-        //    });
-        //    return Json(claims);
-        //}
 
     }
 }
