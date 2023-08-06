@@ -1,49 +1,484 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@using System.Security.Principal
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Exepense_Vendor_Management</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Exepense_Vendor_Management.styles.css" asp-append-version="true" />
+    <base href="../">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="./images/favicon.png">
+    <!-- Page Title  -->
+    <title>Cricket Association of UTTARAKHAND</title>
+
+
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="~/Theme/assets/css/dashlite.css">
+    <link id="skin-default" rel="stylesheet" href="~/Theme/assets/css/theme.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Exepense_Vendor_Management</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+
+<body class="nk-body npc-default has-apps-sidebar has-sidebar ">
+    <div class="nk-app-root">
+        <div class="nk-apps-sidebar is-dark">
+            <div class="nk-apps-brand">
+                <a class="logo-link">
+                    <img class="logo-light logo-img" src="~/admintheme/caulogo.png" srcset="~/admintheme/caulogo.png 2x" alt="logo">
+                    <img class="logo-dark logo-img" src="~/admintheme/caulogo.png" srcset="~/admintheme/caulogo.png 2x" alt="logo-dark">
+                </a>
+            </div>
+            <div class="nk-sidebar-element">
+                <div class="nk-sidebar-body">
+                    <div class="nk-sidebar-content" data-simplebar>
+                        <div class="nk-sidebar-menu">
+                            <!-- Menu -->
+                            <ul class="nk-menu apps-menu">
+                                <li class="nk-menu-item">
+                                    <a href="~/InvoiceSide/AllInvoices" class="nk-menu-link" title="All Invoices">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="nk-sidebar-profile nk-sidebar-profile-fixed dropdown">
+                        <a href="#" data-toggle="dropdown" data-offset="50,-60">
+                            <div class="user-avatar">
+                                @if (User.IsInRole("Super Admin"))
+                                {
+                                    <span>SA</span>
+                                }
+                                else if (User.IsInRole("Admin"))
+                                {
+                                    <span>A</span>
+                                }
+                                else
+                                {
+                                    <span>F</span>
+                                }
+                            </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-md ml-4">
+                            <div class="dropdown-inner user-card-wrap d-none d-md-block">
+                                <div class="user-card">
+                                    <div class="user-avatar">
+                                        @if (User.IsInRole("Super Admin"))
+                                        {
+                                            <span>SA</span>
+                                        }
+                                        else if (User.IsInRole("Admin"))
+                                        {
+                                            <span>A</span>
+                                        }
+                                        else
+                                        {
+                                            <span>F</span>
+                                        }
+
+                                    </div>
+                                    <div class="user-info">
+                                        <span class="lead-text">@User.Identity.Name</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-inner">
+                                <ul class="link-list">
+                                    @*<li><a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                    <li><a href="html/user-profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
+                                    <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
+                                    <li><a href=""><em class="icon ni ni-activity-alt"></em><span>Change Password</span></a></li>*@
+                                </ul>
+                            </div>
+                            <div class="dropdown-inner">
+                                <ul class="link-list">
+                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Exepense_Vendor_Management - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+        <!-- main  -->
+        <div class="nk-main ">
+            <!-- wrap  -->
+            <div class="nk-wrap ">
+                <!-- main header  -->
+                <div class="nk-header nk-header-fixed is-light">
+                    <div class="container-fluid">
+                        <div class="nk-header-wrap">
+                            <div class="nk-menu-trigger d-xl-none ml-n1">
+                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                            </div>
+                            <div class="nk-header-app-name">
+                                <div class="nk-header-app-logo">
+                                    <em class="icon ni ni-dashlite bg-purple-dim"></em>
+                                </div>
+                                <div class="nk-header-app-info">
+                                    <span class="sub-text"></span>
+                                    <span class="lead-text">Dashboard</span>
+                                </div>
+                            </div>
+
+                            <div class="nk-header-tools">
+                                <ul class="nk-quick-nav">
+
+
+
+                                    <li class="dropdown user-dropdown">
+                                        <a href="" class="dropdown-toggle mr-n1" data-toggle="dropdown">
+                                            <div class="user-toggle">
+                                                <div class="user-avatar sm">
+                                                    <em class="icon ni ni-user-alt"></em>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+                                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                                <div class="user-card">
+                                                    <div class="user-avatar">
+                                                        @if (User.IsInRole("Super Admin"))
+                                                        {
+                                                            <span>SA</span>
+                                                        }
+                                                        else if (User.IsInRole("Admin"))
+                                                        {
+                                                            <span>A</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span>F</span>
+                                                        }
+                                                    </div>
+                                                    <div class="user-info">
+                                                        <span class="lead-text">@User.Identity.Name</span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    @*<li><a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                                    <li><a href="html/user-profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
+                                                    <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
+                                                    <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
+                                                    <li><a href=" ~ /Shared/ForgetPassword?id =@User.Id"><em class="icon ni ni-activity-alt"></em><span>Forgot Password</span></a></li>*@
+                                                </ul>
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- main header -->
+                <div class="nk-sidebar" data-content="sidebarMenu">
+                    <div class="nk-sidebar-inner" data-simplebar>
+                        <ul class="nk-menu nk-menu-md">
+                            <li class="nk-menu-heading">
+
+                            </li><!-- .nk-menu-heading -->
+                           
+                                <li class="nk-menu-item">
+                                    <a href="~/AdminSide/Index" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                        <span class="nk-menu-text">All Users</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="~/AccountsSide/AddUser" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
+                                        <span class="nk-menu-text">Add New Users</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="~/Management/AllVendors" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
+                                        <span class="nk-menu-text">Vendors</span>
+                                    </a>
+                                </li>
+
+
+                                <!-- .nk-menu-item -->
+
+                                <li class="nk-menu-heading">
+                                    <h6 class="overline-title text-primary-alt">Others Section</h6>
+                                </li>
+
+                                <!-- .nk-menu-heading -->
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
+                                        <span class="nk-menu-text">Events</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="Management/AllMainEvents" class="nk-menu-link"><span class="nk-menu-text">Main Events</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="Management/AllSubEvents" class="nk-menu-link"><span class="nk-menu-text">Sub Events</span></a>
+                                        </li>
+                                    </ul><!-- .nk-menu-sub -->
+                                </li>
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><i class="bi bi-currency-rupee"></i></span>
+                                        <span class="nk-menu-text">Payments</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="Management/AllCategory" class="nk-menu-link"><span class="nk-menu-text">Payments category</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="Management/AllSubCategory" class="nk-menu-link"><span class="nk-menu-text">Payments Subcategory</span></a>
+                                        </li>
+                                    </ul><!-- .nk-menu-sub -->
+                                </li>
+
+                                <!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="InvoiceSide/MyApprovel" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-list-task"></i></span>
+                                        <span class="nk-menu-text">Waiting for my Approval</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="InvoiceSide/AllInvoices" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-toggle2-on"></i></span>
+                                        <span class="nk-menu-text">Active Invoice</span>
+                                    </a>
+                                </li>
+
+
+
+                                <li class="nk-menu-item">
+                                    <a href="InvoiceSide/closeInvoice" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-check2-square"></i></span>
+                                        <span class="nk-menu-text">Closed Invoice</span>
+                                    </a>
+                                </li>
+
+                                <!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="InvoiceSide/cancellInvoice" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-dash-circle-fill"></i></span>
+                                        <span class="nk-menu-text">Cancelled Invoice</span>
+                                    </a>
+                                </li>
+
+                                <!-- .nk-menu-item -->
+                                <br />
+                                <h6 class="overline-title text-primary-alt">Dashboards</h6>
+                                <li class="nk-menu-item">
+                                    <a href="Dashboard/Index" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-bar-chart"></i></span>
+                                        <span class="nk-menu-text">Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="~/AccountsSide/ForgetPassword" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                        <span class="nk-menu-text">Change Password</span>
+                                    </a>
+                                </li>
+
+                                <!-- .nk-menu-item -->
+                            
+                            @if (User.IsInRole("Finance"))
+                            {
+                                <li class="nk-menu-item">
+                                    <a href="InvoiceSide/MyApprovel" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-toggle2-on"></i></span>
+                                        <span class="nk-menu-text">Pending My Approval</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="InvoiceSide/AllInvoices" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-toggle2-on"></i></span>
+                                        <span class="nk-menu-text">Active Invoice</span>
+                                    </a>
+                                </li>
+
+                                <!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="InvoiceSide/closeInvoice" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-check2-square"></i></span>
+                                        <span class="nk-menu-text">Close Invoice</span>
+                                    </a>
+                                </li>
+
+                                <!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="InvoiceSide/cancellInvoice" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-dash-circle-fill"></i></span>
+                                        <span class="nk-menu-text">Cancelled Invoice</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="FinanceSide/pendingPayment" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-list-ul"></i></span>
+                                        <span class="nk-menu-text">Waiting for Payment Disbursal</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="~/Management/AllVendors" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
+                                        <span class="nk-menu-text">Vendors</span>
+                                    </a>
+                                </li>
+
+
+                                <!-- .nk-menu-item -->
+
+                                <li class="nk-menu-heading">
+                                    <h6 class="overline-title text-primary-alt">Others Section</h6>
+                                </li>
+
+                                <!-- .nk-menu-heading -->
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
+                                        <span class="nk-menu-text">Events</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="Management/AllMainEvents" class="nk-menu-link"><span class="nk-menu-text">Main Events</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="Management/AllSubEvents" class="nk-menu-link"><span class="nk-menu-text">Sub Events</span></a>
+                                        </li>
+                                    </ul><!-- .nk-menu-sub -->
+                                </li>
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><i class="bi bi-currency-rupee"></i></span>
+                                        <span class="nk-menu-text">Payments</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="Management/AllCategory" class="nk-menu-link"><span class="nk-menu-text">Payments category</span></a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="Management/AllSubCategory" class="nk-menu-link"><span class="nk-menu-text">Payments Subcategory</span></a>
+                                        </li>
+                                    </ul><!-- .nk-menu-sub -->
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="Dashboard/Index" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-bar-chart"></i></span>
+                                        <span class="nk-menu-text">Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="~/AccountsSide/ForgetPassword" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                        <span class="nk-menu-text">Change Password</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="~/FinanceSide/AddInvoice" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                        <span class="nk-menu-text">Add Invoice</span>
+                                    </a>
+                                </li>
+
+                            }
+                            @if (User.IsInRole("CEO"))
+                            {
+                                <li class="nk-menu-item">
+                                    <a href="CEO/pendingPayment" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-list-ul"></i></span>
+                                        <span class="nk-menu-text">Waiting for my Approval</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="InvoiceSide/AllInvoices" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-toggle2-on"></i></span>
+                                        <span class="nk-menu-text">Active Invoice</span>
+                                    </a>
+                                </li>
+
+                                <!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="InvoiceSide/closeInvoice" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-check2-square"></i></span>
+                                        <span class="nk-menu-text">Close Invoice</span>
+                                    </a>
+                                </li>
+
+                                <!-- .nk-menu-item -->
+                                <li class="nk-menu-item">
+                                    <a href="InvoiceSide/cancellInvoice" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-dash-circle-fill"></i></span>
+                                        <span class="nk-menu-text">Cancelled Invoice</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="~/AccountsSide/ForgetPassword" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                        <span class="nk-menu-text">Change Password</span>
+                                    </a>
+                                </li>
+
+                            }
+
+                            @if (User.IsInRole("Employee"))
+                            {
+                                <li class="nk-menu-item">
+                                    <a href="~/Employeeside/ActiveInvoice" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-toggle2-on"></i></span>
+                                        <span class="nk-menu-text">  Active Invoices</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="~/Employeeside/AddInvoices" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-user"></em></span>
+                                        <span class="nk-menu-text">Add New Invoices</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="~/Employeeside/TrackingNumbers" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-user"></em></span>
+                                        <span class="nk-menu-text">Tracking</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="~/AccountsSide/ForgetPassword" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                        <span class="nk-menu-text">Change Password</span>
+                                    </a>
+                                </li>
+
+
+                            }
+
+                        </ul><!-- .nk-menu -->
+                    </div>
+                </div>
+                @RenderBody()
+                <!-- content -->
+            </div>
+            <!-- wrap  -->
+        </div>
+        <!-- main  -->
+    </div>
+    <!-- app-root  -->
+    <!-- JavaScript -->
+
+    <script src="~/Theme/assets/js/bundle.js"></script>
+    <script src="~/Theme//assets/js/scripts.js"></script>
+
 </body>
+
 </html>
