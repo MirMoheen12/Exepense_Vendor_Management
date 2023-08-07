@@ -14,7 +14,7 @@ namespace Exepense_Vendor_Management.Controllers
         private UserManager<IdentityUser> UserManager;
         public AccountsController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
         {
-
+           
             this.signInManager = signInManager;
             this.UserManager = userManager;
         }
