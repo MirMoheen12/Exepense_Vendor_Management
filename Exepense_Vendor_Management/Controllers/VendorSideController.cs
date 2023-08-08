@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Exepense_Vendor_Management.Controllers
 {
-    public class VendorController : Controller
+    public class VendorSideController : Controller
     {
         public IActionResult Index()
         {
@@ -11,14 +11,14 @@ namespace Exepense_Vendor_Management.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddVendor()
+        public IActionResult VendorForm()
         {
             return View();
         }
 
 
         [HttpPost]
-        public IActionResult  AddVendor(Vendor v)
+        public IActionResult VendorForm(Vendor v)
         {
             return View();
         }

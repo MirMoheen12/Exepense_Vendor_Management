@@ -1,0 +1,315 @@
+﻿@model Exepense_Vendor_Management.Models.Vendor
+
+@{
+    ViewData["Title"] = "VendorForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .hidden {
+        display: none;
+    }
+
+
+    #fileList > div > label > span:last-child {
+        color: red;
+        display: inline-block;
+        margin-left: 7px;
+        cursor: pointer;
+    }
+
+    #fileList input[type=file] {
+        display: none;
+    }
+
+    #fileList > div:last-child > label {
+        display: inline-block;
+        width: 23px;
+        height: 23px;
+        font: 16px/22px Tahoma;
+        color: orange;
+        text-align: center;
+        border: 2px solid orange;
+        border-radius: 50%;
+    }
+</style>
+<div class="nk-block nk-block-lg">
+    <div class="nk-block-head">
+        <div class="nk-block-head-content">
+            <h4 class="title nk-block-title">Basic Details for Vendor</h4>
+            <div class="nk-block-des">
+                @*       <p>You can alow display form in column as example below.</p>*@
+            </div>
+        </div>
+    </div>
+    <div class="card card-bordered">
+        <div class="card-inner">
+            <div class="card-head">
+                <h5 class="card-title">Invoice Info</h5>
+            </div>
+            <form asp-action="VendorForm" asp-controller="VendorSide" id="fileuploadlist" enctype="multipart/form-data" method="post">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="full-name-1">Invoice Amount</label>
+                            <div class="form-control-wrap">
+                                <input type="Text"  required  class="form-control" id="full-name-1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <div class="form-control-wrap">
+                                <select class="form-select" name="status">
+                                    <option value="Active">Active</option>
+                                    <option value="InActive">InActive</option>
+                                    <option value="On-Boarding">On-Boarding</option>
+                                    <option value="Off-Boarding">Off-Boarding</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="costCenter">Cost Center</label>
+                            <div class="form-control-wrap">
+                                <input type="text" required class="form-control" id="costCenter" name="costCenter">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="productCenter">Product Center</label>
+                            <div class="form-control-wrap">
+                                <select class="form-select" id="productCenter" name="productCenter">
+                                    <option value="">Select Product Center</option>
+                                    <option value="Lease">Lease</option>
+                                    <option value="Utilities">Utilities</option>
+                                    <option value="Warehouse Lender">Warehouse Lender</option>
+                                    <option value="Software">Software</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Individual Consultant">Individual Consultant</option>
+                                    <option value="Wholesale Lender">Wholesale Lender</option>
+                                    <option value="Correspondent Lender">Correspondent Lender</option>
+                                    <option value="Insurance">Insurance</option>
+                                    <option value="Verification Service">Verification Service</option>
+                                    <option value="Professional Service">Professional Service</option>
+                                    <!-- Add more options here if needed -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="category">Category</label>
+                            <div class="form-control-wrap">
+                                <select class="form-select" id="category" name="category">
+                                    <option value="">Select Category</option>
+                                    <option value="Legal">Legal</option>
+                                    <option value="Compliance">Compliance</option>
+                                    <option value="Accounting">Accounting</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="Investor">Investor</option>
+                                    <option value="Building">Building</option>
+                                    <option value="Operations">Operations</option>
+                                    <!-- Add more options here if needed -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">Critical Vendor</label>
+                            <div class="form-control-wrap">
+                                <input type="radio" id="criticalVendorYes" name="criticalVendor" value="Yes">
+                                <label for="criticalVendorYes">Yes</label>
+                                <input type="radio" id="criticalVendorNo" name="criticalVendor" value="No">
+                                <label for="criticalVendorNo">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- HTML code for the buttons -->
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="contractDocs">Contract Documents</label>
+                            <div class="form-control-wrap">
+                                <a href="#" id="viewContractDocs">
+                                    <i class="icon-documents"></i>
+                                    View Contract Documents
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="assessments">Assessments</label>
+                            <div class="form-control-wrap">
+                                <a href="#" id="viewAssessmentDocs">
+                                    <i class="icon-documents"></i>
+                                    View Assessment Documents
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="otherDocs">Other Documents</label>
+                            <div class="form-control-wrap">
+                                <a href="#" id="viewOtherDocs">
+                                    <i class="icon-documents"></i>
+                                    View Other Documents
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <!-- HTML code for Payment Amount dropdown with toggle text box -->
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="paymentAmount">Payment Amount</label>
+                            <div class="form-control-wrap">
+                                <select class="form-control" id="paymentAmount" onchange="toggleTextBox()">
+                                    <option value="">Select an Option</option>
+                                    <option value="fixed">Fixed Amount</option>
+                                    <option value="other">Other Amount</option>
+                                </select>
+                                <input type="text" id="paymentAmountTextBox" class="form-control hidden" placeholder="Enter Amount">
+                            </div>
+                        </div>
+                    </div>
+
+
+                        <!-- HTML code for the Auto Payment radio buttons -->
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-label" for="autoPayment">Auto Payment</label>
+                                <div class="form-control-wrap">
+                                    <div>
+                                        <input type="radio" id="autoPaymentYes" name="autoPayment" value="Yes">
+                                        <label for="autoPaymentYes">Yes</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="autoPaymentNo" name="autoPayment" value="No">
+                                        <label for="autoPaymentNo">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <!-- HTML code for the contractExpiration date and time picker -->
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="contractExpiration">Contract Expiration</label>
+                            <div class="form-control-wrap">
+                                <input type="datetime-local" class="form-control" id="contractExpiration">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">Auto Renew</label>
+                            <div class="form-control-wrap">
+                                <div>
+                                    <input type="radio" id="autoRenewYes" name="autoRenew" value="Yes">
+                                    <label for="autoRenewYes">Yes</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="autoRenewNo" name="autoRenew" value="No">
+                                    <label for="autoRenewNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- HTML code for the dateToCancel input field -->
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="dateToCancel">Date To Cancel</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="date" id="dateToCancel">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- HTML code for the dateToCancel input field -->
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="dateToCancel">Date To Cancel</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="date" id="dateToCancel">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HTML code for the notes text field -->     
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="notes">Notes</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="text" id="notes" placeholder="Enter notes">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-lg btn-primary">Save Information</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div><!-- .nk-block -->
+<!-- Script tag containing JavaScript logic for all three buttons -->
+<script>
+    // JavaScript to handle displaying documents if available
+    function displayDocumentIcon(docsType, isAvailable) {
+        const docIconElement = document.querySelector(`#${docsType} i`);
+        if (docIconElement) {
+            docIconElement.classList.remove("icon-documents");
+            docIconElement.classList.add(isAvailable ? "icon-check" : "icon-no-documents");
+        }
+    }
+
+    // Replace with your logic to determine document availability
+    const isContractDocsAvailable = true;
+    const isAssessmentDocsAvailable = false;
+    const isOtherDocsAvailable = true;
+
+    displayDocumentIcon("viewContractDocs", isContractDocsAvailable);
+    displayDocumentIcon("viewAssessmentDocs", isAssessmentDocsAvailable);
+    displayDocumentIcon("viewOtherDocs", isOtherDocsAvailable);
+
+
+    function toggleTextBox() {
+        var select = document.getElementById("paymentAmount");
+        var textBox = document.getElementById("paymentAmountTextBox");
+
+        if (select.value === "fixed") {
+            textBox.classList.remove("hidden");
+        } else {
+            textBox.classList.add("hidden");
+        }
+    }
+
+</script>
