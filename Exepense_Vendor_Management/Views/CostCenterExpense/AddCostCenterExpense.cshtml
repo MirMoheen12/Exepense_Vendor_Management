@@ -1,0 +1,189 @@
+﻿@model Exepense_Vendor_Management.Models.CostCenterExpense
+
+@{
+    ViewData["Title"] = "VendorForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .hidden {
+        display: none;
+    }
+
+
+    #fileList > div > label > span:last-child {
+        color: red;
+        display: inline-block;
+        margin-left: 7px;
+        cursor: pointer;
+    }
+
+    #fileList input[type=file] {
+        display: none;
+    }
+
+    #fileList > div:last-child > label {
+        display: inline-block;
+        width: 23px;
+        height: 23px;
+        font: 16px/22px Tahoma;
+        color: orange;
+        text-align: center;
+        border: 2px solid orange;
+        border-radius: 50%;
+    }
+</style>
+<div class="nk-block nk-block-lg">
+    <div class="nk-block-head">
+        <div class="nk-block-head-content">
+            <h4 class="title nk-block-title">Basic Details for CostCenterExpense</h4>
+            <div class="nk-block-des">
+                @*       <p>You can alow display form in column as example below.</p>*@
+            </div>
+        </div>
+    </div>
+    <div class="card card-bordered">
+        <div class="card-inner">
+            <div class="card-head">
+                <h5 class="card-title">Invoice Info</h5>
+            </div>
+            <form asp-action="VendorForm" asp-controller="VendorSide" id="fileuploadlist" enctype="multipart/form-data" method="post">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="submissionDate">Submission Date</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="date" id="submissionDate" name="submissionDate" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="expenseOccurred">Expense Occurred</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="date" id="expenseOccurred" name="expenseOccurred" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="expenseCategory">Expense Category</label>
+                            <div class="form-control-wrap">
+                                <select class="form-select" id="expenseCategory" name="expenseCategory">
+                                    <option value="">Select Expense Category</option>
+                                    <option value="Legal">Legal</option>
+                                    <option value="Compliance">Compliance</option>
+                                    <option value="Accounting">Accounting</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Sales">Sales</option>
+                                    <option value="Investor">Investor</option>
+                                    <option value="Building">Building</option>
+                                    <option value="Operations">Operations</option>
+                                    <!-- Add more options here if needed -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <div class="form-control-wrap">
+                                <select class="form-select" id="status" name="status">
+                                    <option value="Active">Active</option>
+                                    <option value="InActive">InActive</option>
+                                    <option value="On-Boarding">On-Boarding</option>
+                                    <option value="Off-Boarding">Off-Boarding</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="amount">Amount</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="number" step="0.01" id="amount" name="amount" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="costCenter">Cost Center</label>
+                            <div class="form-control-wrap">
+                                <input type="text" required class="form-control" id="costCenter" name="costCenter">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="vendorName">Vendor Name</label>
+                            <div class="form-control-wrap">
+                                <input type="text" required class="form-control" id="vendorName" name="vendorName">
+                            </div>
+                        </div>
+                    </div>
+
+                 
+
+
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="expenseDescription">Expense Description</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="text" id="expenseDescription" name="expenseDescription" placeholder="Enter expense description">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="supportingDocs">Supporting Documents</label>
+                            <div class="form-control-wrap">
+                                <input type="file" id="supportingDocs" name="supportingDocs" accept=".pdf, .doc, .docx">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HTML code for the notes text field -->
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="notes">Notes</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="text" id="notes" name="notes" placeholder="Enter notes">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-lg btn-primary">Save Information</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

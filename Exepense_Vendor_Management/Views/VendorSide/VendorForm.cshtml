@@ -58,6 +58,17 @@
                             </div>
                         </div>
                     </div>
+
+
+                         <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="costCenter">Cost Center</label>
+                            <div class="form-control-wrap">
+                                <input type="text" required class="form-control" id="costCenter" name="costCenter">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="form-label">Status</label>
@@ -73,14 +84,7 @@
                     </div>
 
 
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" for="costCenter">Cost Center</label>
-                            <div class="form-control-wrap">
-                                <input type="text" required class="form-control" id="costCenter" name="costCenter">
-                            </div>
-                        </div>
-                    </div>
+               
 
 
                     <div class="col-lg-6">
@@ -127,17 +131,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label">Critical Vendor</label>
-                            <div class="form-control-wrap">
-                                <input type="radio" id="criticalVendorYes" name="criticalVendor" value="Yes">
-                                <label for="criticalVendorYes">Yes</label>
-                                <input type="radio" id="criticalVendorNo" name="criticalVendor" value="No">
-                                <label for="criticalVendorNo">No</label>
-                            </div>
-                        </div>
-                    </div>
+               
 
 
                     <!-- HTML code for the buttons -->
@@ -152,33 +146,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" for="assessments">Assessments</label>
-                            <div class="form-control-wrap">
-                                <a href="#" id="viewAssessmentDocs">
-                                    <i class="icon-documents"></i>
-                                    View Assessment Documents
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" for="otherDocs">Other Documents</label>
-                            <div class="form-control-wrap">
-                                <a href="#" id="viewOtherDocs">
-                                    <i class="icon-documents"></i>
-                                    View Other Documents
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-
-
 
 
                     <!-- HTML code for Payment Amount dropdown with toggle text box -->
@@ -197,23 +164,18 @@
                     </div>
 
 
-                        <!-- HTML code for the Auto Payment radio buttons -->
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label class="form-label" for="autoPayment">Auto Payment</label>
-                                <div class="form-control-wrap">
-                                    <div>
-                                        <input type="radio" id="autoPaymentYes" name="autoPayment" value="Yes">
-                                        <label for="autoPaymentYes">Yes</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" id="autoPaymentNo" name="autoPayment" value="No">
-                                        <label for="autoPaymentNo">No</label>
-                                    </div>
-                                </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="otherDocs">Other Documents</label>
+                            <div class="form-control-wrap">
+                                <a href="#" id="viewOtherDocs">
+                                    <i class="icon-documents"></i>
+                                    View Other Documents
+                                </a>
                             </div>
                         </div>
-
+                    </div>
 
                     <!-- HTML code for the contractExpiration date and time picker -->
                     <div class="col-lg-6">
@@ -221,6 +183,45 @@
                             <label class="form-label" for="contractExpiration">Contract Expiration</label>
                             <div class="form-control-wrap">
                                 <input type="datetime-local" class="form-control" id="contractExpiration">
+                            </div>
+                        </div>
+                    </div>
+                    
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="assessments">Assessments</label>
+                            <div class="form-control-wrap">
+                                <a href="#" id="viewAssessmentDocs">
+                                    <i class="icon-documents"></i>
+                                    View Assessment Documents
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HTML code for the dateToCancel input field -->
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="dateToCancel">Date To Cancel</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="date" id="dateToCancel">
+                            </div>
+                        </div>
+                    </div>
+
+                       
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">Critical Vendor</label>
+                            <div class="form-control-wrap">
+                                <input type="radio" id="criticalVendorYes" name="criticalVendor" value="Yes">
+                                <label for="criticalVendorYes">Yes</label>
+                                <input type="radio" id="criticalVendorNo" name="criticalVendor" value="No">
+                                <label for="criticalVendorNo">No</label>
                             </div>
                         </div>
                     </div>
@@ -240,26 +241,26 @@
                             </div>
                         </div>
                     </div>
-                    <!-- HTML code for the dateToCancel input field -->
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" for="dateToCancel">Date To Cancel</label>
-                            <div class="form-control-wrap">
-                                <input class="form-control" type="date" id="dateToCancel">
+               
+                     <!-- HTML code for the Auto Payment radio buttons -->
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="form-label" for="autoPayment">Auto Payment</label>
+                                <div class="form-control-wrap">
+                                    <div>
+                                        <input type="radio" id="autoPaymentYes" name="autoPayment" value="Yes">
+                                        <label for="autoPaymentYes">Yes</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" id="autoPaymentNo" name="autoPayment" value="No">
+                                        <label for="autoPaymentNo">No</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
 
-                    <!-- HTML code for the dateToCancel input field -->
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" for="dateToCancel">Date To Cancel</label>
-                            <div class="form-control-wrap">
-                                <input class="form-control" type="date" id="dateToCancel">
-                            </div>
-                        </div>
-                    </div>
+           
 
                     <!-- HTML code for the notes text field -->     
                     <div class="col-lg-6">
