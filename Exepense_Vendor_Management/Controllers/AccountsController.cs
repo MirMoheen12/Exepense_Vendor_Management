@@ -55,20 +55,6 @@ namespace Exepense_Vendor_Management.Controllers
             var prop = signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUri);
             return new ChallengeResult(provider, prop);
         }
-        //[HttpPost]
-        //public IActionResult Login(string UserEmail, string userPassword)
-        //{
-        //    var data = accountside.ValidateUser(UserEmail, userPassword);
-        //    if (data != null)
-        //    {
-        //        if (data.UserRole == 1)
-        //        {
-        //            return RedirectToAction("Index", "Adminside");
-        //        }
-
-        //    }
-        //    return View();
-        //}
         public async Task<IActionResult> ExternalLoginCallBack(string? RetunrUrl = null, string? remoteError = null)
         {
             RetunrUrl = RetunrUrl ?? Url.Content("~/");
