@@ -15,6 +15,7 @@ namespace Exepense_Vendor_Management.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 

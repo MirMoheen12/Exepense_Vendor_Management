@@ -2,77 +2,62 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>INSPINIA | Login</title>
-    <link href="~/admintheme/animate.css" rel="stylesheet" />
-    <link href="~/admintheme/bootstrap.min.css" rel="stylesheet">
-    <link href="~/admintheme/Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="~/admintheme/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/theme/assets/css/index.css">
+	
+    <title>HASH TECHIE OFFICIAL</title>
+    <style>
+       .bgimg {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            width:100%;
+            z-index: -1;
+            /* You can adjust background properties such as size, position, and repeat here if needed */
+        }
+    </style>
 </head>
+<body >
+    <img class="bgimg" src="~/theme/assets/images/loginbg.jpg" />
+  <div class="container">
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                    <p style="font-weight:bold;font-size:32px; color:white; text-align:center; margin-bottom:60px;">Welcome</p>
 
-<body class="gray-bg">
+                    <center><img src="~/theme/assets/images/logo.png" style="width:150px; height:150px; " /></center>
+               
+                        @{
+                            if (Model.Externallogin.Count == 0)
+                            {
+                                <p>No External Login Provide</p>
+                            }
+                            else
+                            {
+                                <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
 
-    <img src="~/Images/Loginbackground.jpg" style="position:absolute;width:100%;height:auto;opacity:0.5" />
-    <div class="middle-box text-center loginscreen  animated fadeInDown">
-        <div>
-
-
-            <p style="font-size:33px;font-weight:bold;color:#e88900">Login.</p>
-            <form class="m-t" role="form" asp-action="Login" asp-controller="AccountsSide">
-                <div class="form-group">
-                    <input type="email" name="UserEmail" class="form-control" placeholder="Email" required="">
-                </div>
-                <div class="form-group">
-                    <input type="password" name="userPassword" class="form-control" placeholder="Password" required="">
-                </div>
-
-                <button type="submit" class="btn block full-width m-b" style="background-color:#002952;color:white">Login</button>
-            </form>
-            <a style="color:#002952;font-weight:bold;font-size:20px" href="@Url.Action("ForgotPassword", "Pages")"><small>Forgot password?</small></a>
-            <p style="color:#e88900;font-weight:bold;font-size:22px" class="text-muted text-center">Do not have an account?</></p>
-            @{
-                if (Model.Externallogin.Count == 0)
-                {
-                    <p>No External Login Provide</p>
-                }
-                else
-                {
-                    <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
-
-                        @foreach (var item in Model.Externallogin)
-                        {
-                            <button type="submit" name="provider" title="Login using your @item.Name account" value="@item.Name" class="btn  full-width" style="background-color:#15599f;color:white;margin-top:10px ">
-                                <p style="font-weight:bold;font-size:22px"> @item.Name</p>
-                            </button>
+                                    @foreach (var item in Model.Externallogin)
+                                    {
+                                    <button type="submit" name="provider" title="Login using your @item.Name account" value="@item.Name" class="btn  full-width" style="background-color:#020558;color:white;margin-top:10px ">
+                                            <p style="font-weight:bold;font-size:22px"> @item.Name</p>
+                                        </button>
+                                    }
+                                </form>
+                            }
                         }
-                    </form>
-                }
-            }
-            @*                <a asp-controller="AccountsSide" asp-action="GoogleLogin" class="btn block full-width" style="background-color:#002952;color:white"> <img src="~/Images/google.png" style="width:42%;height:auto;" /></a>
-
-            <a asp-controller="AccountsSide" asp-action="FacebookLogin" class="btn  full-width" style="background-color:#15599f;color:white;margin-top:10px ">
-            <p style="font-weight:bold;font-size:22px"> Facebook</p></a>
-            <a asp-controller="AccountsSide" asp-action="LinkedLogin" class="btn  full-width" style="background-color:#0068c2;color:white;margin-top:10px "><p style="font-weight:bold;font-size:22px"> Linkedin</p></a>*@
-            <br />
-            <br />
-            <a asp-controller="AccountsSide" asp-action="AddnewUser" class="btn block full-width m-b" style="background-color:#002952;color:white;padding-top:10">Create an account</a>
-            <div style="margin-top:20">
+                   
+                   
+                 
+                 
+              
             </div>
-
-
-            @* <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2015</small> </p>*@
         </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     </div>
-
 </body>
-
 </html>
-
-
