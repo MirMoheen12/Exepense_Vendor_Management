@@ -1,5 +1,7 @@
 
+using Exepense_Vendor_Management.Interfaces;
 using Exepense_Vendor_Management.Models;
+using Exepense_Vendor_Management.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -15,7 +17,9 @@ using System.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IVendor, VendorRepo>();
 builder.Services.AddDbContextPool<AppDbContext>(item => item.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddAuthentication(options =>
 {

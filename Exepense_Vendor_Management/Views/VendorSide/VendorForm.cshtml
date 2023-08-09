@@ -12,27 +12,6 @@
     }
 
 
-    #fileList > div > label > span:last-child {
-        color: red;
-        display: inline-block;
-        margin-left: 7px;
-        cursor: pointer;
-    }
-
-    #fileList input[type=file] {
-        display: none;
-    }
-
-    #fileList > div:last-child > label {
-        display: inline-block;
-        width: 23px;
-        height: 23px;
-        font: 16px/22px Tahoma;
-        color: orange;
-        text-align: center;
-        border: 2px solid orange;
-        border-radius: 50%;
-    }
 </style>
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head">
@@ -46,25 +25,15 @@
     <div class="card card-bordered">
         <div class="card-inner">
             <div class="card-head">
-                <h5 class="card-title">Invoice Info</h5>
+                <h5 class="card-title">Vendor Form</h5>
             </div>
             <form asp-action="VendorForm" asp-controller="VendorSide" id="fileuploadlist" enctype="multipart/form-data" method="post">
                 <div class="row g-4">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="full-name-1">Invoice Amount</label>
+                            <label class="form-label" for="full-name-1">Vendor Name</label>
                             <div class="form-control-wrap">
-                                <input type="Text"  required  class="form-control" id="full-name-1">
-                            </div>
-                        </div>
-                    </div>
-
-
-                         <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" for="costCenter">Cost Center</label>
-                            <div class="form-control-wrap">
-                                <input type="text" required class="form-control" id="costCenter" name="costCenter">
+                                <input type="Text" required class="form-control" asp-for="vendorName" id="full-name-1">
                             </div>
                         </div>
                     </div>
@@ -83,13 +52,25 @@
                         </div>
                     </div>
 
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="costCenter">Cost Center</label>
+                            <div class="form-control-wrap">
+                                <input type="text" required class="form-control" id="costCenter" asp-for="costCenter" name="costCenter">
+                            </div>
+                        </div>
+                    </div>
+                
+
+
+
 
                
 
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="productCenter">Product Center</label>
+                            <label class="form-label" for="productCenter">Product Type</label>
                             <div class="form-control-wrap">
                                 <select class="form-select" id="productCenter" name="productCenter">
                                     <option value="">Select Product Center</option>
@@ -131,23 +112,49 @@
                         </div>
                     </div>
 
-               
-
-
-                    <!-- HTML code for the buttons -->
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="contractDocs">Contract Documents</label>
+                            <label class="form-label">Critical Vendor</label>
                             <div class="form-control-wrap">
-                                <a href="#" id="viewContractDocs">
-                                    <i class="icon-documents"></i>
-                                    View Contract Documents
-                                </a>
+                                <select class="form-control" id="paymentAmount">
+                                    <option value="">Yes</option>
+                                    <option value="fixed">NO</option>
+
+                                </select>
+
                             </div>
                         </div>
                     </div>
 
 
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="costCenter">Contract Documents</label>
+                            <div class="form-control-wrap">
+                                <input type="file" required class="form-control"  >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="Assessments">Assessments</label>
+                            <div class="form-control-wrap">
+                                <input type="file" required class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="otherdocument">Other Documents</label>
+                            <div class="form-control-wrap">
+                                <input type="file" required class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- HTML code for Payment Amount dropdown with toggle text box -->
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -162,20 +169,22 @@
                             </div>
                         </div>
                     </div>
-
-
-
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="otherDocs">Other Documents</label>
+                            <label class="form-label">Auto Payment</label>
                             <div class="form-control-wrap">
-                                <a href="#" id="viewOtherDocs">
-                                    <i class="icon-documents"></i>
-                                    View Other Documents
-                                </a>
+                                <select class="form-control" id="paymentAmount">
+                                    <option value="">Yes</option>
+                                    <option value="fixed">NO</option>
+
+                                </select>
+
                             </div>
                         </div>
                     </div>
+
+               
+         
 
                     <!-- HTML code for the contractExpiration date and time picker -->
                     <div class="col-lg-6">
@@ -186,20 +195,27 @@
                             </div>
                         </div>
                     </div>
-                    
+
+
 
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="assessments">Assessments</label>
+                            <label class="form-label">Auto Renew</label>
                             <div class="form-control-wrap">
-                                <a href="#" id="viewAssessmentDocs">
-                                    <i class="icon-documents"></i>
-                                    View Assessment Documents
-                                </a>
+                                <select class="form-control" id="paymentAmount">
+                                    <option value="">Yes</option>
+                                    <option value="fixed">NO</option>
+
+                                </select>
+
                             </div>
                         </div>
                     </div>
+
+
+
+
 
                     <!-- HTML code for the dateToCancel input field -->
                     <div class="col-lg-6">
@@ -211,63 +227,17 @@
                         </div>
                     </div>
 
-                       
 
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label">Critical Vendor</label>
-                            <div class="form-control-wrap">
-                                <input type="radio" id="criticalVendorYes" name="criticalVendor" value="Yes">
-                                <label for="criticalVendorYes">Yes</label>
-                                <input type="radio" id="criticalVendorNo" name="criticalVendor" value="No">
-                                <label for="criticalVendorNo">No</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label">Auto Renew</label>
-                            <div class="form-control-wrap">
-                                <div>
-                                    <input type="radio" id="autoRenewYes" name="autoRenew" value="Yes">
-                                    <label for="autoRenewYes">Yes</label>
-                                </div>
-                                <div>
-                                    <input type="radio" id="autoRenewNo" name="autoRenew" value="No">
-                                    <label for="autoRenewNo">No</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-               
-                     <!-- HTML code for the Auto Payment radio buttons -->
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label class="form-label" for="autoPayment">Auto Payment</label>
-                                <div class="form-control-wrap">
-                                    <div>
-                                        <input type="radio" id="autoPaymentYes" name="autoPayment" value="Yes">
-                                        <label for="autoPaymentYes">Yes</label>
-                                    </div>
-                                    <div>
-                                        <input type="radio" id="autoPaymentNo" name="autoPayment" value="No">
-                                        <label for="autoPaymentNo">No</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
 
            
 
                     <!-- HTML code for the notes text field -->     
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="form-group">
                             <label class="form-label" for="notes">Notes</label>
                             <div class="form-control-wrap">
-                                <input class="form-control" type="text" id="notes" placeholder="Enter notes">
+                                <textarea class="form-control" type="text" id="notes" placeholder="Enter notes"></textarea>
                             </div>
                         </div>
                     </div>
