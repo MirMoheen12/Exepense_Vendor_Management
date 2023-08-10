@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Exepense_Vendor_Management.Models
 {
@@ -9,7 +10,7 @@ namespace Exepense_Vendor_Management.Models
         public int id { get; set; }
         public DateTime createdOn { get; set; }
         public string modifiedBy { get; set; }
-        public string isDeleted { get; set; }
+        public Boolean isDeleted { get; set; }
         public string createdBy { get; set; }
         public string vendorName { get; set; }
         public string status { get; set;}
@@ -17,9 +18,15 @@ namespace Exepense_Vendor_Management.Models
         public string poductType { get; set;}
         public string catagory { get; set;}
         public string criticalVendor { get; set;}
-        public string contract { get; set;}
-        public string assesments { get; set;}
-        public string otherDocs { get;set;}
+        public int contractid { get; set;}
+        [NotMapped]
+        public IFormFile? Contractdoc { get; set; } 
+        public int assesmentsid { get; set;}
+        [NotMapped]
+        public IFormFile? assesmentsdoc { get; set; }
+        public int otherDocsid { get;set;}
+        [NotMapped]
+        public IFormFile? otherdoc { get; set; }
         public string paymentAmount { get; set;}
         public string autoPayment { get; set;}
         public  DateTime contractExpiration { get; set;}

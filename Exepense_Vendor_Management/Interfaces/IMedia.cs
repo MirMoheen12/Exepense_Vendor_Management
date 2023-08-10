@@ -2,8 +2,8 @@
 
 namespace Exepense_Vendor_Management.Interfaces
 {
-    public interface IVendor
+    public interface IMedia
     {
-        public bool AddNewVendor(Vendor vendor);
+        public int AddMedia(Media medias);
     }
 }

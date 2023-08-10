@@ -1,5 +1,6 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Exepense_Vendor_Management.Models
 {
@@ -10,6 +11,8 @@ namespace Exepense_Vendor_Management.Models
 
         public string mediaType { get; set; }
         public string fileName { get; set; }
+        [NotMapped]
+        public IFormFile mediaFile { get; set; }
         public DateTime createdON { get; set; }
         public bool isDeleted { get; set; }
         public string createdBy { get; set; }

@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <label class="form-label">Status</label>
                             <div class="form-control-wrap">
-                                <select class="form-select" name="status">
+                                <select class="form-select" asp-for="status" name="status">
                                     <option value="Active">Active</option>
                                     <option value="InActive">InActive</option>
                                     <option value="On-Boarding">On-Boarding</option>
@@ -56,7 +56,7 @@
                         <div class="form-group">
                             <label class="form-label" for="costCenter">Cost Center</label>
                             <div class="form-control-wrap">
-                                <input type="text" required class="form-control" id="costCenter" asp-for="costCenter" name="costCenter">
+                                <input type="text" required class="form-control"  id="costCenter" asp-for="costCenter" >
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                         <div class="form-group">
                             <label class="form-label" for="productCenter">Product Type</label>
                             <div class="form-control-wrap">
-                                <select class="form-select" id="productCenter" name="productCenter">
+                                <select class="form-select" id="productCenter" asp-for="poductType">
                                     <option value="">Select Product Center</option>
                                     <option value="Lease">Lease</option>
                                     <option value="Utilities">Utilities</option>
@@ -96,7 +96,7 @@
                         <div class="form-group">
                             <label class="form-label" for="category">Category</label>
                             <div class="form-control-wrap">
-                                <select class="form-select" id="category" name="category">
+                                <select class="form-select" id="category" asp-for="catagory">
                                     <option value="">Select Category</option>
                                     <option value="Legal">Legal</option>
                                     <option value="Compliance">Compliance</option>
@@ -116,7 +116,7 @@
                         <div class="form-group">
                             <label class="form-label">Critical Vendor</label>
                             <div class="form-control-wrap">
-                                <select class="form-control" id="paymentAmount">
+                                <select class="form-control" asp-for="criticalVendor">
                                     <option value="">Yes</option>
                                     <option value="fixed">NO</option>
 
@@ -133,7 +133,7 @@
                         <div class="form-group">
                             <label class="form-label" for="costCenter">Contract Documents</label>
                             <div class="form-control-wrap">
-                                <input type="file" required class="form-control"  >
+                                <input type="file" asp-for="Contractdoc" required class="form-control"  >
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                         <div class="form-group">
                             <label class="form-label" for="Assessments">Assessments</label>
                             <div class="form-control-wrap">
-                                <input type="file" required class="form-control">
+                                <input type="file" required asp-for="assesmentsdoc" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
                         <div class="form-group">
                             <label class="form-label" for="otherdocument">Other Documents</label>
                             <div class="form-control-wrap">
-                                <input type="file" required class="form-control">
+                                <input type="file" required asp-for="otherdoc" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                                     <option value="fixed">Fixed Amount</option>
                                     <option value="other">Other Amount</option>
                                 </select>
-                                <input type="text" id="paymentAmountTextBox" class="form-control hidden" placeholder="Enter Amount">
+                                <input type="text" id="paymentAmountTextBox" asp-for="paymentAmount" class="form-control hidden" placeholder="Enter Amount">
                             </div>
                         </div>
                     </div>
@@ -173,7 +173,7 @@
                         <div class="form-group">
                             <label class="form-label">Auto Payment</label>
                             <div class="form-control-wrap">
-                                <select class="form-control" id="paymentAmount">
+                                <select class="form-control" asp-for="autoPayment" id="paymentAmount">
                                     <option value="">Yes</option>
                                     <option value="fixed">NO</option>
 
@@ -191,7 +191,7 @@
                         <div class="form-group">
                             <label class="form-label" for="contractExpiration">Contract Expiration</label>
                             <div class="form-control-wrap">
-                                <input type="datetime-local" class="form-control" id="contractExpiration">
+                                <input type="date" asp-for="contractExpiration" class="form-control" id="contractExpiration">
                             </div>
                         </div>
                     </div>
@@ -203,7 +203,7 @@
                         <div class="form-group">
                             <label class="form-label">Auto Renew</label>
                             <div class="form-control-wrap">
-                                <select class="form-control" id="paymentAmount">
+                                <select class="form-control" asp-for="autoRenew">
                                     <option value="">Yes</option>
                                     <option value="fixed">NO</option>
 
@@ -222,7 +222,7 @@
                         <div class="form-group">
                             <label class="form-label" for="dateToCancel">Date To Cancel</label>
                             <div class="form-control-wrap">
-                                <input class="form-control" type="date" id="dateToCancel">
+                                <input class="form-control" asp-for="dateToCancel" type="date" id="dateToCancel">
                             </div>
                         </div>
                     </div>
@@ -237,7 +237,7 @@
                         <div class="form-group">
                             <label class="form-label" for="notes">Notes</label>
                             <div class="form-control-wrap">
-                                <textarea class="form-control" type="text" id="notes" placeholder="Enter notes"></textarea>
+                                <textarea class="form-control" asp-for="notes" type="text" id="notes" placeholder="Enter notes"></textarea>
                             </div>
                         </div>
                     </div>

@@ -9,5 +9,6 @@ namespace Exepense_Vendor_Management.Models
         {
 
         }
+        public DbSet<Media> Media { get; set; }
     }
 }
