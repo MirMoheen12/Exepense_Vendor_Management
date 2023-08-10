@@ -10,29 +10,6 @@
     .hidden {
         display: none;
     }
-
-
-    #fileList > div > label > span:last-child {
-        color: red;
-        display: inline-block;
-        margin-left: 7px;
-        cursor: pointer;
-    }
-
-    #fileList input[type=file] {
-        display: none;
-    }
-
-    #fileList > div:last-child > label {
-        display: inline-block;
-        width: 23px;
-        height: 23px;
-        font: 16px/22px Tahoma;
-        color: orange;
-        text-align: center;
-        border: 2px solid orange;
-        border-radius: 50%;
-    }
 </style>
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head">
@@ -186,20 +163,27 @@
                             </div>
                         </div>
                     </div>
-                    
+
+
+
+                   
+
+
+
+                
+
+
 
 
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="assessments">Assessments</label>
                             <div class="form-control-wrap">
-                                <a href="#" id="viewAssessmentDocs">
-                                    <i class="icon-documents"></i>
-                                    View Assessment Documents
-                                </a>
+                                <input type="file" required class="form-control">
                             </div>
                         </div>
                     </div>
+
 
                     <!-- HTML code for the dateToCancel input field -->
                     <div class="col-lg-6">
