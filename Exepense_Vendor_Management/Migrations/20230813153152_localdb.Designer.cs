@@ -4,6 +4,7 @@ using Exepense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exepense_Vendor_Management.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230813153152_localdb")]
+    partial class localdb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,76 +53,6 @@ namespace Exepense_Vendor_Management.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Media");
-                });
-
-            modelBuilder.Entity("Exepense_Vendor_Management.Models.Vendor", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<int?>("assesmentsid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("autoPayment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("autoRenew")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("catagory")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("contractExpiration")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("contractid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("costCenter")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("createdBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("createdOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("criticalVendor")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("dateToCancel")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("isDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("modifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("notes")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("otherDocsid")
-                        .HasColumnType("int");
-
-                    b.Property<string>("paymentAmount")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("poductType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("vendorName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Vendor");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

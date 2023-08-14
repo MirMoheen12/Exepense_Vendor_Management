@@ -31,6 +31,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>().
                 AddDefaultUI().
                   AddDefaultTokenProviders().
                AddEntityFrameworkStores<AppDbContext>();
+
 builder.Services.AddAuthentication().AddOpenIdConnect("AzureAD", "Azure AD", options =>
 {
     options.ClientId = builder.Configuration["Authentication2:AzureAD:ClientId"];
@@ -67,6 +68,6 @@ app.UseAuthorization();
 app.UseAuthentication();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Accounts}/{action=login}/{id?}");
+    pattern: "{controller=EmployeeExpense}/{action=Index}/{id?}");
 
 app.Run();

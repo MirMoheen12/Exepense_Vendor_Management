@@ -16,18 +16,6 @@ namespace Exepense_Vendor_Management.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult VendorForm()
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        public IActionResult VendorForm(Vendor v)
-        {
-            vendor.AddNewVendor(v);
-            return View();
-        }
+  
     }
 }

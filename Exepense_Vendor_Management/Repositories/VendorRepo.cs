@@ -20,6 +20,9 @@ namespace Exepense_Vendor_Management.Repositories
                 vendor.createdOn = DateTime.Now;
                 vendor.createdBy = "Mir";
                 vendor.isDeleted = false;
+                vendor.contractid = -1;
+                vendor.assesmentsid = -1;
+                vendor.otherDocsid = -1;
                 if (vendor.Contractdoc != null)
                 {
                     Media m = new Media();
@@ -28,9 +31,28 @@ namespace Exepense_Vendor_Management.Repositories
                     vendor.contractid = media.AddMedia(m);
 
                 }
+                if (vendor.assesmentsdoc != null)
+                {
+                    Media m = new Media();
+                    m.mediaFile = vendor.assesmentsdoc;
+                    m.mediaType = "Add Vendor";
+                    vendor.assesmentsid = media.AddMedia(m);
+
+                }
+                if (vendor.otherdoc != null)
+                {
+                    Media m = new Media();
+                    m.mediaFile = vendor.otherdoc;
+                    m.mediaType = "Add Vendor";
+                    vendor.otherDocsid = media.AddMedia(m);
+
+                }
+                vendor.status = "On-Boarding";
+                _context.Vendor.Add(vendor);
+                _context.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }

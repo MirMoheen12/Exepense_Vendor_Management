@@ -4,6 +4,7 @@ using Exepense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exepense_Vendor_Management.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230813165054_shjsf")]
+    partial class shjsf
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,13 +63,14 @@ namespace Exepense_Vendor_Management.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<int?>("assesmentsid")
+                    b.Property<int>("assesmentsid")
                         .HasColumnType("int");
 
                     b.Property<string>("autoPayment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("autoRenew")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("catagory")
@@ -76,7 +79,7 @@ namespace Exepense_Vendor_Management.Migrations
                     b.Property<DateTime>("contractExpiration")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("contractid")
+                    b.Property<int>("contractid")
                         .HasColumnType("int");
 
                     b.Property<string>("costCenter")
@@ -103,10 +106,11 @@ namespace Exepense_Vendor_Management.Migrations
                     b.Property<string>("notes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("otherDocsid")
+                    b.Property<int>("otherDocsid")
                         .HasColumnType("int");
 
                     b.Property<string>("paymentAmount")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("poductType")

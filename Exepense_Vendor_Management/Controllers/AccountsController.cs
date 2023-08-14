@@ -12,11 +12,13 @@ namespace Exepense_Vendor_Management.Controllers
 
         private SignInManager<IdentityUser> signInManager;
         private UserManager<IdentityUser> UserManager;
-        public AccountsController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public AccountsController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> _roleManager)
         {
            
             this.signInManager = signInManager;
             this.UserManager = userManager;
+            this._roleManager = _roleManager;
         }
 
         public IActionResult Index()
@@ -26,6 +28,11 @@ namespace Exepense_Vendor_Management.Controllers
         }
         public IActionResult AddnewUser()
         {
+            return View();
+        }
+        public async Task<IActionResult> CreateRole()
+        {
+            await CreateRoles();
             return View();
         }
 
@@ -39,6 +46,8 @@ namespace Exepense_Vendor_Management.Controllers
         //    var dt = accountside.AddnewUser(allUser);
         //    return View();
         //}
+
+
         public async Task<IActionResult> Login(string returnUrl)
         {
             LoginViewModel loginViewModel = new LoginViewModel
@@ -104,6 +113,21 @@ namespace Exepense_Vendor_Management.Controllers
 
             }
 
+        }
+
+
+        private async Task CreateRoles()
+        {
+            string[] roles = { "Super Admin", "Accouting Team", "Divisional Manager", "Regional Manager", "Area Manager", "Branch Manager\r\n" }; // Add more roles as needed
+
+            foreach (var role in roles)
+            {
+                bool roleExists = await _roleManager.RoleExistsAsync(role);
+                if (!roleExists)
+                {
+                    await _roleManager.CreateAsync(new IdentityRole(role));
+                }
+            }
         }
 
 
