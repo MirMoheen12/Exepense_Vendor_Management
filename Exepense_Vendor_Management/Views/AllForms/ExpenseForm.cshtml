@@ -20,13 +20,13 @@
             <div class="card-head">
                 <h5 class="card-title">Expense Form</h5>
             </div>
-            <form asp-action="VendorForm" asp-controller="VendorSide" id="fileuploadlist" enctype="multipart/form-data" method="post">
+            <form asp-action="ExpenseForm" asp-controller="AllForms" id="fileuploadlist" enctype="multipart/form-data" method="post">
                 <div class="row g-4">
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="submissionDate">Submission Date</label>
                             <div class="form-control-wrap">
-                                <input class="form-control" type="date" id="submissionDate" name="submissionDate" required>
+                                <input class="form-control" type="date" id="submissionDate" asp-for="submissionDate" required>
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <label class="form-label" for="expenseOccurred">Amount</label>
                             <div class="form-control-wrap">
-                                <input class="form-control" type="number" id="expenseOccurred" required>
+                                <input class="form-control" type="number" asp-for="amount" required>
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label class="form-label" for="submissionDate">Expense Date</label>
                             <div class="form-control-wrap">
-                                <input class="form-control" type="date" id="submissionDate" name="submissionDate" required>
+                                <input class="form-control" type="date" id="submissionDate" asp-for="expenseOccurred" required>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <label class="form-label" for="expenseCategory">Expense Category</label>
                             <div class="form-control-wrap">
-                                <select class="form-select" id="expenseCategory" name="expenseCategory">
+                                <select class="form-select" id="expenseCategory" asp-for="expenseCategory">
                                     <option value="">Select Expense Category</option>
                                     <option value="Administrative">Administrative</option>
                                     <option value="Mileage">Mileage</option>
@@ -83,7 +83,7 @@
                         <div class="form-group">
                             <label class="form-label" for="costCenter">Vendor Name</label>
                             <div class="form-control-wrap">
-                                <input type="text" required class="form-control" id="costCenter" name="costCenter">
+                                <input type="text" required class="form-control" id="costCenter" asp-for="vandorName">
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                         <div class="form-group">
                             <label class="form-label" for="supportingDocs">Supporting Documents</label>
                             <div class="form-control-wrap">
-                                <input type="file" id="supportingDocs" name="supportingDocs" accept=".pdf, .doc, .docx">
+                                <input type="file" id="supportingDocs" asp-for="SuportingMedia" accept=".pdf, .doc, .docx">
                             </div>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                         <div class="form-group">
                             <label class="form-label" for="notes">Notes</label>
                             <div class="form-control-wrap">
-                                <textarea class="form-control" type="number" name="text" required style="min-height:auto;">
+                                <textarea class="form-control" type="number" asp-for="notes" required style="min-height:auto;">
 
                                 </textarea>
                             </div>

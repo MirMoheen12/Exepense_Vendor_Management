@@ -7,9 +7,11 @@ namespace Exepense_Vendor_Management.Controllers
     public class AllFormsController : Controller
     {
         private readonly IVendor vendor;
-        public AllFormsController(IVendor vendor)
+        private readonly IExpense expense;
+        public AllFormsController(IVendor vendor, IExpense expense)
         {
             this.vendor = vendor;
+            this.expense = expense;
         }
 
         [HttpGet]
@@ -35,7 +37,7 @@ namespace Exepense_Vendor_Management.Controllers
         [HttpPost]
         public IActionResult ExpenseForm(EmployeeExpense e)
         {
-           
+            var res = expense.AddNewExpense(e);
             return View();
         }
     }

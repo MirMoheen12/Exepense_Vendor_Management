@@ -10,6 +10,7 @@ namespace Exepense_Vendor_Management.Models
 
         }
         public DbSet<Vendor> Vendor { get; set; }
+        public DbSet<EmployeeExpense> EmployeeExpense { get; set; }
         public DbSet<Media> Media { get; set; }
     }
 }

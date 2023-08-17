@@ -21,6 +21,7 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IVendor, VendorRepo>();
 builder.Services.AddTransient<IMedia, MediaRepo>();
+builder.Services.AddTransient<IExpense, ExpenseRepo>();
 builder.Services.AddDbContextPool<AppDbContext>(item => item.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddAuthentication(options =>
 {
