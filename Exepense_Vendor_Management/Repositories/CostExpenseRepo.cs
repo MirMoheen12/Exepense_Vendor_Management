@@ -26,7 +26,7 @@ namespace Exepense_Vendor_Management.Repositories
                 {
                     Media m = new Media();
                     m.mediaFile = ce.SupportingMedia;
-                    m.mediaType = "Add Expense";
+                    m.mediaType = "Cost Center";
                     ce.supportingDocid = media.AddMedia(m);
                 }
                 appDbContext.CostCenterExpense.Add(ce);
