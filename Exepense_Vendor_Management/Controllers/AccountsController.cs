@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Exepense_Vendor_Management.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Exepense_Vendor_Management.Controllers
 {
+    [AllowAnonymous]
     public class AccountsController : Controller
     {
 
@@ -26,26 +28,13 @@ namespace Exepense_Vendor_Management.Controllers
 
             return View();
         }
-        public IActionResult AddnewUser()
-        {
-            return View();
-        }
+     
         public async Task<IActionResult> CreateRole()
         {
             await CreateRoles();
             return View();
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> AddnewUser(AllUser allUser)
-        //{
-        //    var user = new IdentityUser { UserName = allUser.UserName, Email = allUser.UserEmail, PhoneNumber = allUser.ContactNo, PasswordHash = allUser.UserPass };
-
-        //    await UserManager.CreateAsync(user);
-        //    await signInManager.SignInAsync(user, isPersistent: false);
-        //    var dt = accountside.AddnewUser(allUser);
-        //    return View();
-        //}
 
 
         public async Task<IActionResult> Login(string returnUrl)
@@ -115,7 +104,11 @@ namespace Exepense_Vendor_Management.Controllers
 
         }
 
-
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Accounts");
+        }
         private async Task CreateRoles()
         {
             string[] roles = { "Super Admin", "Accouting Team", "Divisional Manager", "Regional Manager", "Area Manager", "Branch Manager\r\n" }; // Add more roles as needed

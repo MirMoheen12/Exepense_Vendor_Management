@@ -96,7 +96,7 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                    <li><a href="~/Accounts/Logout"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -172,7 +172,7 @@
                                             </div>
                                             <div class="dropdown-inner">
                                                 <ul class="link-list">
-                                                    <li><a href="#"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                    <li><a href="~/Accounts/Logout"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -189,8 +189,16 @@
                             <li class="nk-menu-heading">
 
                             </li><!-- .nk-menu-heading -->
-                           
+                            @if (User.IsInRole("Super Admin"))
+                            {
                                 <li class="nk-menu-item">
+                                    <a href="~/AllForms/VendorForm" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                        <span class="nk-menu-text">My Approval</span>
+                                    </a>
+                                </li>
+                            }
+                            <li class="nk-menu-item">
                                     <a href="~/AllForms/VendorForm" class="nk-menu-link">
                                         <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
                                         <span class="nk-menu-text">Vendor Form</span>
@@ -203,7 +211,7 @@
                                     </a>
                                 </li>
                                 <li class="nk-menu-item">
-                                <a href="~/AllForms/ConstExpenseForm" class="nk-menu-link">
+                                <a href="~/AllForms/CostExpenseForm" class="nk-menu-link">
                                         <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
                                     <span class="nk-menu-text">Cost Expense Center</span>
                                     </a>
@@ -215,90 +223,7 @@
                                 </a>
                             </li>
 
-                                <!-- .nk-menu-item -->
-
-                   @*             <li class="nk-menu-heading">
-                                    <h6 class="overline-title text-primary-alt">Others Section</h6>
-                                </li>
-
-                                <!-- .nk-menu-heading -->
-                                <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                        <span class="nk-menu-text">Events</span>
-                                    </a>
-                                    <ul class="nk-menu-sub">
-                                        <li class="nk-menu-item">
-                                            <a href="Management/AllMainEvents" class="nk-menu-link"><span class="nk-menu-text">Main Events</span></a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="Management/AllSubEvents" class="nk-menu-link"><span class="nk-menu-text">Sub Events</span></a>
-                                        </li>
-                                    </ul><!-- .nk-menu-sub -->
-                                </li>
-                                <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><i class="bi bi-currency-rupee"></i></span>
-                                        <span class="nk-menu-text">Payments</span>
-                                    </a>
-                                    <ul class="nk-menu-sub">
-                                        <li class="nk-menu-item">
-                                            <a href="Management/AllCategory" class="nk-menu-link"><span class="nk-menu-text">Payments category</span></a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="Management/AllSubCategory" class="nk-menu-link"><span class="nk-menu-text">Payments Subcategory</span></a>
-                                        </li>
-                                    </ul><!-- .nk-menu-sub -->
-                                </li>*@
-
-                                <!-- .nk-menu-item -->
-                        @*        <li class="nk-menu-item">
-                                    <a href="InvoiceSide/MyApprovel" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><i class="bi bi-list-task"></i></span>
-                                        <span class="nk-menu-text">Waiting for my Approval</span>
-                                    </a>
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="InvoiceSide/AllInvoices" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><i class="bi bi-toggle2-on"></i></span>
-                                        <span class="nk-menu-text">Active Invoice</span>
-                                    </a>
-                                </li>
-
-
-
-                                <li class="nk-menu-item">
-                                    <a href="InvoiceSide/closeInvoice" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><i class="bi bi-check2-square"></i></span>
-                                        <span class="nk-menu-text">Closed Invoice</span>
-                                    </a>
-                                </li>
-
-                                <!-- .nk-menu-item -->
-                                <li class="nk-menu-item">
-                                    <a href="InvoiceSide/cancellInvoice" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><i class="bi bi-dash-circle-fill"></i></span>
-                                        <span class="nk-menu-text">Cancelled Invoice</span>
-                                    </a>
-                                </li>
-
-                                <!-- .nk-menu-item -->
-                                <br />
-                                <h6 class="overline-title text-primary-alt">Dashboards</h6>
-                                <li class="nk-menu-item">
-                                    <a href="Dashboard/Index" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><i class="bi bi-bar-chart"></i></span>
-                                        <span class="nk-menu-text">Dashboard</span>
-                                    </a>
-                                </li>
-                                <li class="nk-menu-item">
-                                    <a href="~/AccountsSide/ForgetPassword" class="nk-menu-link">
-                                        <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
-                                        <span class="nk-menu-text">Change Password</span>
-                                    </a>
-                                </li>*@
-
-                                <!-- .nk-menu-item -->
+                      
              
 
                         </ul><!-- .nk-menu -->

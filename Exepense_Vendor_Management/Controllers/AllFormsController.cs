@@ -1,9 +1,11 @@
 ﻿using Exepense_Vendor_Management.Interfaces;
 using Exepense_Vendor_Management.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Exepense_Vendor_Management.Controllers
 {
+    [Authorize(Roles ="Super Admin")]
     public class AllFormsController : Controller
     {
         private readonly IVendor vendor;
@@ -42,11 +44,13 @@ namespace Exepense_Vendor_Management.Controllers
             var res = expense.AddNewExpense(e);
             return View();
         }
-        public IActionResult ConstExpenseForm()
+        [HttpGet]
+        public IActionResult CostExpenseForm()
         {
             return View();
         }
-        public IActionResult ConstExpenseForm(CostCenterExpense ce)
+        [HttpPost]
+        public IActionResult CostExpenseForm(CostCenterExpense ce)
         {
             var res=costExp.AddNewCostExp(ce);
             return View();
