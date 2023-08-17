@@ -1,0 +1,165 @@
+﻿@model Exepense_Vendor_Management.Models.CostCenterExpense
+
+@{
+    ViewData["Title"] = "Cost Expense";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="nk-block nk-block-lg">
+    <div class="nk-block-head">
+        <div class="nk-block-head-content">
+            <h4 class="title nk-block-title">Basic Details Cost Expense Form</h4>
+            <div class="nk-block-des">
+                @*       <p>You can alow display form in column as example below.</p>*@
+            </div>
+        </div>
+    </div>
+    <div class="card card-bordered">
+        <div class="card-inner">
+            <div class="card-head">
+                <h5 class="card-title">Cost Expense Form</h5>
+            </div>
+            <form asp-action="ConstExpenseForm" asp-controller="AllForms" id="fileuploadlist" enctype="multipart/form-data" method="post">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="submissionDate">Submission Date</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="date" id="submissionDate" asp-for="submissionDate" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="expenseOccurred">Amount</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="number" asp-for="amount" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="submissionDate">Expense Date</label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="date" id="submissionDate" asp-for="expenseAccurred" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="expenseCategory">Expense Category</label>
+                            <div class="form-control-wrap">
+                                <select class="form-select" id="expenseCategory" asp-for="expenseCategory">
+                                    <option value="">Select Expense Category</option>
+                                    <option value="Administrative">Administrative</option>
+                                    <option value="Mileage">Mileage</option>
+                                    <option value="Travel">Travel</option>
+                                    <option value="Lodging">Lodging</option>
+                                    <option value="Coaching">Coaching</option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Leads">Leads</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Event">Event</option>
+                                    <option value="Licensing">Licensing</option>
+                                    <option value="Meals & Entertainment">Meals & Entertainment</option>
+                                    <option value="">Other</option>
+                                    <!-- Add more options here if needed -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="costCenter">Vendor Name</label>
+                            <div class="form-control-wrap">
+                                <input type="text" required class="form-control" id="costCenter" asp-for="vandorName">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <div class="form-control-wrap">
+                                <select class="form-select" id="status" name="status">
+                                    <option value="Approved">Approved</option>
+                                    <option value="Denied">Denied</option>
+                                    <option value="Paid">Paid</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="supportingDocs">Supporting Documents</label>
+                            <div class="form-control-wrap">
+                                <input type="file" id="supportingDocs" asp-for="SupportingMedia" accept=".pdf, .doc, .docx">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="amount">
+                                Description
+                            </label>
+                            <div class="form-control-wrap">
+                                <textarea class="form-control" type="number" name="text" required style="min-height:auto;">
+
+                                </textarea>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <!-- HTML code for the notes text field -->
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="notes">Notes</label>
+                            <div class="form-control-wrap">
+                                <textarea class="form-control" type="number" asp-for="notes" required style="min-height:auto;">
+
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-lg btn-primary">Save Information</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
