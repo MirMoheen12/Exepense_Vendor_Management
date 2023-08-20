@@ -13,6 +13,11 @@ namespace Exepense_Vendor_Management.Repositories
             this.media = media;
 
         }
+        public List<Vendor> GetActiveVendorsForms() 
+        {
+            return (_context.Vendor.Where(x => x.isDeleted == false).ToList());
+        
+        }
         public bool AddNewVendor(Vendor vendor)
         {
             try

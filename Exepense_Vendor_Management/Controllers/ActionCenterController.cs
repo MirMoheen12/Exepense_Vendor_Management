@@ -1,12 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Exepense_Vendor_Management.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Exepense_Vendor_Management.Controllers
 {
     public class ActionCenterController : Controller
     {
-        public IActionResult Index()
+        private readonly IVendor ivend;
+        public ActionCenterController(IVendor ivend)
         {
-            return View();
+            this.ivend = ivend;
+        }
+        public IActionResult AllVendorForms()
+        {
+            return View(ivend.GetActiveVendorsForms());
         }
     }
 }

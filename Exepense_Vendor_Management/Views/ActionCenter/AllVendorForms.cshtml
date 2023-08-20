@@ -1,0 +1,186 @@
+﻿@model IEnumerable<Exepense_Vendor_Management.Models.Vendor>
+
+    @{
+        ViewData["Title"] = "AllVendorForms";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+
+
+    <div class="nk-block nk-block-lg">
+        <div class="nk-block-head">
+            <div class="nk-block-head-content">
+                <h4 class="nk-block-title">Your Invoices</h4>
+
+            </div>
+        </div>
+        <div class="card card-preview">
+            <div class="card-inner">
+
+                <table class="datatable-init-export nowrap table">
+                    <thead>
+                        <tr>
+                            <th>
+                                    VID
+                            </th>
+                            <th>
+                               Name
+                            </th>
+                            <th>
+                              Cost Center
+                            </th>
+                            <th>
+                           Product Type
+                            </th>
+                            <th>
+                                Category
+
+                            </th>
+                            <th>
+                                Critical Vendor
+
+                            </th>
+                            <th>
+                                Payment Amount
+
+                            </th>
+                            <th>
+                                Auto Payment
+
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.poductType)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.catagory)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.criticalVendor)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.paymentAmount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.autoPayment)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.contractExpiration)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.autoRenew)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.dateToCancel)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.notes)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.createdOn)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.modifiedBy)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.isDeleted)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.createdBy)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.vendorName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.costCenter)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.poductType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.catagory)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.criticalVendor)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.paymentAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.autoPayment)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.contractExpiration)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.autoRenew)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.dateToCancel)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.notes)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div><!-- .card-preview -->
+    </div>
+
+    <script type="text/javascript">
+
+        function DeleteInvoice(id) {
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        url: '/InvoiceSide/DeleteInvoice'
+                        , type: 'GET'
+                        , data: { id: id }
+                        , contentType: 'application/json'
+                        , success: function (response) {
+
+                            Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+                            location.reload();
+                        }
+                    });
+
+                }
+            });
+
+        }
+
+    </script>
+
+
+
+
+
+
+
