@@ -22,15 +22,16 @@ namespace Exepense_Vendor_Management.Repositories
                 ex.createdOn = DateTime.Now;
                 ex.createdBy = "Mir";
                 ex.supportingDocid = -1;
-                if(ex.SuportingMedia!=null)
+           
+                appContext.EmployeeExpense.Add(ex);
+                appContext.SaveChanges();
+                if (ex.SuportingMedia != null)
                 {
                     Media m = new Media();
                     m.mediaFile = ex.SuportingMedia;
                     m.mediaType = "Add Expense";
-                    ex.supportingDocid = media.AddMedia(m);
+                    media.AddMedia(m,ex.id.ToString());
                 }
-                appContext.EmployeeExpense.Add(ex);
-                appContext.SaveChanges();
                 return true;
             }
 

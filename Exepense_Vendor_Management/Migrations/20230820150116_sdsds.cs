@@ -4,7 +4,7 @@
 
 namespace Exepense_Vendor_Management.Migrations
 {
-    public partial class newchanges : Migration
+    public partial class sdsds : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

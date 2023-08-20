@@ -9,30 +9,30 @@ namespace Exepense_Vendor_Management.Models
         [Key]
         public int id { get; set; }
         public DateTime createdOn { get; set; }
-        public string? modifiedBy { get; set; }
+        public string modifiedBy { get; set; }
         public Boolean isDeleted { get; set; }
-        public string? createdBy { get; set; }
-        public string? vendorName { get; set; }
-        public string? status { get; set;}
-        public string? costCenter { get; set;}   
-        public string? poductType { get; set;}
-        public string? catagory { get; set;}
-        public string? criticalVendor { get; set;}
-        public Nullable<int> contractid { get; set;}
+        public string createdBy { get; set; }
+        public string vendorName { get; set; }
+        public string status { get; set;}
+        public string costCenter { get; set;}   
+        public string poductType { get; set;}
+        public string catagory { get; set;}
+        public string criticalVendor { get; set;}
+     
         [NotMapped]
         public IFormFile? Contractdoc { get; set; } 
-        public Nullable<int> assesmentsid { get; set;}
+      
         [NotMapped]
         public IFormFile? assesmentsdoc { get; set; }
-        public Nullable<int> otherDocsid { get;set;}
+    
         [NotMapped]
         public IFormFile? otherdoc { get; set; }
-        public string? paymentAmount { get; set;}
-        public string? autoPayment { get; set;}
+        public string paymentAmount { get; set;}
+        public string autoPayment { get; set;}
         public  DateTime contractExpiration { get; set;}
-        public string? autoRenew{ get; set;}
+        public string autoRenew{ get; set;}
         public DateTime dateToCancel { get; set; }
-        public string? notes{ get; set;}    
+        public string notes{ get; set;}    
 
     }
 }

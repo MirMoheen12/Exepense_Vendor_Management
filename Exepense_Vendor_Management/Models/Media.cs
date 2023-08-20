@@ -11,6 +11,10 @@ namespace Exepense_Vendor_Management.Models
 
         public string mediaType { get; set; }
         public string fileName { get; set; }
+        public string OldfileName { get; set; }
+
+        public string? FileUrl { get; set; }
+        public string ReqID { get; set; }
         [NotMapped]
         public IFormFile mediaFile { get; set; }
         public DateTime createdON { get; set; }

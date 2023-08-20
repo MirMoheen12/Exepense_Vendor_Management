@@ -21,16 +21,16 @@ namespace Exepense_Vendor_Management.Repositories
                 ce.isDeleted = false;
                 ce.createdOn=DateTime.Now;
                 ce.createdBy = "Mir";
-                ce.supportingDocid = -1;
+                appDbContext.CostCenterExpense.Add(ce);
+                appDbContext.SaveChanges();
                 if (ce.SupportingMedia != null)
                 {
                     Media m = new Media();
                     m.mediaFile = ce.SupportingMedia;
                     m.mediaType = "Cost Center";
-                    ce.supportingDocid = media.AddMedia(m);
+                   media.AddMedia(m,ce.id.ToString());
                 }
-                appDbContext.CostCenterExpense.Add(ce);
-                appDbContext.SaveChanges();
+             
                 return true;
 
             }

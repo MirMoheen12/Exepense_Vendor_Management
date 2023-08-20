@@ -10,7 +10,7 @@ namespace Exepense_Vendor_Management.Repositories
         {
             this._context = _context;
         }
-        public int AddMedia(Media medias)
+        public int AddMedia(Media medias, string ReqID)
         {
           
                 if(medias.mediaFile!=null)

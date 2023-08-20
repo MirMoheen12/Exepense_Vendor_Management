@@ -34,6 +34,7 @@ namespace Exepense_Vendor_Management.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("createdBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("createdOn")
@@ -43,30 +44,33 @@ namespace Exepense_Vendor_Management.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("expenseCategory")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("expenseDescription")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("modifiedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("notes")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("submissionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("supportingDocid")
-                        .HasColumnType("int");
-
                     b.Property<string>("vandorName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -86,12 +90,14 @@ namespace Exepense_Vendor_Management.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("createdBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("createdOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("expenseCategory")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("expenseOccurred")
@@ -101,12 +107,15 @@ namespace Exepense_Vendor_Management.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("modifiedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("notes")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("submissionDate")
@@ -116,6 +125,7 @@ namespace Exepense_Vendor_Management.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("vandorName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -130,6 +140,17 @@ namespace Exepense_Vendor_Management.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("FileUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OldfileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReqID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("createdBy")
                         .IsRequired()
@@ -162,34 +183,34 @@ namespace Exepense_Vendor_Management.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<int?>("assesmentsid")
-                        .HasColumnType("int");
-
                     b.Property<string>("autoPayment")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("autoRenew")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("catagory")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("contractExpiration")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("contractid")
-                        .HasColumnType("int");
-
                     b.Property<string>("costCenter")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("createdBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("createdOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("criticalVendor")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("dateToCancel")
@@ -199,24 +220,27 @@ namespace Exepense_Vendor_Management.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("modifiedBy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("notes")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("otherDocsid")
-                        .HasColumnType("int");
-
                     b.Property<string>("paymentAmount")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("poductType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("vendorName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
