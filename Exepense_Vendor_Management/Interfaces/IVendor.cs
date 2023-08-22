@@ -6,5 +6,7 @@ namespace Exepense_Vendor_Management.Interfaces
     {
         public List<Vendor> GetActiveVendorsForms();
         public bool AddNewVendor(Vendor vendor);
+        public Vendor GetVendorById(int vendorId);
+        public bool ChangeVendorAction(int ID, string Remarks, string Fstatus, IFormFile? file);
     }
 }

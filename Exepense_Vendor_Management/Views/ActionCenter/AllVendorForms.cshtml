@@ -73,10 +73,12 @@
                
                          
                                 <td>
-                                  
-                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) 
-                     
-                                </td>
+                                <a href="~/ActionCenter/VendorActionCenter?id=@item.id">
+                                    Details
+                                </a>
+                   
+
+                            </td>
                             </tr>
                         }
                     </tbody>

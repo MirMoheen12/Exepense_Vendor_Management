@@ -1,0 +1,300 @@
+﻿@model Exepense_Vendor_Management.Models.Vendor
+@{
+    ViewData["Title"] = "VendorActionCenter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .comment-section {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+    }
+
+    .comment-form {
+        margin-top: 20px;
+    }
+
+        .comment-form label,
+        .comment-form input,
+        .comment-form textarea,
+        .comment-form button {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .comment-form label {
+            font-weight: bold;
+        }
+
+        .comment-form button {
+            background-color: #6576ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+            .comment-form button:hover {
+                background-color: #4d61ff;
+            }
+
+    .comment {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+    }
+
+    .comment-author {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .comment-date {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 5px;
+    }
+
+    .comment-content {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    @@media screen and (max-width: 600px) {
+        .comment-section {
+            margin: 10px;
+            padding: 10px;
+        }
+
+        .comment-form label,
+        .comment-form input,
+        .comment-form textarea,
+        .comment-form button {
+            font-size: 14px;
+            padding: 8px;
+        }
+
+        .comment {
+            margin: 5px 0;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .comment-author {
+            font-size: 14px;
+        }
+
+        .comment-date {
+            font-size: 10px;
+        }
+
+        .comment-content {
+            font-size: 14px;
+        }
+    }
+</style>
+<div class="nk-block">
+    <div class="card card-bordered">
+        <div class="card-aside-wrap">
+            <div class="card-content">
+                <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><em class="icon ni ni-user-circle"></em><span>Details</span></a>
+                    </li>
+
+                </ul><!-- .nav-tabs -->
+                <div class="card-inner">
+                    <div class="nk-block">
+                            <div class="profile-ud-list">
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">ID</span>
+                                    <span class="profile-ud-value">@Model.id</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">Full Name</span>
+                                    <span class="profile-ud-value">@Model.vendorName</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">Cost Center </span>
+                                    <span class="profile-ud-value">@Model.costCenter</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">Product Type</span>
+                                    <span class="profile-ud-value">@Model.poductType</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">Category</span>
+                                    <span class="profile-ud-value">@Model.catagory?</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">Critical Vendor</span>
+                                    <span class="profile-ud-value">@Model.criticalVendor</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">Payment Amount</span>
+                                    <span class="profile-ud-value">@Model.paymentAmount</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">Auto Payment</span>
+                                    <span class="profile-ud-value">@Model.autoPayment</span>
+                                </div>
+                            </div>
+                          
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">Contract Expiration</span>
+                                    <span class="profile-ud-value">@Model.contractExpiration.ToShortDateString()</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">Auto Renew</span>
+                                    <span class="profile-ud-value">@Model.autoRenew</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">Cancel Date</span>
+                                    <span class="profile-ud-value">@Model.dateToCancel.ToShortDateString()</span>
+                                </div>
+                            </div>
+             
+               
+                        </div><!-- .profile-ud-list -->
+                    </div><!-- .nk-block -->
+                    <div class="nk-block">
+                        <div class="nk-block-head nk-block-head-line">
+                            <h6 class="title overline-title text-base">Update Information</h6>
+                        </div><!-- .nk-block-head -->
+                        <form method="post" asp-action="UpdateInvoceinfo" asp-controller="AdminSide" id="reqforupdateinvoice" enctype="multipart/form-data">
+                            <div class="profile-ud-list">
+                               <input hidden name="ID" value="@Model.id" />
+                                <div class="profile-ud-item">
+                                </div>
+                            </div>
+                            <div class="row g-4">
+                                <div class="col-lg-6">
+                                    <div class="profile-ud wider">
+                                        <span class="profile-ud-label">Staus</span>
+                                        <span class="profile-ud-value">
+                                            <select required name="statid" id="FormStatus" type="text" class="form-control">
+                                                <option value="">Select Status</option>
+                                                <option value="Active">Active</option>
+                                                <option value="In-Active">
+                                                    In-Active
+                                                </option>
+                                                <option value="On-boarding">On-boarding</option>
+                                            </select>
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label class="form-label" for="full-name-1">Remarks</label>
+                                        <div class="form-control-wrap">
+                                            <textarea type="text" required name="Remark" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row g-4" id="ApprovalDoc">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="full-name-1">Approval DOc</label>
+                                        <div class="form-control-wrap">
+                                            <input type="file" id="Approvaldocfile" name="Approvaldocfile" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </span>
+
+                                </div>
+                            </div>
+                            <!-- .profile-ud-list -->
+                        </form>
+                    </div><!-- .nk-block -->
+
+                    <div class="nk-divider divider md"></div>
+
+                </div><!-- .card-inner -->
+            </div><!-- .card-content -->
+
+        </div><!-- .card-aside-wrap -->
+
+   
+    </div><!-- .card -->
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script>
+    document.getElementById("reqforupdateinvoice").addEventListener("submit", function (event) {
+        var fileInput = document.getElementById("Finreqid");
+        if (fileInput.files.length > 0 && fileInput.files[0].size > 20 * 1024 * 1024) {
+            event.preventDefault(); // Prevent the form from being submitted
+            alert("File size exceeds the limit of 20MB. Please choose a smaller file.");
+        }
+
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    
+        $("#ApprovalDoc").hide();
+        $("#FormStatus").change(function () {
+            var instatus = this.value;
+            if (instatus == 'Active') {
+                $("#ApprovalDoc").show();
+                $("#Approvaldocfile").attr("required", true);
+            }
+
+
+        });
+    });
+</script>
+

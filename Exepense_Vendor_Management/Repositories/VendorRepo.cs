@@ -63,5 +63,45 @@ namespace Exepense_Vendor_Management.Repositories
                 return false;
             }
         }
+
+        public Vendor GetVendorById(int vendorId)
+        {
+            try
+            {
+                var dat = _context.Vendor.Where(x => x.id == vendorId).FirstOrDefault();
+                return dat;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
+        public bool ChangeVendorAction(int ID, string Remarks, string Fstatus, IFormFile? file)
+        {
+            try
+            {
+                var data = _context.Vendor.Where(x => x.id == ID).FirstOrDefault();
+                data.status = Fstatus;
+                data.modifiedBy = "SAdmin/Finance";
+                data.notes = Remarks;
+                _context.Vendor.Update(data);
+                _context.SaveChanges();
+                if(file!=null)
+                {
+                    Media m = new Media();
+                    m.mediaFile = file;
+                    m.mediaType = "Approve";
+                    m.createdBy = "";
+                    media.AddMedia(m, ID.ToString());
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

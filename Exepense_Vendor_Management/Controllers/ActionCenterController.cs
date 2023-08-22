@@ -10,9 +10,21 @@ namespace Exepense_Vendor_Management.Controllers
         {
             this.ivend = ivend;
         }
-        public IActionResult AllVendorForms(int ID)
+        public IActionResult AllVendorForms()
         {
             return View(ivend.GetActiveVendorsForms());
+        }
+        [HttpGet]
+        public IActionResult VendorActionCenter(int ID)
+        {
+            var dt=ivend.GetVendorById(ID);
+            return View(dt);
+        }
+        [HttpPost]
+        public IActionResult VendorActionCenter(int ID,string Remarks,string Fstatus,IFormFile? file)
+        {
+            var dt = ivend.ChangeVendorAction(ID,Remarks,Fstatus,file);
+            return View(dt);
         }
     }
 }
