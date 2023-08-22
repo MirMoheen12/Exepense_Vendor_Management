@@ -18,7 +18,10 @@ namespace Exepense_Vendor_Management.Repositories
                     medias.fileName=Addfilesinserver(medias.mediaFile);
                     medias.isDeleted = false;
                     medias.createdBy = "Mir";
+                    medias.ReqID=ReqID;
                     medias.createdON=DateTime.Now;
+                    medias.OldfileName=medias.mediaFile.FileName;
+                    medias.FileUrl = "azure url";
                     _context.Media.Add(medias);
                     _context.SaveChanges();
                 return medias.Id;

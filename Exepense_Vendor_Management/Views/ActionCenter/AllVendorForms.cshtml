@@ -21,7 +21,7 @@
                     <thead>
                         <tr>
                             <th>
-                                    VID
+                                    ID
                             </th>
                             <th>
                                Name
@@ -36,46 +36,14 @@
                                 Category
 
                             </th>
+                  
                             <th>
-                                Critical Vendor
+                                Amount
 
                             </th>
-                            <th>
-                                Payment Amount
-
-                            </th>
-                            <th>
-                                Auto Payment
-
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.poductType)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.catagory)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.criticalVendor)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.paymentAmount)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.autoPayment)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.contractExpiration)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.autoRenew)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.dateToCancel)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.notes)
-                            </th>
-                            <th></th>
+              
+                        
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,22 +54,7 @@
                                     @Html.DisplayFor(modelItem => item.id)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.createdOn)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.modifiedBy)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.isDeleted)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.createdBy)
-                                </td>
-                                <td>
                                     @Html.DisplayFor(modelItem => item.vendorName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.status)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.costCenter)
@@ -112,31 +65,17 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.catagory)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.criticalVendor)
-                                </td>
+                  
                                 <td>
                                     @Html.DisplayFor(modelItem => item.paymentAmount)
                                 </td>
+             
+               
+                         
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.autoPayment)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.contractExpiration)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.autoRenew)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dateToCancel)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.notes)
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                  
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) 
+                     
                                 </td>
                             </tr>
                         }

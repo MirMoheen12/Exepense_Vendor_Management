@@ -24,7 +24,9 @@ namespace Exepense_Vendor_Management.Repositories
             {
                 vendor.createdOn = DateTime.Now;
                 vendor.createdBy = "Mir";
+                vendor.modifiedBy = "Mir";
                 vendor.isDeleted = false;
+
                 vendor.status = "On-Boarding";
                 _context.Vendor.Add(vendor);
                 _context.SaveChanges();
@@ -49,6 +51,7 @@ namespace Exepense_Vendor_Management.Repositories
                     Media m = new Media();
                     m.mediaFile = vendor.otherdoc;
                     m.mediaType = "Add Vendor";
+                    m.createdBy = "";
                     media.AddMedia(m, vendor.id.ToString());
 
                 }
