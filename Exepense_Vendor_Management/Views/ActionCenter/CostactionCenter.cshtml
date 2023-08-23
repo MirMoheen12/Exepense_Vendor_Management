@@ -1,4 +1,4 @@
-﻿@model Exepense_Vendor_Management.Models.Vendor
+﻿@model Exepense_Vendor_Management.Models.CostCenterExpense
 @{
     ViewData["Title"] = "VendorActionCenter";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -125,7 +125,7 @@
                 </ul><!-- .nav-tabs -->
                 <div class="card-inner">
                     <div class="nk-block">
-                            <div class="profile-ud-list">
+                        <div class="profile-ud-list">
                             <div class="profile-ud-item">
                                 <div class="profile-ud wider">
                                     <span class="profile-ud-label">ID</span>
@@ -135,75 +135,43 @@
                             <div class="profile-ud-item">
                                 <div class="profile-ud wider">
                                     <span class="profile-ud-label">Full Name</span>
-                                    <span class="profile-ud-value">@Model.vendorName</span>
+                                    <span class="profile-ud-value">@Model.vandorName</span>
                                 </div>
                             </div>
                             <div class="profile-ud-item">
                                 <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Cost Center </span>
-                                    <span class="profile-ud-value">@Model.costCenter</span>
+                                    <span class="profile-ud-label">Expense Category </span>
+                                    <span class="profile-ud-value">@Model.expenseCategory</span>
                                 </div>
                             </div>
                             <div class="profile-ud-item">
                                 <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Product Type</span>
-                                    <span class="profile-ud-value">@Model.poductType</span>
+                                    <span class="profile-ud-label">Amount</span>
+                                    <span class="profile-ud-value">@Model.amount</span>
                                 </div>
                             </div>
                             <div class="profile-ud-item">
                                 <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Category</span>
-                                    <span class="profile-ud-value">@Model.catagory?</span>
+                                    <span class="profile-ud-label">Submission Date</span>
+                                    <span class="profile-ud-value">@Model.submissionDate.ToShortDateString()</span>
                                 </div>
                             </div>
                             <div class="profile-ud-item">
                                 <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Critical Vendor</span>
-                                    <span class="profile-ud-value">@Model.criticalVendor</span>
+                                    <span class="profile-ud-label">Accured Date</span>
+                                    <span class="profile-ud-value">@Model.expenseAccurred.ToShortDateString()</span>
                                 </div>
                             </div>
-                            <div class="profile-ud-item">
-                                <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Payment Amount</span>
-                                    <span class="profile-ud-value">@Model.paymentAmount</span>
-                                </div>
-                            </div>
-                            <div class="profile-ud-item">
-                                <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Auto Payment</span>
-                                    <span class="profile-ud-value">@Model.autoPayment</span>
-                                </div>
-                            </div>
-                          
-                            <div class="profile-ud-item">
-                                <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Contract Expiration</span>
-                                    <span class="profile-ud-value">@Model.contractExpiration.ToShortDateString()</span>
-                                </div>
-                            </div>
-                            <div class="profile-ud-item">
-                                <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Auto Renew</span>
-                                    <span class="profile-ud-value">@Model.autoRenew</span>
-                                </div>
-                            </div>
-                            <div class="profile-ud-item">
-                                <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Cancel Date</span>
-                                    <span class="profile-ud-value">@Model.dateToCancel.ToShortDateString()</span>
-                                </div>
-                            </div>
-             
-               
+
                         </div><!-- .profile-ud-list -->
                     </div><!-- .nk-block -->
                     <div class="nk-block">
                         <div class="nk-block-head nk-block-head-line">
                             <h6 class="title overline-title text-base">Update Information</h6>
                         </div><!-- .nk-block-head -->
-                        <form method="post" asp-action="VendorActionCenter" asp-controller="ActionCenter" id="reqforupdateinvoice" enctype="multipart/form-data">
+                        <form method="post" asp-action="CostactionCenter" asp-controller="ActionCenter" id="reqforupdateinvoice" enctype="multipart/form-data">
                             <div class="profile-ud-list">
-                               <input hidden name="ID" value="@Model.id" />
+                                <input hidden name="ID" value="@Model.id" />
                                 <div class="profile-ud-item">
                                 </div>
                             </div>
@@ -214,11 +182,18 @@
                                         <span class="profile-ud-value">
                                             <select required name="Fstatus" id="FormStatus" type="text" class="form-control">
                                                 <option value="">Select Status</option>
-                                                <option value="Active">Active</option>
-                                                <option value="In-Active">
-                                                    In-Active
+                                                <option>
+                                                    Approved
                                                 </option>
-                                                <option value="On-boarding">On-boarding</option>
+                                                <option>
+                                                    Denied
+                                                </option>
+                                                <option>
+                                                    Paid
+                                                </option>
+                                                <option>
+                                                    Pending
+                                                </option>
                                             </select>
                                         </span>
 
@@ -264,7 +239,7 @@
 
         </div><!-- .card-aside-wrap -->
 
-   
+
     </div><!-- .card -->
 </div>
 
@@ -284,11 +259,11 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-    
+
         $("#ApprovalDoc").hide();
         $("#FormStatus").change(function () {
             var instatus = this.value;
-            if (instatus == 'Active') {
+            if (instatus == 'Approved') {
                 $("#ApprovalDoc").show();
                 $("#Approvaldocfile").attr("required", true);
             }

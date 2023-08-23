@@ -8,7 +8,7 @@ namespace Exepense_Vendor_Management.Models
         [Key]
         public int id { get; set; }
         public DateTime createdOn { get; set; }
-        public string modifiedBy { get; set; }
+        public string? modifiedBy { get; set; }
         public bool isDeleted { get; set; }
         public string createdBy { get; set; }
         public DateTime submissionDate { get; set; }    
@@ -20,8 +20,7 @@ namespace Exepense_Vendor_Management.Models
         [NotMapped]
 
         public IFormFile SuportingMedia { get; set; }
-        public int supportingDocid { get; set; }
-
+       
         public string status { get; set; } 
 
         public string notes { get; set; }

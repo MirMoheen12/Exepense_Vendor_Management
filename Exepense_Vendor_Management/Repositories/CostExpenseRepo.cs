@@ -1,5 +1,6 @@
 ﻿using Exepense_Vendor_Management.Interfaces;
 using Exepense_Vendor_Management.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace Exepense_Vendor_Management.Repositories
@@ -21,6 +22,8 @@ namespace Exepense_Vendor_Management.Repositories
                 ce.isDeleted = false;
                 ce.createdOn=DateTime.Now;
                 ce.createdBy = "Mir";
+                ce.modifiedBy = "Null";
+                ce.status = "Submitted";
                 appDbContext.CostCenterExpense.Add(ce);
                 appDbContext.SaveChanges();
                 if (ce.SupportingMedia != null)
@@ -39,5 +42,52 @@ namespace Exepense_Vendor_Management.Repositories
                 return false;
             }
         }
+        public List<CostCenterExpense> GetAllCost()
+        {
+            return (appDbContext.CostCenterExpense.Where(x => x.isDeleted == false).ToList());
+
+        }
+
+        public CostCenterExpense GetCostById(int vendorId)
+        {
+            try
+            {
+                var dat = appDbContext.CostCenterExpense.Where(x => x.id == vendorId).FirstOrDefault();
+                return dat;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
+        public bool ChangeCostAction(int ID, string Remarks, string Fstatus, IFormFile? file)
+        {
+            try
+            {
+                var data = appDbContext.CostCenterExpense.Where(x => x.id == ID).FirstOrDefault();
+                data.status = Fstatus;
+                data.modifiedBy = "SAdmin/Finance";
+                data.notes = Remarks;
+                appDbContext.CostCenterExpense.Update(data);
+                appDbContext.SaveChanges();
+                if (file != null)
+                {
+                    Media m = new Media();
+                    m.mediaFile = file;
+                    m.mediaType = "Approve";
+                    m.createdBy = "";
+                    media.AddMedia(m, ID.ToString());
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
     }
 }

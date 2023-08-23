@@ -1,5 +1,6 @@
 ﻿using Exepense_Vendor_Management.Interfaces;
 using Exepense_Vendor_Management.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Exepense_Vendor_Management.Repositories
 {
@@ -21,8 +22,8 @@ namespace Exepense_Vendor_Management.Repositories
                 ex.isDeleted = false;
                 ex.createdOn = DateTime.Now;
                 ex.createdBy = "Mir";
-                ex.supportingDocid = -1;
-           
+                ex.modifiedBy = "Null";
+                ex.status = "Submitted";
                 appContext.EmployeeExpense.Add(ex);
                 appContext.SaveChanges();
                 if (ex.SuportingMedia != null)
@@ -41,6 +42,43 @@ namespace Exepense_Vendor_Management.Repositories
   
             }
   
+        }
+
+        public List<EmployeeExpense> GetAllExpenses()
+        {
+            var data = appContext.EmployeeExpense.ToList();
+            return data;
+        }
+
+        public EmployeeExpense GetExpById(int id)
+        {
+            var data = appContext.EmployeeExpense.Where(x => x.id == id).FirstOrDefault();
+            return data;
+        }
+        public bool ChangeExpenseAction(int ID, string Remarks, string Fstatus, IFormFile? file)
+        {
+            try
+            {
+                var data = appContext.EmployeeExpense.Where(x => x.id == ID).FirstOrDefault();
+                data.status = Fstatus;
+                data.modifiedBy = "SAdmin/Finance";
+                data.notes = Remarks;
+                appContext.EmployeeExpense.Update(data);
+                appContext.SaveChanges();
+                if (file != null)
+                {
+                    Media m = new Media();
+                    m.mediaFile = file;
+                    m.mediaType = "Approve";
+                    m.createdBy = "";
+                    media.AddMedia(m, ID.ToString());
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

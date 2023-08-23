@@ -88,22 +88,6 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label class="form-label">Status</label>
-                            <div class="form-control-wrap">
-                                <select class="form-select" id="status" name="status">
-                                    <option value="Approved">Approved</option>
-                                    <option value="Denied">Denied</option>
-                                    <option value="Paid">Paid</option>
-                                    <option value="Pending">Pending</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-
-
 
 
 
@@ -120,14 +104,12 @@
                     </div>
 
                     <div class="col-lg-6">
-                    </div>
-                    <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="amount">
                                 Description
                             </label>
                             <div class="form-control-wrap">
-                                <textarea class="form-control" type="number" name="text" required style="min-height:auto;">
+                                <textarea class="form-control" type="number" asp-for="expenseDescription" required style="min-height:auto;">
 
                                 </textarea>
 
