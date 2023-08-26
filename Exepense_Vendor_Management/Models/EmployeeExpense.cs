@@ -12,7 +12,7 @@ namespace Exepense_Vendor_Management.Models
         public bool isDeleted { get; set; }
         public string createdBy { get; set; }
         public DateTime submissionDate { get; set; }    
-        public Nullable<float> amount { get; set; }
+        public float amount { get; set; }
         public DateTime expenseOccurred { get; set; }
         public string expenseCategory { get; set; }
 
@@ -24,9 +24,5 @@ namespace Exepense_Vendor_Management.Models
         public string status { get; set; } 
 
         public string notes { get; set; }
-
-
-
-
     }
 }

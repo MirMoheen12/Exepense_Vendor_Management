@@ -1,8 +1,131 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@if (TempData.ContainsKey("SuccessMessage"))
+{
+    <script>
+        var successMessage = "@TempData["SuccessMessage"]";
+        alert(successMessage);
+    </script>
+}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Vendor & Expense Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .landing-page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1, h2, h4, h6, p {
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .features ul, .benefits ul, .getting-started ol {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding-left: 15px;
+        }
+
+        .benefits ul {
+            margin-left: 15px;
+            padding-left: 10px;
+        }
+
+        .benefits, .getting-started, .support {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .support {
+            font-style: italic;
+        }
+
+        .start-now {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-page">
+        <center>
+            <div class="logo">
+            <img src="~/theme/assets/images/logo.png" alt="Rize Stacked Logo" height="200" width="200">
+        </div>
+        <br />
+        <br />
+        <div class="description">
+            <h3>Welcome to the Employee Vendor & Expense Portal!</h3>
+            <p>🌟 Your one-stop destination for all financial management needs!</p>
+        </div></center>
+        <div class="features">
+            <h4>Features:</h4>
+            <ul>
+                <li>
+                    <strong>Vendor Management:</strong>
+                    <ul>
+                        <li>Add New Vendors: Simplify your tasks by adding vendors directly through our intuitive form. Keep all vendor details organized and accessible.</li>
+                        <li>Edit & Update: Made an error or need to update vendor details? No worries! Edit with ease and keep your vendor list up-to-date.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Expense Requests:</strong>
+                    <ul>
+                        <li>Seamless Submissions: Submit your expense requests with just a few clicks. Attach bills, provide necessary details, and keep track of approvals.</li>
+                        <li>History & Tracking: Review past expense submissions, check the status of pending requests, and get real-time updates.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Cost Center Management:</strong>
+                    <ul>
+                        <li>Add & Allocate: Introduce new cost centers or allocate expenses to existing ones to ensure accurate financial reporting.</li>
+                        <li>Insights & Reports: Monitor spending, get insights on cost centers' performance, and make data-driven decisions.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="benefits">
+            <h4>Benefits:</h4>
+            <ul>
+                <li>Efficiency: Reduce paperwork, save time, and enhance productivity with our easy-to-use portal.</li>
+                <li>Transparency: Monitor and manage financial details with complete transparency.</li>
+                <li>Accessibility: Access the portal anytime, anywhere, ensuring you’re always in control.</li>
+            </ul>
+        </div>
+        <div class="getting-started">
+            <h4>Getting Started:</h4>
+            <ol>
+                <li>Log In with your employee credentials.</li>
+                <li>Navigate to the desired section: 'Vendor Management', 'Expense Requests', or 'Cost Center Management'.</li>
+                <li>Start managing your tasks seamlessly!</li>
+            </ol>
+        </div>
+        <div class="support">
+            <h4>🛠 Support & Assistance:</h4>
+            <p>Facing an issue or need help? Reach out to our dedicated support team through the 'Help & Support' tab or email us at support@rizemtg.com.</p>
+        </div>
+        <div class="start-now">
+            <p>Elevate your financial management experience with the Employee Vendor & Expense Portal. Dive in and simplify your workflow today!</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
