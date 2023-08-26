@@ -24,14 +24,15 @@ namespace Exepense_Vendor_Management.Controllers
             return View();
         }
 
-
         [HttpPost]
         public IActionResult VendorForm(Vendor v)
         {
             vendor.AddNewVendor(v);
-            return View();
+            TempData["SuccessMessage"] = "Form submitted successfully!";
+            return RedirectToAction("Index", "Home");
         }
-     
+
+
         [HttpGet]
         public IActionResult ExpenseForm()
         {
@@ -43,7 +44,8 @@ namespace Exepense_Vendor_Management.Controllers
         public IActionResult ExpenseForm(EmployeeExpense e)
         {
             var res = expense.AddNewExpense(e);
-            return View();
+            TempData["SuccessMessage"] = "Form submitted successfully!";
+            return RedirectToAction("Index", "Home");
         }
         [HttpGet]
         public IActionResult CostExpenseForm()
@@ -53,7 +55,13 @@ namespace Exepense_Vendor_Management.Controllers
         [HttpPost]
         public IActionResult CostExpenseForm(CostCenterExpense ce)
         {
-            var res=costExp.AddNewCostExp(ce);
+            var res = costExp.AddNewCostExp(ce);
+            TempData["SuccessMessage"] = "Form submitted successfully!";
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public IActionResult submittedForm()
+        {
             return View();
         }
     }

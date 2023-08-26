@@ -13,7 +13,7 @@ namespace Exepense_Vendor_Management.Models
         public string createdBy { get; set; }
 
         public DateTime submissionDate { get; set; }
-        public Nullable<float> amount { get; set; }
+        public float amount { get; set; }
         public DateTime expenseAccurred { get; set; }
         public string expenseCategory { get; set; }
 
