@@ -55,9 +55,14 @@ namespace Exepense_Vendor_Management.Controllers
         [HttpPost]
         public IActionResult CostExpenseForm(CostCenterExpense ce)
         {
-            var res=costExp.AddNewCostExp(ce);
+            var res = costExp.AddNewCostExp(ce);
             TempData["SuccessMessage"] = "Form submitted successfully!";
             return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public IActionResult submittedForm()
+        {
+            return View();
         }
     }
 }
