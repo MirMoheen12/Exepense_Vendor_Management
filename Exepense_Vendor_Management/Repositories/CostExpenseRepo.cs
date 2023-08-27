@@ -55,12 +55,11 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
-                var dat = appDbContext.CostCenterExpense.Where(x => x.id == vendorId).FirstOrDefault();
-                return dat;
+                return appDbContext.CostCenterExpense.Where(x => x.id == vendorId).FirstOrDefault();
+                
             }
             catch (Exception)
             {
-
                 return null;
             }
         }
@@ -80,7 +79,7 @@ namespace Expense_Vendor_Management.Repositories
                     Media m = new Media();
                     m.mediaFile = file;
                     m.mediaType = "Approve";
-                    m.createdBy = "";
+                    m.createdBy = user.ActiveUserId();
                     m.belongTo = "Cost";
                     media.AddMedia(m, ID.ToString());
                 }

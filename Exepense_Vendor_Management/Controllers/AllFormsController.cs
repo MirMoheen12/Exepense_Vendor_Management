@@ -88,6 +88,7 @@ namespace Expense_Vendor_Management.Controllers
         [HttpGet]
         public IActionResult EditVendorForm(int id)
         {
+            ViewBag.media = media.getAllMediaByID(id, "Vendor");
             var data = vendor.GetVendorById(id);
             return View(data);
         }
@@ -102,6 +103,7 @@ namespace Expense_Vendor_Management.Controllers
         [HttpGet]
         public IActionResult EditExpenseForm(int id)
         {
+            ViewBag.media = media.getAllMediaByID(id, "Expense");
             var data = expense.GetExpById(id);
             return View(data);
         }
@@ -112,8 +114,5 @@ namespace Expense_Vendor_Management.Controllers
             TempData["SuccessMessage"] = "Form Edited successfully!";
             return RedirectToAction("Index", "Home");
         }
-
-
-
     }
 }

@@ -35,7 +35,6 @@
                                 <input class="form-control" hidden type="hidden" asp-for="expenseCategory" required>
                                 <input class="form-control" hidden type="hidden" asp-for="modifiedBy" required>
                                 <input class="form-control" hidden type="hidden" asp-for="status" required>
-
                                 <input class="form-control" type="date" id="submissionDate" asp-for="submissionDate" required>
                             </div>
                         </div>
@@ -70,8 +69,7 @@
                             </label>
                             <div class="form-control-wrap">
                                 <select class="form-select" id="expenseCategory" asp-for="expenseCategory">
-                                    <option value="">Select Expense Category</option>
-                                    <option value="Administrative">Administrative</option>
+                                    <option selected value="Administrative">Administrative</option>
                                     <option value="Mileage">Mileage</option>
                                     <option value="Travel">Travel</option>
                                     <option value="Lodging">Lodging</option>
@@ -123,13 +121,6 @@
                     </div>
                 </div>
             </form>
-
-
-
-
-
-
-
         </div>
     </div>
 
@@ -201,6 +192,6 @@
                 </tbody>
             </table>
         </div>
-    </div><!-- .card-preview -->
+    </div>
 
 </div>
