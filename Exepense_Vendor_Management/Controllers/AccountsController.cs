@@ -39,6 +39,7 @@ namespace Expense_Vendor_Management.Controllers
 
         public async Task<IActionResult> Login(string returnUrl)
         {
+            await signInManager.SignOutAsync();
             LoginViewModel loginViewModel = new LoginViewModel
             {
                 ReturnUrl = returnUrl,
