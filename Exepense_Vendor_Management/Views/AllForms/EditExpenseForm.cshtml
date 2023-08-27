@@ -64,8 +64,7 @@
                             </label>
                             <div class="form-control-wrap">
                                 <select class="form-select" id="expenseCategory" asp-for="expenseCategory">
-                                    <option value="">Select Expense Category</option>
-                                    <option value="Administrative">Administrative</option>
+                                    <option selected value="Administrative">Administrative</option>
                                     <option value="Mileage">Mileage</option>
                                     <option value="Travel">Travel</option>
                                     <option value="Lodging">Lodging</option>
@@ -125,6 +124,73 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+
+
+
+
+    <div class="card card-preview">
+        <div class="card-inner">
+            <div class="nk-block-head">
+                <div class="nk-block-head-content">
+                    <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
+                        <li class="nav-item">
+                            <a class="nav-link active"><em class="icon ni ni-user-circle"></em><span>Invoice Documents</span></a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div><table class="datatable-init-export nowrap table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Media Type</th>
+                        <th>Attachment</th>
+                        <th>Request ID</th>
+                        <th>Created On</th>
+                        <th>Created By</th>
+                        <th>Belongs To</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < ViewBag.Media.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                @ViewBag.Media[i].Id
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].mediaType
+                            </td>
+                            <td>
+                                <a href="~/CricketMedia/Downloadfile?docname=@ViewBag.Media[i].fileName">
+                                    <em style="font-size:32PX" class="icon ni ni-file-pdf"></em>
+                                </a>
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].ReqID
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].createdON
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].createdBy
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].belongTo
+                            </td>
+                            <td>
+                                <a>
+                                    <em class="icon ni ni-trash-fill " onclick="DeleteMedia('@ViewBag.Media[i].Id')"></em>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

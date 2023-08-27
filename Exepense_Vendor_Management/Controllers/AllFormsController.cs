@@ -11,11 +11,13 @@ namespace Expense_Vendor_Management.Controllers
         private readonly IVendor vendor;
         private readonly IExpense expense;
         private readonly ICostExp costExp;
-        public AllFormsController(IVendor vendor, IExpense expense, ICostExp costExp)
+        private readonly IMedia media;
+        public AllFormsController(IVendor vendor, IExpense expense, ICostExp costExp, IMedia media)
         {
             this.vendor = vendor;
             this.expense = expense;
             this.costExp = costExp;
+            this.media = media; 
         }
 
         [HttpGet]
@@ -72,6 +74,7 @@ namespace Expense_Vendor_Management.Controllers
         [HttpGet]
         public IActionResult EditCostExpenseForm(int id)
         {
+            ViewBag.media = media.getAllMediaByID(id,"Cost");
             var data = costExp.GetCostById(id);
             return View(data);
         }
@@ -85,6 +88,7 @@ namespace Expense_Vendor_Management.Controllers
         [HttpGet]
         public IActionResult EditVendorForm(int id)
         {
+            ViewBag.media = media.getAllMediaByID(id, "Vendor");
             var data = vendor.GetVendorById(id);
             return View(data);
         }
@@ -99,6 +103,7 @@ namespace Expense_Vendor_Management.Controllers
         [HttpGet]
         public IActionResult EditExpenseForm(int id)
         {
+            ViewBag.media = media.getAllMediaByID(id, "Expense");
             var data = expense.GetExpById(id);
             return View(data);
         }
@@ -109,8 +114,5 @@ namespace Expense_Vendor_Management.Controllers
             TempData["SuccessMessage"] = "Form Edited successfully!";
             return RedirectToAction("Index", "Home");
         }
-
-
-
     }
 }

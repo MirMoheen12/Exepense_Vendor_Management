@@ -1,4 +1,5 @@
-﻿using Expense_Vendor_Management.Interfaces;
+﻿using Exepense_Vendor_Management.Interfaces;
+using Expense_Vendor_Management.Interfaces;
 using Expense_Vendor_Management.Models;
 
 namespace Expense_Vendor_Management.Repositories
@@ -7,8 +8,10 @@ namespace Expense_Vendor_Management.Repositories
     {
         private readonly AppDbContext _context;
         private readonly IMedia media;
-        public VendorRepo(AppDbContext _context, IMedia media)
+        private readonly IUser user;
+        public VendorRepo(AppDbContext _context, IMedia media, IUser user)
         {
+            this.user = user;
             this._context = _context;
             this.media = media;
 
@@ -23,9 +26,9 @@ namespace Expense_Vendor_Management.Repositories
             try
             {
                 vendor.createdOn = DateTime.Now;
-                vendor.createdBy = "Mir";
-                vendor.modifiedBy = "Mir";
-                vendor.notes = "Intial Insert";
+                vendor.createdBy = user.ActiveUserId();
+                vendor.modifiedBy = user.ActiveUserId();
+                vendor.notes = "Initial Insert";
                 vendor.isDeleted = false;
 
                 vendor.status = "On-Boarding";
