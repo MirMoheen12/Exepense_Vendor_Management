@@ -1,7 +1,7 @@
-﻿using Exepense_Vendor_Management.Interfaces;
+﻿using Expense_Vendor_Management.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Exepense_Vendor_Management.Controllers
+namespace Expense_Vendor_Management.Controllers
 {
     public class ActionCenterController : Controller
     {

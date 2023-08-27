@@ -84,9 +84,9 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Configuration;
 using Microsoft.AspNetCore.Mvc;
-using Exepense_Vendor_Management.Interfaces;
-using Exepense_Vendor_Management.Models;
-using Exepense_Vendor_Management.Repositories;
+using Expense_Vendor_Management.Interfaces;
+using Expense_Vendor_Management.Models;
+using Expense_Vendor_Management.Repositories;
 using System.Xml.Linq;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,10 +1,10 @@
-﻿using Exepense_Vendor_Management.Models;
+﻿using Expense_Vendor_Management.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Exepense_Vendor_Management.Controllers
+namespace Expense_Vendor_Management.Controllers
 {
     [AllowAnonymous]
     public class HomeController : Controller

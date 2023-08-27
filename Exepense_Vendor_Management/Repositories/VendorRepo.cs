@@ -1,7 +1,7 @@
-﻿using Exepense_Vendor_Management.Interfaces;
-using Exepense_Vendor_Management.Models;
+﻿using Expense_Vendor_Management.Interfaces;
+using Expense_Vendor_Management.Models;
 
-namespace Exepense_Vendor_Management.Repositories
+namespace Expense_Vendor_Management.Repositories
 {
     public class VendorRepo : IVendor
     {
@@ -102,6 +102,12 @@ namespace Exepense_Vendor_Management.Repositories
             {
                 return false;
             }
+        }
+
+        public void EditVendor(Vendor v)
+        {
+            _context.Vendor.Update(v);
+            _context.SaveChanges() ;
         }
     }
 }

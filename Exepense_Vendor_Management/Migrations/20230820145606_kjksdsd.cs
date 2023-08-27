@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Exepense_Vendor_Management.Migrations
+namespace Expense_Vendor_Management.Migrations
 {
     public partial class kjksdsd : Migration
     {

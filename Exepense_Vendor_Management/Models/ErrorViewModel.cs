@@ -1,4 +1,4 @@
-namespace Exepense_Vendor_Management.Models
+namespace Expense_Vendor_Management.Models
 {
     public class ErrorViewModel
     {

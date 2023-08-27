@@ -5,24 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <style>
     .hidden {
         display: none;
     }
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 5630cad3a5659d4cc5bae1843ab82f02b7360063
+    .mandatory {
+        color: red;
+    }
 </style>
+
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head">
         <div class="nk-block-head-content">
             <h4 class="title nk-block-title">Basic Details for Vendor</h4>
-            <div class="nk-block-des">
-                @*       <p>You can alow display form in column as example below.</p>*@
-            </div>
         </div>
     </div>
     <div class="card card-bordered">
@@ -30,50 +26,33 @@
             <div class="card-head">
                 <h5 class="card-title">Vendor Form</h5>
             </div>
-            <form asp-action="VendorForm" asp-controller="VendorSide" id="fileuploadlist" enctype="multipart/form-data" method="post">
+            <form asp-action="EditVendorForm" asp-controller="AllForms" id="fileuploadlist" enctype="multipart/form-data" method="post">
                 <div class="row g-4">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="full-name-1">Vendor Name</label>
+                            <label class="form-label" for="full-name-1">
+                                <span class="mandatory">*</span> Vendor Name
+                            </label>
                             <div class="form-control-wrap">
                                 <input type="Text" required class="form-control" asp-for="vendorName" id="full-name-1">
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-sm-6">
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label">Status</label>
+                            <label class="form-label" for="costCenter">
+                                <span class="mandatory">*</span> Cost Center
+                            </label>
                             <div class="form-control-wrap">
-                                <select class="form-select" asp-for="status" name="status">
-                                    <option value="Active">Active</option>
-                                    <option value="InActive">InActive</option>
-                                    <option value="On-Boarding">On-Boarding</option>
-                                    <option value="Off-Boarding">Off-Boarding</option>
-                                </select>
+                                <input type="text" required class="form-control" id="costCenter" asp-for="costCenter">
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="costCenter">Cost Center</label>
-                            <div class="form-control-wrap">
-                                <input type="text" required class="form-control"  id="costCenter" asp-for="costCenter" >
-                            </div>
-                        </div>
-                    </div>
-                
-
-
-
-
-               
-
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" for="productCenter">Product Type</label>
+                            <label class="form-label" for="productCenter">
+                                <span class="mandatory">*</span> Product Type
+                            </label>
                             <div class="form-control-wrap">
                                 <select class="form-select" id="productCenter" asp-for="poductType">
                                     <option value="">Select Product Center</option>
@@ -88,28 +67,6 @@
                                     <option value="Insurance">Insurance</option>
                                     <option value="Verification Service">Verification Service</option>
                                     <option value="Professional Service">Professional Service</option>
-                                    <!-- Add more options here if needed -->
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" for="category">Category</label>
-                            <div class="form-control-wrap">
-                                <select class="form-select" id="category" asp-for="catagory">
-                                    <option value="">Select Category</option>
-                                    <option value="Legal">Legal</option>
-                                    <option value="Compliance">Compliance</option>
-                                    <option value="Accounting">Accounting</option>
-                                    <option value="Marketing">Marketing</option>
-                                    <option value="Sales">Sales</option>
-                                    <option value="Investor">Investor</option>
-                                    <option value="Building">Building</option>
-                                    <option value="Operations">Operations</option>
-                                    <!-- Add more options here if needed -->
                                 </select>
                             </div>
                         </div>
@@ -117,51 +74,56 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label">Critical Vendor</label>
+                            <label class="form-label">
+                                <span class="mandatory">*</span> Critical Vendor
+                            </label>
                             <div class="form-control-wrap">
                                 <select class="form-control" asp-for="criticalVendor">
                                     <option value="">Yes</option>
                                     <option value="fixed">NO</option>
-
                                 </select>
-
                             </div>
                         </div>
                     </div>
 
-
-
-
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="costCenter">Contract Documents</label>
+                            <label class="form-label">
+                                <span class="mandatory">*</span> Contract Documents
+                            </label>
                             <div class="form-control-wrap">
-                                <input type="file" asp-for="Contractdoc" required class="form-control"  >
+                                <input type="file" asp-for="Contractdoc" required class="form-control">
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="Assessments">Assessments</label>
+                            <label class="form-label">
+                                <span class="mandatory">*</span> Assessments
+                            </label>
                             <div class="form-control-wrap">
                                 <input type="file" required asp-for="assesmentsdoc" class="form-control">
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="otherdocument">Other Documents</label>
+                            <label class="form-label" for="otherdocument">
+                                Other Documents
+                            </label>
                             <div class="form-control-wrap">
-                                <input type="file" required asp-for="otherdoc" class="form-control">
+                                <input type="file" asp-for="otherdoc" class="form-control">
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- HTML code for Payment Amount dropdown with toggle text box -->
+
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="paymentAmount">Payment Amount</label>
+                            <label class="form-label" for="paymentAmount">
+                                <span class="mandatory">*</span> Payment Amount
+                            </label>
                             <div class="form-control-wrap">
                                 <select class="form-control" id="paymentAmount" onchange="toggleTextBox()">
                                     <option value="">Select an Option</option>
@@ -172,127 +134,69 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label">Auto Payment</label>
+                            <label class="form-label">
+                                <span class="mandatory">*</span> Auto Payment
+                            </label>
                             <div class="form-control-wrap">
                                 <select class="form-control" asp-for="autoPayment" id="paymentAmount">
                                     <option value="">Yes</option>
                                     <option value="fixed">NO</option>
-
                                 </select>
-
                             </div>
                         </div>
                     </div>
 
-               
-         
-
-                    <!-- HTML code for the contractExpiration date and time picker -->
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="contractExpiration">Contract Expiration</label>
+                            <label class="form-label" for="contractExpiration">
+                                <span class="mandatory">*</span> Contract Expiration
+                            </label>
                             <div class="form-control-wrap">
                                 <input type="date" asp-for="contractExpiration" class="form-control" id="contractExpiration">
                             </div>
                         </div>
                     </div>
 
-
-<<<<<<< HEAD
-
-                   
-
-
-
-                
-
-
-=======
->>>>>>> 5630cad3a5659d4cc5bae1843ab82f02b7360063
-
-
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label">Auto Renew</label>
+                            <label class="form-label">
+                                <span class="mandatory">*</span> Auto Renew
+                            </label>
                             <div class="form-control-wrap">
-<<<<<<< HEAD
-                                <input type="file" required class="form-control">
-=======
                                 <select class="form-control" asp-for="autoRenew">
                                     <option value="">Yes</option>
                                     <option value="fixed">NO</option>
-
                                 </select>
-
->>>>>>> 5630cad3a5659d4cc5bae1843ab82f02b7360063
                             </div>
                         </div>
                     </div>
 
-
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 5630cad3a5659d4cc5bae1843ab82f02b7360063
-                    <!-- HTML code for the dateToCancel input field -->
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="dateToCancel">Date To Cancel</label>
+                            <label class="form-label" for="dateToCancel">
+                                <span class="mandatory">*</span> Date To Cancel
+                            </label>
                             <div class="form-control-wrap">
                                 <input class="form-control" asp-for="dateToCancel" type="date" id="dateToCancel">
                             </div>
                         </div>
                     </div>
 
-
-
-
-           
-
-                    <!-- HTML code for the notes text field -->     
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label class="form-label" for="notes">Notes</label>
-                            <div class="form-control-wrap">
-                                <textarea class="form-control" asp-for="notes" type="text" id="notes" placeholder="Enter notes"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-lg btn-primary">Save Information</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Update Information</button>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-</div><!-- .nk-block -->
-<!-- Script tag containing JavaScript logic for all three buttons -->
+</div>
+
 <script>
-    // JavaScript to handle displaying documents if available
-    function displayDocumentIcon(docsType, isAvailable) {
-        const docIconElement = document.querySelector(`#${docsType} i`);
-        if (docIconElement) {
-            docIconElement.classList.remove("icon-documents");
-            docIconElement.classList.add(isAvailable ? "icon-check" : "icon-no-documents");
-        }
-    }
-
-    // Replace with your logic to determine document availability
-    const isContractDocsAvailable = true;
-    const isAssessmentDocsAvailable = false;
-    const isOtherDocsAvailable = true;
-
-    displayDocumentIcon("viewContractDocs", isContractDocsAvailable);
-    displayDocumentIcon("viewAssessmentDocs", isAssessmentDocsAvailable);
-    displayDocumentIcon("viewOtherDocs", isOtherDocsAvailable);
-
-
     function toggleTextBox() {
         var select = document.getElementById("paymentAmount");
         var textBox = document.getElementById("paymentAmountTextBox");
@@ -303,5 +207,4 @@
             textBox.classList.add("hidden");
         }
     }
-
 </script>

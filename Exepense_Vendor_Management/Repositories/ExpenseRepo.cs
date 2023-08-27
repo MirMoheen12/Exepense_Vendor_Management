@@ -1,8 +1,8 @@
-﻿using Exepense_Vendor_Management.Interfaces;
-using Exepense_Vendor_Management.Models;
+﻿using Expense_Vendor_Management.Interfaces;
+using Expense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Exepense_Vendor_Management.Repositories
+namespace Expense_Vendor_Management.Repositories
 {
     public class ExpenseRepo : IExpense
     {
@@ -79,6 +79,12 @@ namespace Exepense_Vendor_Management.Repositories
             {
                 return false;
             }
+        }
+
+        public void EditExpense(EmployeeExpense e)
+        {
+            appContext.EmployeeExpense.Update(e); 
+            appContext.SaveChanges();
         }
     }
 }

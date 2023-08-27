@@ -1,7 +1,7 @@
-﻿@model Expense_Vendor_Management.Models.EmployeeExpense
+﻿@model Expense_Vendor_Management.Models.CostCenterExpense
 
 @{
-    ViewData["Title"] = "ExpenseForm";
+    ViewData["Title"] = "Cost Expense";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,15 +14,15 @@
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head">
         <div class="nk-block-head-content">
-            <h4 class="title nk-block-title">Basic Details Expense Form</h4>
+            <h4 class="title nk-block-title">Basic Details Cost Expense Form</h4>
         </div>
     </div>
     <div class="card card-bordered">
         <div class="card-inner">
             <div class="card-head">
-                <h5 class="card-title">Expense Form</h5>
+                <h5 class="card-title">Cost Expense Form</h5>
             </div>
-            <form asp-action="ExpenseForm" asp-controller="AllForms" id="fileuploadlist" enctype="multipart/form-data" method="post">
+            <form asp-action="EditCostExpenseForm" asp-controller="AllForms" id="fileuploadlist" enctype="multipart/form-data" method="post">
                 <div class="row g-4">
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -30,6 +30,12 @@
                                 <span class="mandatory">*</span> Submission Date
                             </label>
                             <div class="form-control-wrap">
+                                <input class="form-control" hidden type="hidden" asp-for="id" required>
+                                <input class="form-control" hidden type="hidden" asp-for="createdBy" required>
+                                <input class="form-control" hidden type="hidden" asp-for="expenseCategory" required>
+                                <input class="form-control" hidden type="hidden" asp-for="modifiedBy" required>
+                                <input class="form-control" hidden type="hidden" asp-for="status" required>
+
                                 <input class="form-control" type="date" id="submissionDate" asp-for="submissionDate" required>
                             </div>
                         </div>
@@ -52,7 +58,7 @@
                                 <span class="mandatory">*</span> Expense Date
                             </label>
                             <div class="form-control-wrap">
-                                <input class="form-control" type="date" id="expenseDate" asp-for="expenseOccurred" required>
+                                <input class="form-control" type="date" id="expenseDate" asp-for="expenseAccurred" required>
                             </div>
                         </div>
                     </div>
@@ -85,24 +91,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" for="supportingDocs">
-                                <span class="mandatory">*</span> Supporting Documents
-                            </label>
-                            <div class="form-control-wrap">
-                                <input type="file" id="supportingDocs" asp-for="SuportingMedia" accept=".pdf, .doc, .docx">
-                            </div>
-                        </div>
-                    </div>
+
+
 
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="expenseDescription">
-                                <span class="mandatory">*</span> Expense Description
+                                <span class="mandatory">*</span> Description
                             </label>
                             <div class="form-control-wrap">
-                                <textarea class="form-control" type="number" name="text" required style="min-height:auto;"></textarea>
+                                <textarea class="form-control" type="number" asp-for="expenseDescription" required style="min-height:auto;"></textarea>
                             </div>
                         </div>
                     </div>
@@ -120,11 +118,87 @@
 
                     <div class="col-12">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-lg btn-primary">Save Information</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Update Information</button>
                         </div>
                     </div>
                 </div>
             </form>
+
+
+
+
+
+
+
         </div>
     </div>
+
+
+
+
+
+
+
+    <div class="card card-preview">
+        <div class="card-inner">
+            <div class="nk-block-head">
+                <div class="nk-block-head-content">
+                    <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
+                        <li class="nav-item">
+                            <a class="nav-link active"><em class="icon ni ni-user-circle"></em><span>Invoice Documents</span></a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+            <table class="datatable-init-export nowrap table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+
+                        <th>Created By</th>
+                        <th>Attachment</th>
+                        <th>Created On</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < ViewBag.Media.Count; i++)
+                    {
+                        <tr>
+
+
+                            <td>
+                                @ViewBag.Media[i].UMID
+                            </td>
+
+                            <td>
+                                @ViewBag.Media[i].createdby
+                            </td>
+                            <td>
+                                <a href="~/CricketMedia/Downloadfile?docname=@ViewBag.Media[i].FileName">
+                                    <em style="font-size:32PX" class="icon ni ni-file-pdf"></em>
+                                </a>
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].CreatedOn?.ToString("d")
+                            </td>
+                            <td>
+                                <a>
+
+                                    <em class="icon ni ni-trash-fill " onclick="DeleteMedia('@ViewBag.Media[i].UMID')"></em>
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div><!-- .card-preview -->
+
 </div>

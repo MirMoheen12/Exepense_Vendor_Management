@@ -1,6 +1,6 @@
-﻿using Exepense_Vendor_Management.Models;
+﻿using Expense_Vendor_Management.Models;
 
-namespace Exepense_Vendor_Management.Interfaces
+namespace Expense_Vendor_Management.Interfaces
 {
     public interface IMedia
     {
