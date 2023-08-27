@@ -25,6 +25,7 @@ namespace Expense_Vendor_Management.Repositories
                 vendor.createdOn = DateTime.Now;
                 vendor.createdBy = "Mir";
                 vendor.modifiedBy = "Mir";
+                vendor.notes = "Intial Insert";
                 vendor.isDeleted = false;
 
                 vendor.status = "On-Boarding";
