@@ -35,14 +35,16 @@ namespace Expense_Vendor_Management.Repositories
                     Media m = new Media();
                     m.mediaFile = vendor.Contractdoc;
                     m.mediaType = "Add Vendor";
+                    m.belongTo = "Vendor";
                     media.AddMedia(m,vendor.id.ToString());
-
+                   
                 }
                 if (vendor.assesmentsdoc != null)
                 {
                     Media m = new Media();
                     m.mediaFile = vendor.assesmentsdoc;
                     m.mediaType = "Add Vendor";
+                    m.belongTo = "Vendor";
                     media.AddMedia(m, vendor.id.ToString());
 
                 }
@@ -52,6 +54,7 @@ namespace Expense_Vendor_Management.Repositories
                     m.mediaFile = vendor.otherdoc;
                     m.mediaType = "Add Vendor";
                     m.createdBy = "";
+                    m.belongTo = "Vendor";
                     media.AddMedia(m, vendor.id.ToString());
 
                 }

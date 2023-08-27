@@ -31,7 +31,8 @@ namespace Expense_Vendor_Management.Repositories
                     Media m = new Media();
                     m.mediaFile = ce.SupportingMedia;
                     m.mediaType = "Cost Center";
-                   media.AddMedia(m,ce.id.ToString());
+                    m.belongTo = "Cost";
+                    media.AddMedia(m,ce.id.ToString());
                 }
              
                 return true;
@@ -78,6 +79,7 @@ namespace Expense_Vendor_Management.Repositories
                     m.mediaFile = file;
                     m.mediaType = "Approve";
                     m.createdBy = "";
+                    m.belongTo = "Cost";
                     media.AddMedia(m, ID.ToString());
                 }
                 return true;

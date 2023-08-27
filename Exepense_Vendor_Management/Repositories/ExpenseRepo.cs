@@ -31,6 +31,7 @@ namespace Expense_Vendor_Management.Repositories
                     Media m = new Media();
                     m.mediaFile = ex.SuportingMedia;
                     m.mediaType = "Add Expense";
+                    m.belongTo = "Expense";
                     media.AddMedia(m,ex.id.ToString());
                 }
                 return true;
@@ -71,6 +72,7 @@ namespace Expense_Vendor_Management.Repositories
                     m.mediaFile = file;
                     m.mediaType = "Approve";
                     m.createdBy = "";
+                    m.belongTo = "Expense";
                     media.AddMedia(m, ID.ToString());
                 }
                 return true;

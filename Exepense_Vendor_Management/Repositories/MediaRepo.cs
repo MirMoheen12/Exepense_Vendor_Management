@@ -3,7 +3,7 @@ using Expense_Vendor_Management.Models;
 
 namespace Expense_Vendor_Management.Repositories
 {
-    public class MediaRepo:IMedia
+    public class MediaRepo : IMedia
     {
         private readonly AppDbContext _context;
         public MediaRepo(AppDbContext _context)
@@ -41,6 +41,12 @@ namespace Expense_Vendor_Management.Repositories
 
             }
             return fileName;
+        }
+
+        public List<Media> getAllMediaByID(int id, string belongTo)
+        {
+            var data = _context.Media.Where(x => x.Id == id && x.belongTo == belongTo && x.isDeleted == false ).ToList();
+            return data;
         }
     }
 }
