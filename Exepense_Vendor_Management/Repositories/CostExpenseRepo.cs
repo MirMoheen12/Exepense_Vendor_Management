@@ -1,4 +1,5 @@
-﻿using Expense_Vendor_Management.Interfaces;
+﻿using Exepense_Vendor_Management.Interfaces;
+using Expense_Vendor_Management.Interfaces;
 using Expense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,12 +9,13 @@ namespace Expense_Vendor_Management.Repositories
     public class CostExpenseRepo : ICostExp
     {
         private readonly IMedia media;
+        private readonly IUser user;
         private readonly AppDbContext appDbContext;
-        public CostExpenseRepo(IMedia media,AppDbContext appDbContext)
+        public CostExpenseRepo(IMedia media,AppDbContext appDbContext, IUser user)
         {
             this.appDbContext = appDbContext;
             this.media = media;
-
+            this.user = user;   
         }
         public bool AddNewCostExp(CostCenterExpense ce)
         {
@@ -21,8 +23,8 @@ namespace Expense_Vendor_Management.Repositories
             {
                 ce.isDeleted = false;
                 ce.createdOn=DateTime.Now;
-                ce.createdBy = "Mir";
-                ce.modifiedBy = "Null";
+                ce.createdBy = user.ActiveUserId();
+                ce.modifiedBy = user.ActiveUserId();
                 ce.status = "Submitted";
                 appDbContext.CostCenterExpense.Add(ce);
                 appDbContext.SaveChanges();

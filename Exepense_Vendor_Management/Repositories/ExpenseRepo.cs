@@ -1,4 +1,5 @@
-﻿using Expense_Vendor_Management.Interfaces;
+﻿using Exepense_Vendor_Management.Interfaces;
+using Expense_Vendor_Management.Interfaces;
 using Expense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,8 +9,10 @@ namespace Expense_Vendor_Management.Repositories
     {
         private readonly IMedia media;
         private readonly AppDbContext appContext;
-        public ExpenseRepo(IMedia media, AppDbContext appContext)
+        private readonly IUser user;
+        public ExpenseRepo(IMedia media, AppDbContext appContext, IUser user)
         {
+            this.user = user;   
             this.appContext = appContext;
             this.media = media;
 
@@ -21,8 +24,8 @@ namespace Expense_Vendor_Management.Repositories
             {
                 ex.isDeleted = false;
                 ex.createdOn = DateTime.Now;
-                ex.createdBy = "Mir";
-                ex.modifiedBy = "Null";
+                ex.createdBy = user.ActiveUserId();
+                ex.modifiedBy = user.ActiveUserId();
                 ex.status = "Submitted";
                 appContext.EmployeeExpense.Add(ex);
                 appContext.SaveChanges();

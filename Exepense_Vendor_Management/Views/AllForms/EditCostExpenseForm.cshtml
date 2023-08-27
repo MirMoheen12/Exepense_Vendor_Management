@@ -151,15 +151,16 @@
                     </ul>
 
                 </div>
-            </div>
-            <table class="datatable-init-export nowrap table">
+            </div><table class="datatable-init-export nowrap table">
                 <thead>
                     <tr>
                         <th>ID</th>
-
-                        <th>Created By</th>
+                        <th>Media Type</th>
                         <th>Attachment</th>
+                        <th>Request ID</th>
                         <th>Created On</th>
+                        <th>Created By</th>
+                        <th>Belongs To</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -167,36 +168,37 @@
                     @for (int i = 0; i < ViewBag.Media.Count; i++)
                     {
                         <tr>
-
-
                             <td>
-                                @ViewBag.Media[i].UMID
-                            </td>
-
-                            <td>
-                                @ViewBag.Media[i].createdby
+                                @ViewBag.Media[i].Id
                             </td>
                             <td>
-                                <a href="~/CricketMedia/Downloadfile?docname=@ViewBag.Media[i].FileName">
+                                @ViewBag.Media[i].mediaType
+                            </td>
+                            <td>
+                                <a href="~/CricketMedia/Downloadfile?docname=@ViewBag.Media[i].fileName">
                                     <em style="font-size:32PX" class="icon ni ni-file-pdf"></em>
                                 </a>
                             </td>
                             <td>
-                                @ViewBag.Media[i].CreatedOn?.ToString("d")
+                                @ViewBag.Media[i].ReqID
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].createdON
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].createdBy
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].belongTo
                             </td>
                             <td>
                                 <a>
-
-                                    <em class="icon ni ni-trash-fill " onclick="DeleteMedia('@ViewBag.Media[i].UMID')"></em>
-
+                                    <em class="icon ni ni-trash-fill " onclick="DeleteMedia('@ViewBag.Media[i].Id')"></em>
                                 </a>
-
                             </td>
-
                         </tr>
                     }
                 </tbody>
-
             </table>
         </div>
     </div><!-- .card-preview -->
