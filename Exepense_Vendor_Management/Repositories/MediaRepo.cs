@@ -1,14 +1,18 @@
 ﻿using Exepense_Vendor_Management.Interfaces;
-using Exepense_Vendor_Management.Models;
+using Expense_Vendor_Management.Interfaces;
+using Expense_Vendor_Management.Models;
 
-namespace Exepense_Vendor_Management.Repositories
+namespace Expense_Vendor_Management.Repositories
 {
-    public class MediaRepo:IMedia
+    public class MediaRepo : IMedia
     {
         private readonly AppDbContext _context;
-        public MediaRepo(AppDbContext _context)
+        private readonly IUser user;
+
+        public MediaRepo(AppDbContext _context, IUser user)
         {
             this._context = _context;
+            this.user = user;   
         }
         public int AddMedia(Media medias, string ReqID)
         {
@@ -16,8 +20,8 @@ namespace Exepense_Vendor_Management.Repositories
                 if(medias.mediaFile!=null)
                 {
                     medias.fileName=Addfilesinserver(medias.mediaFile);
-                    medias.isDeleted = false;
-                    medias.createdBy = "Mir";
+                medias.isDeleted = false;
+                    medias.createdBy = user.ActiveUserId();
                     medias.ReqID=ReqID;
                     medias.createdON=DateTime.Now;
                     medias.OldfileName=medias.mediaFile.FileName;
@@ -41,6 +45,12 @@ namespace Exepense_Vendor_Management.Repositories
 
             }
             return fileName;
+        }
+
+        public List<Media> getAllMediaByID(int id, string belongTo)
+        {
+            var data = _context.Media.Where(x => x.ReqID == id.ToString() && x.belongTo == belongTo && x.isDeleted == false ).ToList();
+            return data;
         }
     }
 }

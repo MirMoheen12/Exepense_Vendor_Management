@@ -1,0 +1,197 @@
+﻿@model Expense_Vendor_Management.Models.CostCenterExpense
+
+@{
+    ViewData["Title"] = "Cost Expense";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .mandatory {
+        color: red;
+    }
+</style>
+
+<div class="nk-block nk-block-lg">
+    <div class="nk-block-head">
+        <div class="nk-block-head-content">
+            <h4 class="title nk-block-title">Basic Details Cost Expense Form</h4>
+        </div>
+    </div>
+    <div class="card card-bordered">
+        <div class="card-inner">
+            <div class="card-head">
+                <h5 class="card-title">Cost Expense Form</h5>
+            </div>
+            <form asp-action="EditCostExpenseForm" asp-controller="AllForms" id="fileuploadlist" enctype="multipart/form-data" method="post">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="submissionDate">
+                                <span class="mandatory">*</span> Submission Date
+                            </label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" hidden type="hidden" asp-for="id" required>
+                                <input class="form-control" hidden type="hidden" asp-for="createdBy" required>
+                                <input class="form-control" hidden type="hidden" asp-for="expenseCategory" required>
+                                <input class="form-control" hidden type="hidden" asp-for="modifiedBy" required>
+                                <input class="form-control" hidden type="hidden" asp-for="status" required>
+                                <input class="form-control" type="date" id="submissionDate" asp-for="submissionDate" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="expenseOccurred">
+                                <span class="mandatory">*</span> Amount
+                            </label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="number" asp-for="amount" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="expenseDate">
+                                <span class="mandatory">*</span> Expense Date
+                            </label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="date" id="expenseDate" asp-for="expenseAccurred" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="expenseCategory">
+                                <span class="mandatory">*</span> Expense Category
+                            </label>
+                            <div class="form-control-wrap">
+                                <select class="form-select" id="expenseCategory" asp-for="expenseCategory">
+                                    <option selected value="Administrative">Administrative</option>
+                                    <option value="Mileage">Mileage</option>
+                                    <option value="Travel">Travel</option>
+                                    <option value="Lodging">Lodging</option>
+                                    <!-- Add more options here if needed -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="vendorName">
+                                <span class="mandatory">*</span> Vendor Name
+                            </label>
+                            <div class="form-control-wrap">
+                                <input type="text" required class="form-control" id="vendorName" asp-for="vandorName">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="expenseDescription">
+                                <span class="mandatory">*</span> Description
+                            </label>
+                            <div class="form-control-wrap">
+                                <textarea class="form-control" type="number" asp-for="expenseDescription" required style="min-height:auto;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="notes">
+                                <span class="mandatory">*</span> Notes
+                            </label>
+                            <div class="form-control-wrap">
+                                <textarea class="form-control" type="number" asp-for="notes" required style="min-height:auto;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-lg btn-primary">Update Information</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="card card-preview">
+        <div class="card-inner">
+            <div class="nk-block-head">
+                <div class="nk-block-head-content">
+                    <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
+                        <li class="nav-item">
+                            <a class="nav-link active"><em class="icon ni ni-user-circle"></em><span>Invoice Documents</span></a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div><table class="datatable-init-export nowrap table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Media Type</th>
+                        <th>Attachment</th>
+                        <th>Request ID</th>
+                        <th>Created On</th>
+                        <th>Created By</th>
+                        <th>Belongs To</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < ViewBag.Media.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                @ViewBag.Media[i].Id
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].mediaType
+                            </td>
+                            <td>
+                                <a href="~/CricketMedia/Downloadfile?docname=@ViewBag.Media[i].fileName">
+                                    <em style="font-size:32PX" class="icon ni ni-file-pdf"></em>
+                                </a>
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].ReqID
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].createdON
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].createdBy
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].belongTo
+                            </td>
+                            <td>
+                                <a>
+                                    <em class="icon ni ni-trash-fill " onclick="DeleteMedia('@ViewBag.Media[i].Id')"></em>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

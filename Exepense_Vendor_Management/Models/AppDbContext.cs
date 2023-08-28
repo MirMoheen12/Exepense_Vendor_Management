@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Exepense_Vendor_Management.Models
+namespace Expense_Vendor_Management.Models
 {
     public class AppDbContext : IdentityDbContext
     {

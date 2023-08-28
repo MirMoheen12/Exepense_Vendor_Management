@@ -1,6 +1,6 @@
-﻿using Exepense_Vendor_Management.Models;
+﻿using Expense_Vendor_Management.Models;
 
-namespace Exepense_Vendor_Management.Interfaces
+namespace Expense_Vendor_Management.Interfaces
 {
     public interface IExpense
     {
@@ -8,5 +8,6 @@ namespace Exepense_Vendor_Management.Interfaces
         public List<EmployeeExpense> GetAllExpenses();
         public EmployeeExpense GetExpById(int id);
         public bool ChangeExpenseAction(int ID, string Remarks, string Fstatus, IFormFile? file);
+        public void EditExpense(EmployeeExpense e);
     }
 }

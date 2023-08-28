@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
-using Exepense_Vendor_Management.Models;
+using Expense_Vendor_Management.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Exepense_Vendor_Management.Controllers
+namespace Expense_Vendor_Management.Controllers
 {
     [AllowAnonymous]
     public class AccountsController : Controller
@@ -39,6 +39,7 @@ namespace Exepense_Vendor_Management.Controllers
 
         public async Task<IActionResult> Login(string returnUrl)
         {
+            await signInManager.SignOutAsync();
             LoginViewModel loginViewModel = new LoginViewModel
             {
                 ReturnUrl = returnUrl,

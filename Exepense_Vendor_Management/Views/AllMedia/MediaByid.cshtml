@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Expense_Vendor_Management.Models.Media>
+
+@{
+    ViewData["Title"] = "AllMediaForms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="nk-block nk-block-lg">
+    <div class="nk-block-head">
+        <div class="nk-block-head-content">
+            <h4 class="nk-block-title">Your Invoices</h4>
+
+        </div>
+    </div>
+    <div class="card card-preview">
+        <div class="card-inner">
+            <table class="datatable-init-export nowrap table">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Media Type
+                        </th>
+                        <th>
+                            File Name
+                        </th>
+                        <th>
+                            Old File Name
+                        </th>
+                        <th>
+                            Belong To
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.mediaType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fileName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OldfileName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.belongTo)
+                            </td>
+                            <td>
+                                <a href="~/ActionCenter/VendorActionCenter?id=@item.Id">
+                                    Details
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div><!-- .card-preview -->
+</div>
+
+<script type="text/javascript">
+
+    function DeleteInvoice(id) {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!'
+        }).then(function (result) {
+            if (result.value) {
+                $.ajax({
+                    url: '/InvoiceSide/DeleteInvoice'
+                    , type: 'GET'
+                    , data: { id: id }
+                    , contentType: 'application/json'
+                    , success: function (response) {
+
+                        Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+                        location.reload();
+                    }
+                });
+
+            }
+        });
+
+    }
+
+</script>

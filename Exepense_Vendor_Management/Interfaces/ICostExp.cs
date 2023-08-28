@@ -1,7 +1,7 @@
 ﻿
-using Exepense_Vendor_Management.Models;
+using Expense_Vendor_Management.Models;
 
-namespace Exepense_Vendor_Management.Interfaces
+namespace Expense_Vendor_Management.Interfaces
 {
     public interface ICostExp
     {
@@ -9,5 +9,6 @@ namespace Exepense_Vendor_Management.Interfaces
         public List<CostCenterExpense> GetAllCost();
         public CostCenterExpense GetCostById(int vendorId);
         public bool ChangeCostAction(int ID, string Remarks, string Fstatus, IFormFile? file);
+        public void EditCostExp(CostCenterExpense ce);
     }
 }

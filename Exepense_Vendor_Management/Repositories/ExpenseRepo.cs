@@ -1,15 +1,18 @@
 ﻿using Exepense_Vendor_Management.Interfaces;
-using Exepense_Vendor_Management.Models;
+using Expense_Vendor_Management.Interfaces;
+using Expense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Exepense_Vendor_Management.Repositories
+namespace Expense_Vendor_Management.Repositories
 {
     public class ExpenseRepo : IExpense
     {
         private readonly IMedia media;
         private readonly AppDbContext appContext;
-        public ExpenseRepo(IMedia media, AppDbContext appContext)
+        private readonly IUser user;
+        public ExpenseRepo(IMedia media, AppDbContext appContext, IUser user)
         {
+            this.user = user;   
             this.appContext = appContext;
             this.media = media;
 
@@ -21,8 +24,8 @@ namespace Exepense_Vendor_Management.Repositories
             {
                 ex.isDeleted = false;
                 ex.createdOn = DateTime.Now;
-                ex.createdBy = "Mir";
-                ex.modifiedBy = "Null";
+                ex.createdBy = user.ActiveUserId();
+                ex.modifiedBy = user.ActiveUserId();
                 ex.status = "Submitted";
                 appContext.EmployeeExpense.Add(ex);
                 appContext.SaveChanges();
@@ -31,6 +34,7 @@ namespace Exepense_Vendor_Management.Repositories
                     Media m = new Media();
                     m.mediaFile = ex.SuportingMedia;
                     m.mediaType = "Add Expense";
+                    m.belongTo = "Expense";
                     media.AddMedia(m,ex.id.ToString());
                 }
                 return true;
@@ -71,6 +75,7 @@ namespace Exepense_Vendor_Management.Repositories
                     m.mediaFile = file;
                     m.mediaType = "Approve";
                     m.createdBy = "";
+                    m.belongTo = "Expense";
                     media.AddMedia(m, ID.ToString());
                 }
                 return true;
@@ -79,6 +84,12 @@ namespace Exepense_Vendor_Management.Repositories
             {
                 return false;
             }
+        }
+
+        public void EditExpense(EmployeeExpense e)
+        {
+            appContext.EmployeeExpense.Update(e); 
+            appContext.SaveChanges();
         }
     }
 }

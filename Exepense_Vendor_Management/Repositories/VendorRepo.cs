@@ -1,14 +1,17 @@
 ﻿using Exepense_Vendor_Management.Interfaces;
-using Exepense_Vendor_Management.Models;
+using Expense_Vendor_Management.Interfaces;
+using Expense_Vendor_Management.Models;
 
-namespace Exepense_Vendor_Management.Repositories
+namespace Expense_Vendor_Management.Repositories
 {
     public class VendorRepo : IVendor
     {
         private readonly AppDbContext _context;
         private readonly IMedia media;
-        public VendorRepo(AppDbContext _context, IMedia media)
+        private readonly IUser user;
+        public VendorRepo(AppDbContext _context, IMedia media, IUser user)
         {
+            this.user = user;
             this._context = _context;
             this.media = media;
 
@@ -23,8 +26,9 @@ namespace Exepense_Vendor_Management.Repositories
             try
             {
                 vendor.createdOn = DateTime.Now;
-                vendor.createdBy = "Mir";
-                vendor.modifiedBy = "Mir";
+                vendor.createdBy = user.ActiveUserId();
+                vendor.modifiedBy = user.ActiveUserId();
+                vendor.notes = "Initial Insert";
                 vendor.isDeleted = false;
 
                 vendor.status = "On-Boarding";
@@ -35,14 +39,16 @@ namespace Exepense_Vendor_Management.Repositories
                     Media m = new Media();
                     m.mediaFile = vendor.Contractdoc;
                     m.mediaType = "Add Vendor";
+                    m.belongTo = "Vendor";
                     media.AddMedia(m,vendor.id.ToString());
-
+                   
                 }
                 if (vendor.assesmentsdoc != null)
                 {
                     Media m = new Media();
                     m.mediaFile = vendor.assesmentsdoc;
                     m.mediaType = "Add Vendor";
+                    m.belongTo = "Vendor";
                     media.AddMedia(m, vendor.id.ToString());
 
                 }
@@ -52,6 +58,7 @@ namespace Exepense_Vendor_Management.Repositories
                     m.mediaFile = vendor.otherdoc;
                     m.mediaType = "Add Vendor";
                     m.createdBy = "";
+                    m.belongTo = "Vendor";
                     media.AddMedia(m, vendor.id.ToString());
 
                 }
@@ -102,6 +109,12 @@ namespace Exepense_Vendor_Management.Repositories
             {
                 return false;
             }
+        }
+
+        public void EditVendor(Vendor v)
+        {
+            _context.Vendor.Update(v);
+            _context.SaveChanges() ;
         }
     }
 }

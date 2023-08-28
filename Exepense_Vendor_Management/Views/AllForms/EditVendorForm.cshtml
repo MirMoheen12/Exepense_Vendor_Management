@@ -1,0 +1,272 @@
+﻿@model Expense_Vendor_Management.Models.Vendor
+
+@{
+    ViewData["Title"] = "VendorForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .mandatory {
+        color: red;
+    }
+</style>
+
+<div class="nk-block nk-block-lg">
+    <div class="nk-block-head">
+        <div class="nk-block-head-content">
+            <h4 class="title nk-block-title">Basic Details for Vendor</h4>
+        </div>
+    </div>
+    <div class="card card-bordered">
+        <div class="card-inner">
+            <div class="card-head">
+                <h5 class="card-title">Vendor Form</h5>
+            </div>
+            <form asp-action="EditVendorForm" asp-controller="AllForms" id="fileuploadlist" enctype="multipart/form-data" method="post">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="full-name-1">
+                                <span class="mandatory">*</span> Vendor Name
+                            </label>
+                            <div class="form-control-wrap">
+                                <input type="Text" required class="form-control" asp-for="vendorName" id="full-name-1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="costCenter">
+                                <span class="mandatory">*</span> Cost Center
+                            </label>
+                            <div class="form-control-wrap">
+                                <input type="text" required class="form-control" id="costCenter" asp-for="costCenter">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="productCenter">
+                                <span class="mandatory">*</span> Product Type
+                            </label>
+                            <div class="form-control-wrap">
+                                <select class="form-select" id="productCenter" asp-for="poductType">
+                                    <option selected value="Lease">Lease</option>
+                                    <option value="Utilities">Utilities</option>
+                                    <option value="Warehouse Lender">Warehouse Lender</option>
+                                    <option value="Software">Software</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Individual Consultant">Individual Consultant</option>
+                                    <option value="Wholesale Lender">Wholesale Lender</option>
+                                    <option value="Correspondent Lender">Correspondent Lender</option>
+                                    <option value="Insurance">Insurance</option>
+                                    <option value="Verification Service">Verification Service</option>
+                                    <option value="Professional Service">Professional Service</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="mandatory">*</span> Critical Vendor
+                            </label>
+                            <div class="form-control-wrap">
+                                <select class="form-control" asp-for="criticalVendor">
+                                    <option selected value="Yes">Yes</option>
+                                    <option value="No">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="mandatory">*</span> Contract Documents
+                            </label>
+                            <div class="form-control-wrap">
+                                <input type="file" asp-for="Contractdoc" required class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="mandatory">*</span> Assessments
+                            </label>
+                            <div class="form-control-wrap">
+                                <input type="file" required asp-for="assesmentsdoc" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="otherdocument">
+                                Other Documents
+                            </label>
+                            <div class="form-control-wrap">
+                                <input type="file" asp-for="otherdoc" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="paymentAmount">
+                                <span class="mandatory">*</span> Payment Amount
+                            </label>
+                            <div class="form-control-wrap">
+                                <select class="form-control" id="paymentAmount" onchange="toggleTextBox()">
+                                    <option value="">Select an Option</option>
+                                    <option value="fixed">Fixed Amount</option>
+                                    <option value="other">Other Amount</option>
+                                </select>
+                                <input type="text" id="paymentAmountTextBox" asp-for="paymentAmount" class="form-control hidden" placeholder="Enter Amount">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="mandatory">*</span> Auto Payment
+                            </label>
+                            <div class="form-control-wrap">
+                                <select class="form-control" asp-for="autoPayment" id="paymentAmount">
+                                    <option selected value="Yes">Yes</option>
+                                    <option value="No">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="contractExpiration">
+                                <span class="mandatory">*</span> Contract Expiration
+                            </label>
+                            <div class="form-control-wrap">
+                                <input type="date" asp-for="contractExpiration" class="form-control" id="contractExpiration">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="mandatory">*</span> Auto Renew
+                            </label>
+                            <div class="form-control-wrap">
+                                <select class="form-control" asp-for="autoRenew">
+                                    <option selected value="Yes">Yes</option>
+                                    <option value="No">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" for="dateToCancel">
+                                <span class="mandatory">*</span> Date To Cancel
+                            </label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" asp-for="dateToCancel" type="date" id="dateToCancel">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-lg btn-primary">Update Information</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="card card-preview">
+        <div class="card-inner">
+            <div class="nk-block-head">
+                <div class="nk-block-head-content">
+                    <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
+                        <li class="nav-item">
+                            <a class="nav-link active"><em class="icon ni ni-user-circle"></em><span>Invoice Documents</span></a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div><table class="datatable-init-export nowrap table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Media Type</th>
+                        <th>Attachment</th>
+                        <th>Request ID</th>
+                        <th>Created On</th>
+                        <th>Created By</th>
+                        <th>Belongs To</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < ViewBag.Media.Count; i++)
+                    {
+                        <tr>
+                            <td>
+                                @ViewBag.Media[i].Id
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].mediaType
+                            </td>
+                            <td>
+                                <a href="~/CricketMedia/Downloadfile?docname=@ViewBag.Media[i].fileName">
+                                    <em style="font-size:32PX" class="icon ni ni-file-pdf"></em>
+                                </a>
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].ReqID
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].createdON
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].createdBy
+                            </td>
+                            <td>
+                                @ViewBag.Media[i].belongTo
+                            </td>
+                            <td>
+                                <a>
+                                    <em class="icon ni ni-trash-fill " onclick="DeleteMedia('@ViewBag.Media[i].Id')"></em>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleTextBox() {
+        var select = document.getElementById("paymentAmount");
+        var textBox = document.getElementById("paymentAmountTextBox");
+
+        if (select.value === "fixed") {
+            textBox.classList.remove("hidden");
+        } else {
+            textBox.classList.add("hidden");
+        }
+    }
+</script>
