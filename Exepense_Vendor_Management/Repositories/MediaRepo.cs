@@ -20,12 +20,19 @@ namespace Expense_Vendor_Management.Repositories
                 if(medias.mediaFile!=null)
                 {
                     medias.fileName=Addfilesinserver(medias.mediaFile);
-                medias.isDeleted = false;
+                    medias.isDeleted = false;
                     medias.createdBy = user.ActiveUserId();
                     medias.ReqID=ReqID;
                     medias.createdON=DateTime.Now;
                     medias.OldfileName=medias.mediaFile.FileName;
-                    medias.FileUrl = "azure url";
+                    if (string.IsNullOrEmpty(medias.FileUrl))
+                    {
+                        medias.FileUrl = medias.FileUrl;
+                    }
+                    else
+                    {
+                        medias.FileUrl = "AzureURL";
+                    }
                     _context.Media.Add(medias);
                     _context.SaveChanges();
                 return medias.Id;

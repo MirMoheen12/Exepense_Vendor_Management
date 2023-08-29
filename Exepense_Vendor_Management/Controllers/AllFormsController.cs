@@ -27,9 +27,9 @@ namespace Expense_Vendor_Management.Controllers
         }
 
         [HttpPost]
-        public IActionResult VendorForm(Vendor v)
+        public async Task<IActionResult> VendorForm(Vendor v)
         {
-            vendor.AddNewVendor(v);
+            await vendor.AddNewVendor(v);
             TempData["SuccessMessage"] = "Form submitted successfully!";
             return RedirectToAction("Index", "Home");
         }
@@ -43,7 +43,7 @@ namespace Expense_Vendor_Management.Controllers
 
 
         [HttpPost]
-        public IActionResult ExpenseForm(EmployeeExpense e)
+        public async Task<IActionResult> ExpenseForm(EmployeeExpense e)
         {
             var res = expense.AddNewExpense(e);
             TempData["SuccessMessage"] = "Form submitted successfully!";
@@ -55,9 +55,9 @@ namespace Expense_Vendor_Management.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CostExpenseForm(CostCenterExpense ce)
+        public async Task<IActionResult> CostExpenseForm(CostCenterExpense ce)
         {
-            var res = costExp.AddNewCostExp(ce);
+            var res = await costExp.AddNewCostExp(ce);
             TempData["SuccessMessage"] = "Form submitted successfully!";
             return RedirectToAction("Index", "Home");
         }

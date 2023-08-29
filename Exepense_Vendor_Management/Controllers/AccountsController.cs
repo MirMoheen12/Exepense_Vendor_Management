@@ -67,21 +67,40 @@ namespace Expense_Vendor_Management.Controllers
                 ModelState.AddModelError(String.Empty, $"Error from External Provide:{remoteError}");
                 return View("Login", loginViewModel);
             }
+
             var info = await signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
                 ModelState.AddModelError(String.Empty, $"Error from External Login info:{remoteError}");
                 return View("Login", loginViewModel);
             }
-            var signinresult = await signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+            var signinresult = await signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: false);
             if (signinresult.Succeeded)
             {
                 return RedirectToAction("Index", "Home");
             }
             else
             {
-                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+                var email = info.Principal.FindFirstValue(ClaimTypes.Upn);
                 if (email != null)
+                {
+                    var user = await UserManager.FindByEmailAsync(email);
+                    if (user == null)
+                    {
+                        user = new IdentityUser
+                        {
+                            UserName = info.Principal.FindFirstValue(ClaimTypes.Name),
+                            Email = info.Principal.FindFirstValue(ClaimTypes.Upn),
+
+                        };
+                        await UserManager.CreateAsync(user);
+                    }
+                    await UserManager.AddLoginAsync(user, info);
+                    await signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Index", "Home");
+                }
+                email= info.Principal.FindFirstValue(ClaimTypes.Email);
+                if(email!=null)
                 {
                     var user = await UserManager.FindByEmailAsync(email);
                     if (user == null)
@@ -96,11 +115,13 @@ namespace Expense_Vendor_Management.Controllers
                     }
                     await UserManager.AddLoginAsync(user, info);
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(RetunrUrl);
+                    return RedirectToAction("Index", "Home");
                 }
-                ViewBag.ErrorTtle = $"Email not Found:{info.LoginProvider}";
-                return View("Error");
-
+                else
+                {
+                    ViewBag.ErrorTtle = $"Email not Found:{info.LoginProvider}";
+                    return View("Error");
+                }
             }
 
         }

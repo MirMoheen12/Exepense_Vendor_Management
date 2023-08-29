@@ -1,4 +1,5 @@
 ﻿using Exepense_Vendor_Management.Interfaces;
+using Exepense_Vendor_Management.Repositories;
 using Expense_Vendor_Management.Interfaces;
 using Expense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,7 @@ namespace Expense_Vendor_Management.Repositories
 
         }
         
-        public bool AddNewExpense(EmployeeExpense ex)
+        public async Task<bool> AddNewExpense(EmployeeExpense ex)
         {
             try
             {
@@ -35,6 +36,7 @@ namespace Expense_Vendor_Management.Repositories
                     m.mediaFile = ex.SuportingMedia;
                     m.mediaType = "Add Expense";
                     m.belongTo = "Expense";
+                    m.FileUrl = await SharePointClasses.UploadToSharePoint(ex.SuportingMedia);
                     media.AddMedia(m,ex.id.ToString());
                 }
                 return true;
@@ -59,7 +61,7 @@ namespace Expense_Vendor_Management.Repositories
             var data = appContext.EmployeeExpense.Where(x => x.id == id).FirstOrDefault();
             return data;
         }
-        public bool ChangeExpenseAction(int ID, string Remarks, string Fstatus, IFormFile? file)
+        public async Task<bool> ChangeExpenseAction(int ID, string Remarks, string Fstatus, IFormFile? file)
         {
             try
             {
@@ -76,6 +78,7 @@ namespace Expense_Vendor_Management.Repositories
                     m.mediaType = "Approve";
                     m.createdBy = "";
                     m.belongTo = "Expense";
+                    m.FileUrl = await SharePointClasses.UploadToSharePoint(file);
                     media.AddMedia(m, ID.ToString());
                 }
                 return true;
