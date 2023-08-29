@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Exepense_Vendor_Management.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Expense_Vendor_Management.Models
@@ -13,5 +14,7 @@ namespace Expense_Vendor_Management.Models
         public DbSet<EmployeeExpense> EmployeeExpense { get; set; }
         public DbSet<CostCenterExpense> CostCenterExpense { get; set; }
         public DbSet<Media> Media { get; set; }
+        public DbSet<Baselogs> Baselogs { get; set; }
+        public DbSet<ErrorLogs> ErrorLogs { get; set; }
     }
 }

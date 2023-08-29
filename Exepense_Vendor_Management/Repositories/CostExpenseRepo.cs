@@ -8,14 +8,16 @@ namespace Expense_Vendor_Management.Repositories
 {
     public class CostExpenseRepo : ICostExp
     {
+        private readonly ILogs logs;
         private readonly IMedia media;
         private readonly IUser user;
         private readonly AppDbContext appDbContext;
-        public CostExpenseRepo(IMedia media,AppDbContext appDbContext, IUser user)
+        public CostExpenseRepo(IMedia media,AppDbContext appDbContext, IUser user,ILogs logs)
         {
             this.appDbContext = appDbContext;
             this.media = media;
-            this.user = user;   
+            this.user = user;  
+            this.logs = logs;
         }
         public bool AddNewCostExp(CostCenterExpense ce)
         {
@@ -36,12 +38,13 @@ namespace Expense_Vendor_Management.Repositories
                     m.belongTo = "Cost";
                     media.AddMedia(m,ce.id.ToString());
                 }
-             
+                logs.AddLog("AddNewCostExp");
                 return true;
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                logs.ErrorLog(e.Message, "AddNewCostExp");
                 return false;
             }
         }
