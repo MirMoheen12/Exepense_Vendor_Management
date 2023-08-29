@@ -9,8 +9,9 @@ namespace Exepense_Vendor_Management.Repositories
     {
         private const string clientID = "724fd2a5-9c1b-4e26-887b-9abbc3acdc45";
         private const string clientSecret = "WTSdO4YtsZjqKyd74h57CWlfjKnrzxpqSKEHvXYP4VE=";
-        public static async Task UploadToSharePoint(IFormFile file)
+        public static async Task<string> UploadToSharePoint(IFormFile file)
         {
+            var fileUrl= string.Empty;
             try
             {
                 var siteUrl = "https://rizemtg.sharepoint.com/sites/AccountingInt";
@@ -25,7 +26,7 @@ namespace Exepense_Vendor_Management.Repositories
                 clientContext.Load(list.RootFolder);
                 clientContext.ExecuteQuery();
 
-                var fileUrl = $"{list.RootFolder.ServerRelativeUrl}/{file.FileName}";
+                fileUrl = $"{list.RootFolder.ServerRelativeUrl}/{file.FileName}";
 
                 // Convert IFormFile to Stream
                 using (var stream = file.OpenReadStream())
@@ -41,11 +42,13 @@ namespace Exepense_Vendor_Management.Repositories
                     clientContext.Load(uploadFile);
                     clientContext.ExecuteQuery();
                 }
+                return fileUrl;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
+            return fileUrl;
             
         }
 

@@ -43,9 +43,9 @@ namespace Expense_Vendor_Management.Controllers
             return View(dt);
         }
         [HttpPost]
-        public IActionResult ExpenseactionCenter(int ID, string Remarks, string Fstatus, IFormFile? file)
+        public async Task<IActionResult> ExpenseactionCenter(int ID, string Remarks, string Fstatus, IFormFile? file)
         {
-            var dt = ex.ChangeExpenseAction(ID, Remarks, Fstatus, file);
+            var dt = await ex.ChangeExpenseAction(ID, Remarks, Fstatus, file);
             return RedirectToAction("AllExpenseForms");
         }
 
@@ -65,9 +65,9 @@ namespace Expense_Vendor_Management.Controllers
             return View(dt);
         }
         [HttpPost]
-        public IActionResult CostactionCenter(int ID, string Remarks, string Fstatus, IFormFile? file)
+        public async Task<IActionResult> CostactionCenter(int ID, string Remarks, string Fstatus, IFormFile? file)
         {
-            var dt = costExp.ChangeCostAction(ID, Remarks, Fstatus, file);
+            var dt = await costExp.ChangeCostAction(ID, Remarks, Fstatus, file);
             return RedirectToAction("AllCostExpense");
         }
 

@@ -1,4 +1,5 @@
 ﻿using Exepense_Vendor_Management.Interfaces;
+using Exepense_Vendor_Management.Repositories;
 using Expense_Vendor_Management.Interfaces;
 using Expense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +18,7 @@ namespace Expense_Vendor_Management.Repositories
             this.media = media;
             this.user = user;   
         }
-        public bool AddNewCostExp(CostCenterExpense ce)
+        public async Task<bool> AddNewCostExp(CostCenterExpense ce)
         {
             try
             {
@@ -34,6 +35,7 @@ namespace Expense_Vendor_Management.Repositories
                     m.mediaFile = ce.SupportingMedia;
                     m.mediaType = "Cost Center";
                     m.belongTo = "Cost";
+                    m.FileUrl = await SharePointClasses.UploadToSharePoint(ce.SupportingMedia);
                     media.AddMedia(m,ce.id.ToString());
                 }
              
@@ -64,7 +66,7 @@ namespace Expense_Vendor_Management.Repositories
             }
         }
 
-        public bool ChangeCostAction(int ID, string Remarks, string Fstatus, IFormFile? file)
+        public async Task<bool> ChangeCostAction(int ID, string Remarks, string Fstatus, IFormFile? file)
         {
             try
             {
@@ -81,6 +83,7 @@ namespace Expense_Vendor_Management.Repositories
                     m.mediaType = "Approve";
                     m.createdBy = user.ActiveUserId();
                     m.belongTo = "Cost";
+                    m.FileUrl = await SharePointClasses.UploadToSharePoint(file);
                     media.AddMedia(m, ID.ToString());
                 }
                 return true;
