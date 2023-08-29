@@ -27,9 +27,9 @@ namespace Expense_Vendor_Management.Controllers
         }
 
         [HttpPost]
-        public IActionResult VendorForm(Vendor v)
+        public async Task<IActionResult> VendorForm(Vendor v)
         {
-            vendor.AddNewVendor(v);
+            await vendor.AddNewVendor(v);
             TempData["SuccessMessage"] = "Form submitted successfully!";
             return RedirectToAction("Index", "Home");
         }

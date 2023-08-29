@@ -1,4 +1,5 @@
 ﻿using Exepense_Vendor_Management.Interfaces;
+using Exepense_Vendor_Management.Repositories;
 using Expense_Vendor_Management.Interfaces;
 using Expense_Vendor_Management.Models;
 
@@ -21,7 +22,7 @@ namespace Expense_Vendor_Management.Repositories
             return (_context.Vendor.Where(x => x.isDeleted == false).ToList());
         
         }
-        public bool AddNewVendor(Vendor vendor)
+        public async Task<bool> AddNewVendor(Vendor vendor)
         {
             try
             {
@@ -33,13 +34,14 @@ namespace Expense_Vendor_Management.Repositories
 
                 vendor.status = "On-Boarding";
                 _context.Vendor.Add(vendor);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 if (vendor.Contractdoc != null)
                 {
                     Media m = new Media();
                     m.mediaFile = vendor.Contractdoc;
                     m.mediaType = "Add Vendor";
                     m.belongTo = "Vendor";
+                    await SharePointClasses.UploadToSharePoint(vendor.Contractdoc);
                     media.AddMedia(m,vendor.id.ToString());
                    
                 }

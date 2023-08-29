@@ -18,7 +18,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.SharePointOnline.CSOM" Version="16.1.24009.12000" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+    <PackageReference Include="PnP.Framework" Version="1.13.0" />
   </ItemGroup>
 
   <ItemGroup>
