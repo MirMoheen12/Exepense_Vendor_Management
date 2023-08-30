@@ -38,8 +38,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddAuthentication().AddOpenIdConnect("AzureAD", "Azure AD", options =>
 {
     options.ClientId = builder.Configuration["Authentication2:AzureAD:ClientId"];
-    // options.Authority = "https://login.microsoftonline.com/711f2702-c004-4887-af6e-961f941df9ec"; // Replace with your Azure AD tenant ID
-    options.Authority = "https://login.microsoftonline.com/9a97e28b-a403-4c26-a921-a5b40f2bbcb4"; // Replace with your Azure AD tenant ID
+    options.Authority = builder.Configuration["Authentication2:AzureAD:Authority"];
     options.ClientSecret = builder.Configuration["Authentication2:AzureAD:ClientSecret"];
     options.ResponseType = "code";
     options.CallbackPath = "/Accounts/ExternalLoginCallBack/";

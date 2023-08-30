@@ -7,11 +7,12 @@ namespace Exepense_Vendor_Management.Repositories
 {
     public class SharePointClasses
     {
-        private const string clientID = "724fd2a5-9c1b-4e26-887b-9abbc3acdc45";
-        private const string clientSecret = "WTSdO4YtsZjqKyd74h57CWlfjKnrzxpqSKEHvXYP4VE=";
+        private static IConfiguration configuration23;
+
         public static async Task<string> UploadToSharePoint(IFormFile file)
         {
             var fileUrl= string.Empty;
+
             try
             {
                 var siteUrl = "https://rizemtg.sharepoint.com/sites/AccountingInt";
@@ -51,11 +52,11 @@ namespace Exepense_Vendor_Management.Repositories
             return fileUrl;
             
         }
-
-        private static async Task<ClientContext> GetSharePointContext(string siteUrl)
+       private static async Task<ClientContext> GetSharePointContext(string siteUrl)
         {
+           
             //var cc = new AuthenticationManager().GetACSAppOnlyContext(siteUrl, clientID, clientSecret);
-            var cc = new AuthenticationManager().GetACSAppOnlyContext(siteUrl, clientID, clientSecret);
+            var cc = new AuthenticationManager().GetACSAppOnlyContext(siteUrl, configuration23.GetSection("SharePoint:ClientId").Value, configuration23.GetSection("SharePoint:ClientSecret").Value);
             return cc;
         }
 
