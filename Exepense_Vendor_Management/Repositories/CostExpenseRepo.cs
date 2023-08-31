@@ -52,6 +52,7 @@ namespace Expense_Vendor_Management.Repositories
         }
         public List<CostCenterExpense> GetAllCost()
         {
+            logs.AddLog("GetAllCost");
             return (appDbContext.CostCenterExpense.Where(x => x.isDeleted == false).ToList());
 
         }
@@ -60,6 +61,7 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
+                logs.AddLog("GetCostById");
                 return appDbContext.CostCenterExpense.Where(x => x.id == vendorId).FirstOrDefault();
                 
             }
@@ -89,18 +91,30 @@ namespace Expense_Vendor_Management.Repositories
                     m.FileUrl = await SharePointClasses.UploadToSharePoint(file);
                     media.AddMedia(m, ID.ToString());
                 }
+                logs.AddLog("ChangeCostAction");
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                logs.ErrorLog(e.Message, "ChangeCostAction");
                 return false;
             }
         }
 
         public void EditCostExp(CostCenterExpense ce)
         {
-            appDbContext.CostCenterExpense.Update(ce);
-            appDbContext.SaveChanges();
+            try
+            {
+                logs.AddLog("EditCostExp");
+                appDbContext.CostCenterExpense.Update(ce);
+                appDbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                logs.ErrorLog(e.Message, "EditCostExp");
+                throw;
+            }
+        
         }
     }
 }
