@@ -40,7 +40,6 @@ namespace Expense_Vendor_Management.Repositories
                     m.mediaFile = ex.SuportingMedia;
                     m.mediaType = "Add Expense";
                     m.belongTo = "Expense";
-                    m.FileUrl = await SharePointClasses.UploadToSharePoint(ex.SuportingMedia);
                     media.AddMedia(m, ex.id.ToString());
                 }
 
@@ -106,7 +105,7 @@ namespace Expense_Vendor_Management.Repositories
                     m.mediaType = "Approve";
                     m.createdBy = "";
                     m.belongTo = "Expense";
-                    m.FileUrl = await SharePointClasses.UploadToSharePoint(file);
+                  
                     media.AddMedia(m, ID.ToString());
                 }
 

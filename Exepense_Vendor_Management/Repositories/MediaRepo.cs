@@ -9,21 +9,24 @@ namespace Expense_Vendor_Management.Repositories
         private readonly AppDbContext _context;
         private readonly IUser user;
         private readonly ILogs logs;
+        private readonly ISharePoint sharePoint;
 
-        public MediaRepo(AppDbContext _context, IUser user, ILogs logs)
+        public MediaRepo(AppDbContext _context, IUser user, ILogs logs, ISharePoint sharePoint)
         {
             this._context = _context;
             this.user = user;
             this.logs = logs;
+            this.sharePoint = sharePoint;
         }
 
-        public int AddMedia(Media medias, string ReqID)
+        public async Task<int> AddMedia(Media medias, string ReqID)
         {
             try
             {
                 if (medias.mediaFile != null)
                 {
-                    medias.fileName = Addfilesinserver(medias.mediaFile);
+                    medias.FileUrl = await Addfilesinserver(medias.mediaFile);
+                    medias.fileName=medias.mediaFile.FileName;
                     medias.isDeleted = false;
                     medias.createdBy = user.ActiveUserId();
                     medias.ReqID = ReqID;
@@ -56,16 +59,10 @@ namespace Expense_Vendor_Management.Repositories
             }
         }
 
-        public string Addfilesinserver(IFormFile Files)
+        public async Task<string> Addfilesinserver(IFormFile Files)
         {
-            string fileName = Guid.NewGuid().ToString();
-            string fileexten = Path.GetExtension(Files.FileName);
-            fileName = fileName + fileexten;
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\UploadedFiles\", fileName);
-            using (FileStream stream = new FileStream(filePath, FileMode.Create))
-            {
-                Files.CopyTo(stream);
-            }
+            string fileName = await sharePoint.UploadToSharePointAsync(Files);
+         
             return fileName;
         }
 

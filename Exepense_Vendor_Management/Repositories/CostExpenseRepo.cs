@@ -37,7 +37,6 @@ namespace Expense_Vendor_Management.Repositories
                     m.mediaFile = ce.SupportingMedia;
                     m.mediaType = "Cost Center";
                     m.belongTo = "Cost";
-                    m.FileUrl = await SharePointClasses.UploadToSharePoint(ce.SupportingMedia);
                     media.AddMedia(m,ce.id.ToString());
                 }
                 logs.AddLog("AddNewCostExp");
@@ -88,7 +87,6 @@ namespace Expense_Vendor_Management.Repositories
                     m.mediaType = "Approve";
                     m.createdBy = user.ActiveUserId();
                     m.belongTo = "Cost";
-                    m.FileUrl = await SharePointClasses.UploadToSharePoint(file);
                     media.AddMedia(m, ID.ToString());
                 }
                 logs.AddLog("ChangeCostAction");

@@ -1,24 +1,33 @@
-﻿using Microsoft.SharePoint.Client;
+﻿using Exepense_Vendor_Management.Interfaces;
+using Microsoft.SharePoint.Client;
 using System.Net;
 using PnP.Framework;
 using AuthenticationManager = PnP.Framework.AuthenticationManager;
 
 namespace Exepense_Vendor_Management.Repositories
 {
-    public class SharePointClasses
+    public class SharePointRepo : ISharePoint
     {
-        private static IConfiguration configuration23;
-
-        public static async Task<string> UploadToSharePoint(IFormFile file)
+        private readonly IConfiguration _configuration;
+        public SharePointRepo(IConfiguration configuration)
         {
-            var fileUrl= string.Empty;
+            this._configuration = configuration;
+        }
+        public async Task<string> UploadToSharePointAsync(IFormFile file)
+        {
+            string url= await Uploadfile(file);
+            return url;
+        }
+        private async Task<string> Uploadfile(IFormFile file)
+        {
+            var fileUrl = string.Empty;
 
             try
             {
                 var siteUrl = "https://rizemtg.sharepoint.com/sites/AccountingInt";
                 var targetLibrary = "VendorApprovalDocumentation";
                 var clientContext = await GetSharePointContext(siteUrl);
-                
+
                 Web web = clientContext.Web;
                 clientContext.Load(web);
                 clientContext.ExecuteQuery();
@@ -50,16 +59,13 @@ namespace Exepense_Vendor_Management.Repositories
                 Console.WriteLine(ex.ToString());
             }
             return fileUrl;
-            
+
         }
-       private static async Task<ClientContext> GetSharePointContext(string siteUrl)
+        private async Task<ClientContext> GetSharePointContext(string siteUrl)
         {
-           
-            //var cc = new AuthenticationManager().GetACSAppOnlyContext(siteUrl, clientID, clientSecret);
-            var cc = new AuthenticationManager().GetACSAppOnlyContext(siteUrl, configuration23.GetSection("SharePoint:ClientId").Value, configuration23.GetSection("SharePoint:ClientSecret").Value);
+            var cc = new AuthenticationManager().GetACSAppOnlyContext(siteUrl, _configuration.GetSection("SharePoint:ClientId").Value, _configuration.GetSection("SharePoint:ClientSecret").Value);
             return cc;
         }
-
 
     }
 }
