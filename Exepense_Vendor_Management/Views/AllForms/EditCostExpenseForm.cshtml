@@ -27,7 +27,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="submissionDate">
-                                <span class="mandatory">*</span> Submission Date
+                                Submission Date<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
                                 <input class="form-control" hidden type="hidden" asp-for="id" required>
@@ -43,7 +43,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="expenseOccurred">
-                                <span class="mandatory">*</span> Amount
+                                Amount<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
                                 <input class="form-control" type="number" asp-for="amount" required>
@@ -54,7 +54,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="expenseDate">
-                                <span class="mandatory">*</span> Expense Date
+                                Expense Date<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
                                 <input class="form-control" type="date" id="expenseDate" asp-for="expenseAccurred" required>
@@ -65,7 +65,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="expenseCategory">
-                                <span class="mandatory">*</span> Expense Category
+                                Expense Category<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
                                 <select class="form-select" id="expenseCategory" asp-for="expenseCategory">
@@ -73,7 +73,6 @@
                                     <option value="Mileage">Mileage</option>
                                     <option value="Travel">Travel</option>
                                     <option value="Lodging">Lodging</option>
-                                    <!-- Add more options here if needed -->
                                 </select>
                             </div>
                         </div>
@@ -82,7 +81,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="vendorName">
-                                <span class="mandatory">*</span> Vendor Name
+                                Vendor Name<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
                                 <input type="text" required class="form-control" id="vendorName" asp-for="vandorName">
@@ -90,15 +89,13 @@
                         </div>
                     </div>
 
-
-
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="expenseDescription">
-                                <span class="mandatory">*</span> Description
+                                Description<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <textarea class="form-control" type="number" asp-for="expenseDescription" required style="min-height:auto;"></textarea>
+                                <textarea class="form-control" asp-for="expenseDescription" required style="min-height:auto;"></textarea>
                             </div>
                         </div>
                     </div>
@@ -106,10 +103,10 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="notes">
-                                <span class="mandatory">*</span> Notes
+                                Notes<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <textarea class="form-control" type="number" asp-for="notes" required style="min-height:auto;"></textarea>
+                                <textarea class="form-control" asp-for="notes" required style="min-height:auto;"></textarea>
                             </div>
                         </div>
                     </div>
@@ -124,12 +121,6 @@
         </div>
     </div>
 
-
-
-
-
-
-
     <div class="card card-preview">
         <div class="card-inner">
             <div class="nk-block-head">
@@ -138,11 +129,10 @@
                         <li class="nav-item">
                             <a class="nav-link active"><em class="icon ni ni-user-circle"></em><span>Invoice Documents</span></a>
                         </li>
-
                     </ul>
-
                 </div>
-            </div><table class="datatable-init-export nowrap table">
+            </div>
+            <table class="datatable-init-export nowrap table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -167,7 +157,7 @@
                             </td>
                             <td>
                                 <a href="~/CricketMedia/Downloadfile?docname=@ViewBag.Media[i].fileName">
-                                    <em style="font-size:32PX" class="icon ni ni-file-pdf"></em>
+                                    <em style="font-size:32px" class="icon ni ni-file-pdf"></em>
                                 </a>
                             </td>
                             <td>
@@ -193,5 +183,4 @@
             </table>
         </div>
     </div>
-
 </div>
