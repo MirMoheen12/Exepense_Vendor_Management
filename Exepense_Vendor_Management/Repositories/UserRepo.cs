@@ -3,17 +3,30 @@ using System.Security.Claims;
 
 namespace Exepense_Vendor_Management.Repositories
 {
-    public class UserRepo: IUser
+    public class UserRepo : IUser
     {
-
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public UserRepo(IHttpContextAccessor httpContextAccessor)
+        private readonly ILogs logs;
+
+        public UserRepo(IHttpContextAccessor httpContextAccessor, ILogs logs)
         {
             _httpContextAccessor = httpContextAccessor;
+            this.logs = logs;
         }
+
         public string ActiveUserId()
         {
-            return _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            try
+            {
+                var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                logs.AddLog("ActiveUserId" + "Retrieved active user ID.");
+                return userId;
+            }
+            catch (Exception ex)
+            {
+                logs.ErrorLog($"Error getting active user ID: {ex.Message}", "ActiveUserId");
+                return string.Empty;
+            }
         }
     }
 }
