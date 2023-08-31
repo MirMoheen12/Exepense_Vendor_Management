@@ -155,5 +155,10 @@ namespace Expense_Vendor_Management.Repositories
                 logs.ErrorLog($"Error editing vendor with ID {v.id}: {e.Message}", "EditVendor");
             }
         }
+
+        bool IVendor.AddNewVendor(Vendor vendor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
