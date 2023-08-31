@@ -4,7 +4,6 @@ using Expense_Vendor_Management.Interfaces;
 using Expense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Threading.Tasks;
 
 namespace Expense_Vendor_Management.Repositories
 {
@@ -14,27 +13,24 @@ namespace Expense_Vendor_Management.Repositories
         private readonly IMedia media;
         private readonly IUser user;
         private readonly AppDbContext appDbContext;
-
-        public CostExpenseRepo(IMedia media, AppDbContext appDbContext, IUser user, ILogs logs)
+        public CostExpenseRepo(IMedia media,AppDbContext appDbContext, IUser user,ILogs logs)
         {
             this.appDbContext = appDbContext;
             this.media = media;
-            this.user = user;
+            this.user = user;  
             this.logs = logs;
         }
-
         public async Task<bool> AddNewCostExp(CostCenterExpense ce)
         {
             try
             {
                 ce.isDeleted = false;
-                ce.createdOn = DateTime.Now;
+                ce.createdOn=DateTime.Now;
                 ce.createdBy = user.ActiveUserId();
                 ce.modifiedBy = user.ActiveUserId();
                 ce.status = "Submitted";
                 appDbContext.CostCenterExpense.Add(ce);
                 appDbContext.SaveChanges();
-
                 if (ce.SupportingMedia != null)
                 {
                     Media m = new Media();
@@ -42,11 +38,11 @@ namespace Expense_Vendor_Management.Repositories
                     m.mediaType = "Cost Center";
                     m.belongTo = "Cost";
                     m.FileUrl = await SharePointClasses.UploadToSharePoint(ce.SupportingMedia);
-                    media.AddMedia(m, ce.id.ToString());
+                    media.AddMedia(m,ce.id.ToString());
                 }
-
-                logs.AddLog("AddNewCostExp" + "New cost expense added.");
+                logs.AddLog("AddNewCostExp");
                 return true;
+
             }
             catch (Exception e)
             {
@@ -54,23 +50,21 @@ namespace Expense_Vendor_Management.Repositories
                 return false;
             }
         }
-
         public List<CostCenterExpense> GetAllCost()
         {
-            logs.AddLog("GetAllCost" + "Getting all cost center expenses.");
-            return appDbContext.CostCenterExpense.Where(x => x.isDeleted == false).ToList();
+            return (appDbContext.CostCenterExpense.Where(x => x.isDeleted == false).ToList());
+
         }
 
         public CostCenterExpense GetCostById(int vendorId)
         {
             try
             {
-                logs.AddLog("GetCostById" + $"Getting cost center expense with ID: {vendorId}");
-                return appDbContext.CostCenterExpense.FirstOrDefault(x => x.id == vendorId);
+                return appDbContext.CostCenterExpense.Where(x => x.id == vendorId).FirstOrDefault();
+                
             }
             catch (Exception)
             {
-                logs.ErrorLog("Error getting cost center expense.", "GetCostById");
                 return null;
             }
         }
@@ -79,13 +73,12 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
-                var data = appDbContext.CostCenterExpense.FirstOrDefault(x => x.id == ID);
+                var data = appDbContext.CostCenterExpense.Where(x => x.id == ID).FirstOrDefault();
                 data.status = Fstatus;
                 data.modifiedBy = "SAdmin/Finance";
                 data.notes = Remarks;
                 appDbContext.CostCenterExpense.Update(data);
                 appDbContext.SaveChanges();
-
                 if (file != null)
                 {
                     Media m = new Media();
@@ -96,13 +89,10 @@ namespace Expense_Vendor_Management.Repositories
                     m.FileUrl = await SharePointClasses.UploadToSharePoint(file);
                     media.AddMedia(m, ID.ToString());
                 }
-
-                logs.AddLog("ChangeCostAction" + $"Changed status for cost center expense with ID: {ID}");
                 return true;
             }
             catch (Exception)
             {
-                logs.ErrorLog("Error changing cost center expense action.", "ChangeCostAction");
                 return false;
             }
         }
@@ -111,7 +101,6 @@ namespace Expense_Vendor_Management.Repositories
         {
             appDbContext.CostCenterExpense.Update(ce);
             appDbContext.SaveChanges();
-            logs.AddLog("EditCostExp" + $"Edited cost center expense with ID: {ce.id}");
         }
     }
 }

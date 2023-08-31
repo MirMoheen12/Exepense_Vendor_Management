@@ -67,6 +67,7 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
+                               
                                 </ul>
                             </div>
                             <div class="dropdown-inner">
@@ -153,30 +154,33 @@
                             </li><!-- .nk-menu-heading -->
                             @if (User.IsInRole("Super Admin"))
                             {
-                                @* <li class="nk-menu-heading">
+                                <li class="nk-menu-heading">
                                     <h6 class="overline-title text-primary-alt">Dashboards</h6>
                                 </li>
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                        <span class="nk-menu-text">Projects</span>
+                                        <span class="nk-menu-text">My Dashboard</span>
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a href="html/project-card.html" class="nk-menu-link"><span class="nk-menu-text">Project Cards</span></a>
+                                            <a href="html/project-card.html" class="nk-menu-link"><span class="nk-menu-text">Vendor Dashboard</span></a>
+                                        </li>
+                                    <li class="nk-menu-item">
+                                            <a href="html/project-card.html" class="nk-menu-link"><span class="nk-menu-text">Expense Dashboard</span></a>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <a href="html/project-list.html" class="nk-menu-link"><span class="nk-menu-text">Project List</span></a>
+                                            <a href="html/project-card.html" class="nk-menu-link"><span class="nk-menu-text">Cost Dashboard</span></a>
                                         </li>
                                     </ul><!-- .nk-menu-sub -->
-                                </li> *@
+                                </li>
 
                                 <!-- .nk-menu-item -->
                                 <!-- .nk-menu-item -->
 
 
                                 <li class="nk-menu-heading">
-                                    <h6 class="overline-title text-primary-alt">All Pages</h6>
+                                    <h6 class="overline-title text-primary-alt">Pre-Built Pages</h6>
                                 </li>
 
                                 <!-- .nk-menu-heading -->
@@ -193,79 +197,40 @@
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
-                                            <a href="~/ActionCenter/AllVendorForms" class="nk-menu-link">
-                                                <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
-                                                <span class="nk-menu-text">All vendors </span>
-                                            </a>
+                                            <a href="html/project-card.html" class="nk-menu-link"><span class="nk-menu-text">Project Cards</span></a>
                                         </li>
                                         <li class="nk-menu-item">
-                                            <a href="~/AllForms/VendorForm" class="nk-menu-link">
-                                                <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
-                                                <span class="nk-menu-text">Vendor Form</span>
-                                            </a>
-                                        </li>
-                                    </ul><!-- .nk-menu-sub -->
-                                </li>
-
-                                
-
-
-
-
-
-
-
-                                <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                        <span class="nk-menu-text">Expense</span>
-                                    </a>
-                                    <ul class="nk-menu-sub">
-                                        <li class="nk-menu-item">
-                                            <a href="~/ActionCenter/AllExpenseForms" class="nk-menu-link">
-                                                <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
-                                                <span class="nk-menu-text">All Expenses </span>
-                                            </a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="~/AllForms/ExpenseForm" class="nk-menu-link">
-                                                <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
-                                                <span class="nk-menu-text">Expense Form</span>
-                                            </a>
-                                        </li>
-                                    </ul><!-- .nk-menu-sub -->
-                                </li>
-
-
-
-
-
-
-
-                                <li class="nk-menu-item has-sub">
-                                    <a href="#" class="nk-menu-link nk-menu-toggle">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                        <span class="nk-menu-text">Cost Expense</span>
-                                    </a>
-                                    <ul class="nk-menu-sub">
-                                        <li class="nk-menu-item">
-                                            <a href="~/ActionCenter/AllCostExpense" class="nk-menu-link">
-                                                <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
-                                                <span class="nk-menu-text">All Cost Expense</span>
-                                            </a>
-                                        </li>
-                                        <li class="nk-menu-item">
-                                            <a href="~/AllForms/CostExpenseForm" class="nk-menu-link">
-                                                <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
-                                                <span class="nk-menu-text">Cost Expense Center</span>
-                                            </a>
+                                            <a href="html/project-list.html" class="nk-menu-link"><span class="nk-menu-text">Project List</span></a>
                                         </li>
                                     </ul><!-- .nk-menu-sub -->
                                 </li>
 
                                 <!-- .nk-menu-item -->
-                                    
-            
+
+
+
+
+
+
+
+                                <li class="nk-menu-item">
+                                    <a href="~/ActionCenter/AllVendorForms" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                        <span class="nk-menu-text">All vendors </span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="~/ActionCenter/AllExpenseForms" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                        <span class="nk-menu-text">All Expenses </span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                    <a href="~/ActionCenter/AllCostExpense" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                        <span class="nk-menu-text">All Cost Expense</span>
+                                    </a>
+                                </li>
                                 <li class="nk-menu-item">
                                     <a href="~/AllForms/submittedForm" class="nk-menu-link">
                                         <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
@@ -274,18 +239,27 @@
                                 </li>
                             }
                             <li class="nk-menu-item">
+                                <a href="~/AllForms/VendorForm" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
+                                        <span class="nk-menu-text">Vendor Form</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                <a href="~/AllForms/ExpenseForm" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
+                                    <span class="nk-menu-text">Expense Form</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item">
+                                <a href="~/AllForms/CostExpenseForm" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
+                                    <span class="nk-menu-text">Cost Expense Center</span>
+                                    </a>
+                                </li>
+                
 
-                            </li>
-                            <li class="nk-menu-item">
-
-                            </li>
-                            <li class="nk-menu-item">
-                                
-                            </li>
-
-
-
-
+                      
+             
 
                         </ul><!-- .nk-menu -->
                     </div>

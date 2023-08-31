@@ -10,30 +10,18 @@ namespace Expense_Vendor_Management.Repositories
         private readonly AppDbContext _context;
         private readonly IMedia media;
         private readonly IUser user;
-        private readonly ILogs logs;
-
-        public VendorRepo(AppDbContext _context, IMedia media, IUser user, ILogs logs)
+        public VendorRepo(AppDbContext _context, IMedia media, IUser user)
         {
             this.user = user;
             this._context = _context;
             this.media = media;
-            this.logs = logs;
-        }
 
-        public List<Vendor> GetActiveVendorsForms()
+        }
+        public List<Vendor> GetActiveVendorsForms() 
         {
-            try
-            {
-                logs.AddLog("GetActiveVendorsForms" + "Getting active vendors.");
-                return _context.Vendor.Where(x => x.isDeleted == false).ToList();
-            }
-            catch (Exception e)
-            {
-                logs.ErrorLog($"Error getting active vendors: {e.Message}", "GetActiveVendorsForms");
-                return new List<Vendor>();
-            }
+            return (_context.Vendor.Where(x => x.isDeleted == false).ToList());
+        
         }
-
         public async Task<bool> AddNewVendor(Vendor vendor)
         {
             try
@@ -47,47 +35,42 @@ namespace Expense_Vendor_Management.Repositories
                 vendor.status = "On-Boarding";
                 _context.Vendor.Add(vendor);
                 await _context.SaveChangesAsync();
-
-                if (vendor.Contractdoc != null || vendor.assesmentsdoc != null || vendor.otherdoc != null)
+                if (vendor.Contractdoc != null)
                 {
-                    if (vendor.Contractdoc != null)
-                    {
-                        Media m = new Media();
-                        m.mediaFile = vendor.Contractdoc;
-                        m.mediaType = "Add Vendor";
-                        m.belongTo = "Vendor";
-                        m.FileUrl = await SharePointClasses.UploadToSharePoint(vendor.Contractdoc);
-                        media.AddMedia(m, vendor.id.ToString());
-                    }
-
-                    if (vendor.assesmentsdoc != null)
-                    {
-                        Media m = new Media();
-                        m.mediaFile = vendor.assesmentsdoc;
-                        m.mediaType = "Add Vendor";
-                        m.belongTo = "Vendor";
-                        m.FileUrl = await SharePointClasses.UploadToSharePoint(vendor.assesmentsdoc);
-                        media.AddMedia(m, vendor.id.ToString());
-                    }
-
-                    if (vendor.otherdoc != null)
-                    {
-                        Media m = new Media();
-                        m.mediaFile = vendor.otherdoc;
-                        m.mediaType = "Add Vendor";
-                        m.createdBy = "";
-                        m.belongTo = "Vendor";
-                        m.FileUrl = await SharePointClasses.UploadToSharePoint(vendor.otherdoc);
-                        media.AddMedia(m, vendor.id.ToString());
-                    }
+                    Media m = new Media();
+                    m.mediaFile = vendor.Contractdoc;
+                    m.mediaType = "Add Vendor";
+                    m.belongTo = "Vendor";
+                    m.FileUrl=await SharePointClasses.UploadToSharePoint(vendor.Contractdoc);
+                    media.AddMedia(m,vendor.id.ToString());
+                   
                 }
+                if (vendor.assesmentsdoc != null)
+                {
+                    Media m = new Media();
+                    m.mediaFile = vendor.assesmentsdoc;
+                    m.mediaType = "Add Vendor";
+                    m.belongTo = "Vendor";
+                    m.FileUrl=await SharePointClasses.UploadToSharePoint(vendor.assesmentsdoc);
+                    media.AddMedia(m, vendor.id.ToString());
 
-                logs.AddLog("AddNewVendor" + "Added new vendor.");
+                }
+                if (vendor.otherdoc != null)
+                {
+                    Media m = new Media();
+                    m.mediaFile = vendor.otherdoc;
+                    m.mediaType = "Add Vendor";
+                    m.createdBy = "";
+                    m.belongTo = "Vendor";
+                    m.FileUrl = await SharePointClasses.UploadToSharePoint(vendor.otherdoc);
+                    media.AddMedia(m, vendor.id.ToString());
+
+                }
+        
                 return true;
             }
             catch (Exception e)
             {
-                logs.ErrorLog($"Error adding new vendor: {e.Message}", "AddNewVendor");
                 return false;
             }
         }
@@ -96,12 +79,12 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
-                logs.AddLog("GetVendorById" + $"Getting vendor with ID: {vendorId}");
-                return _context.Vendor.FirstOrDefault(x => x.id == vendorId);
+                var dat = _context.Vendor.Where(x => x.id == vendorId).FirstOrDefault();
+                return dat;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                logs.ErrorLog($"Error getting vendor by ID {vendorId}: {e.Message}", "GetVendorById");
+
                 return null;
             }
         }
@@ -110,20 +93,13 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
-                var data = _context.Vendor.FirstOrDefault(x => x.id == ID);
-                if (data == null)
-                {
-                    logs.AddLog("ChangeVendorAction" +  $"Vendor with ID {ID} not found.");
-                    return false;
-                }
-
+                var data = _context.Vendor.Where(x => x.id == ID).FirstOrDefault();
                 data.status = Fstatus;
                 data.modifiedBy = "SAdmin/Finance";
                 data.notes = Remarks;
                 _context.Vendor.Update(data);
                 _context.SaveChanges();
-
-                if (file != null)
+                if(file!=null)
                 {
                     Media m = new Media();
                     m.mediaFile = file;
@@ -131,29 +107,18 @@ namespace Expense_Vendor_Management.Repositories
                     m.createdBy = "";
                     media.AddMedia(m, ID.ToString());
                 }
-
-                logs.AddLog("ChangeVendorAction" + $"Changed status for vendor with ID: {ID}");
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                logs.ErrorLog($"Error changing vendor action for ID {ID}: {e.Message}", "ChangeVendorAction");
                 return false;
             }
         }
 
         public void EditVendor(Vendor v)
         {
-            try
-            {
-                _context.Vendor.Update(v);
-                _context.SaveChanges();
-                logs.AddLog("EditVendor" + $"Edited vendor with ID: {v.id}");
-            }
-            catch (Exception e)
-            {
-                logs.ErrorLog($"Error editing vendor with ID {v.id}: {e.Message}", "EditVendor");
-            }
+            _context.Vendor.Update(v);
+            _context.SaveChanges() ;
         }
     }
 }
