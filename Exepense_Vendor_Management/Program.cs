@@ -57,6 +57,8 @@ builder.Services.AddTransient<ICostExp, CostExpenseRepo>();
 builder.Services.AddTransient<ILogs, LogRepo>();
 builder.Services.AddTransient<IUser, UserRepo>();
 builder.Services.AddTransient<IDashboard, DashboardRepo>();
+builder.Services.AddTransient<IDashboard, DashboardRepo>();
+builder.Services.AddTransient<ISharePoint, SharePointRepo>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.ConfigureApplicationCookie(options =>
 {

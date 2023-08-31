@@ -56,7 +56,6 @@ namespace Expense_Vendor_Management.Repositories
                         m.mediaFile = vendor.Contractdoc;
                         m.mediaType = "Add Vendor";
                         m.belongTo = "Vendor";
-                        m.FileUrl = await SharePointClasses.UploadToSharePoint(vendor.Contractdoc);
                         media.AddMedia(m, vendor.id.ToString());
                     }
 
@@ -66,7 +65,7 @@ namespace Expense_Vendor_Management.Repositories
                         m.mediaFile = vendor.assesmentsdoc;
                         m.mediaType = "Add Vendor";
                         m.belongTo = "Vendor";
-                        m.FileUrl = await SharePointClasses.UploadToSharePoint(vendor.assesmentsdoc);
+                      
                         media.AddMedia(m, vendor.id.ToString());
                     }
 
@@ -77,7 +76,6 @@ namespace Expense_Vendor_Management.Repositories
                         m.mediaType = "Add Vendor";
                         m.createdBy = "";
                         m.belongTo = "Vendor";
-                        m.FileUrl = await SharePointClasses.UploadToSharePoint(vendor.otherdoc);
                         media.AddMedia(m, vendor.id.ToString());
                     }
                 }
@@ -113,7 +111,7 @@ namespace Expense_Vendor_Management.Repositories
                 var data = _context.Vendor.FirstOrDefault(x => x.id == ID);
                 if (data == null)
                 {
-                    logs.AddLog("ChangeVendorAction" +  $"Vendor with ID {ID} not found.");
+                    logs.AddLog("ChangeVendorAction" + $"Vendor with ID {ID} not found.");
                     return false;
                 }
 

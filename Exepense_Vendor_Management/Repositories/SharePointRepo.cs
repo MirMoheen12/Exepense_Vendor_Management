@@ -1,23 +1,24 @@
-﻿using Microsoft.SharePoint.Client;
+﻿using Exepense_Vendor_Management.Interfaces;
+using Microsoft.SharePoint.Client;
 using System.Net;
 using PnP.Framework;
 using AuthenticationManager = PnP.Framework.AuthenticationManager;
-using Exepense_Vendor_Management.Interfaces;
 
 namespace Exepense_Vendor_Management.Repositories
 {
-    public class SharePointClasses
+    public class SharePointRepo : ISharePoint
     {
-        private static IConfiguration configuration23;
-        private static ILogs logs;
-
-        public SharePointClasses(IConfiguration configuration, ILogs logs)
+        private readonly IConfiguration _configuration;
+        public SharePointRepo(IConfiguration configuration)
         {
-            configuration23 = configuration;
-            SharePointClasses.logs = logs;
+            this._configuration = configuration;
         }
-
-        public static async Task<string> UploadToSharePoint(IFormFile file)
+        public async Task<string> UploadToSharePointAsync(IFormFile file)
+        {
+            string url= await Uploadfile(file);
+            return url;
+        }
+        private async Task<string> Uploadfile(IFormFile file)
         {
             var fileUrl = string.Empty;
 
@@ -51,29 +52,20 @@ namespace Exepense_Vendor_Management.Repositories
                     clientContext.Load(uploadFile);
                     clientContext.ExecuteQuery();
                 }
-
-                logs.AddLog("UploadToSharePoint" + "File uploaded to SharePoint.");
                 return fileUrl;
             }
             catch (Exception ex)
             {
-                logs.ErrorLog($"Error uploading file to SharePoint: {ex.Message}", "UploadToSharePoint");
-                return fileUrl;
+                Console.WriteLine(ex.ToString());
             }
-        }
+            return fileUrl;
 
-        private static async Task<ClientContext> GetSharePointContext(string siteUrl)
+        }
+        private async Task<ClientContext> GetSharePointContext(string siteUrl)
         {
-            try
-            {
-                var cc = new AuthenticationManager().GetACSAppOnlyContext(siteUrl, configuration23.GetSection("SharePoint:ClientId").Value, configuration23.GetSection("SharePoint:ClientSecret").Value);
-                return cc;
-            }
-            catch (Exception ex)
-            {
-                logs.ErrorLog($"Error getting SharePoint context: {ex.Message}", "GetSharePointContext");
-                return null;
-            }
+            var cc = new AuthenticationManager().GetACSAppOnlyContext(siteUrl, _configuration.GetSection("SharePoint:ClientId").Value, _configuration.GetSection("SharePoint:ClientSecret").Value);
+            return cc;
         }
+
     }
 }
