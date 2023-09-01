@@ -13,19 +13,32 @@ namespace Exepense_Vendor_Management.Repositories
         {
             this._configuration = configuration;
         }
-        public async Task<string> UploadToSharePointAsync(IFormFile file)
+        public async Task<string> UploadToSharePointAsync(IFormFile file, string mediaType)
         {
-            string url= await Uploadfile(file);
+            string url= await Uploadfile(file, mediaType);
             return url;
         }
-        private async Task<string> Uploadfile(IFormFile file)
+        private async Task<string> Uploadfile(IFormFile file, string mediaType)
         {
             var fileUrl = string.Empty;
 
             try
             {
-                var siteUrl = "https://rizemtg.sharepoint.com/sites/AccountingInt";
-                var targetLibrary = "VendorApprovalDocumentation";
+                var siteUrl = _configuration.GetSection("SharePoint:SiteUrl").Value;
+                var targetLibrary = string.Empty;
+                switch (mediaType)
+                {
+                    case "Cost Center":
+                        targetLibrary= _configuration.GetSection("SharePoint:CostCenterExpenseLibrary").Value;
+                        break;
+                    case "Add Vendor":
+                        targetLibrary = _configuration.GetSection("SharePoint:VendorLibrary").Value;
+                        break;
+                    case "Add Expense":
+                        targetLibrary = _configuration.GetSection("SharePoint:ExpenseLibrary").Value;
+                        break;
+                };
+
                 var clientContext = await GetSharePointContext(siteUrl);
 
                 Web web = clientContext.Web;

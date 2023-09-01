@@ -25,7 +25,7 @@ namespace Expense_Vendor_Management.Repositories
             {
                 if (medias.mediaFile != null)
                 {
-                    medias.FileUrl = await Addfilesinserver(medias.mediaFile);
+                    medias.FileUrl = await Addfilesinserver(medias.mediaFile, medias.mediaType);
                     medias.fileName=medias.mediaFile.FileName;
                     medias.isDeleted = false;
                     medias.createdBy = user.ActiveUserId();
@@ -59,9 +59,9 @@ namespace Expense_Vendor_Management.Repositories
             }
         }
 
-        public async Task<string> Addfilesinserver(IFormFile Files)
+        public async Task<string> Addfilesinserver(IFormFile Files, string mediaType)
         {
-            string fileName = await sharePoint.UploadToSharePointAsync(Files);
+            string fileName = await sharePoint.UploadToSharePointAsync(Files, mediaType);
          
             return fileName;
         }
