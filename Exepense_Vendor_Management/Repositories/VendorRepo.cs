@@ -42,6 +42,10 @@ namespace Expense_Vendor_Management.Repositories
                 vendor.createdBy = user.ActiveUserId();
                 vendor.modifiedBy = user.ActiveUserId();
                 vendor.notes = "Initial Insert";
+                if (vendor.paymentAmount == null)
+                {
+                    vendor.paymentAmount = "0";
+                }
                 vendor.isDeleted = false;
 
                 vendor.status = "On-Boarding";
