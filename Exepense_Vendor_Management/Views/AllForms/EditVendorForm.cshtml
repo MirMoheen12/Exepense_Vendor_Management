@@ -46,6 +46,9 @@
                             </label>
                             <div class="form-control-wrap">
                                 <input type="text" required class="form-control" id="costCenter" asp-for="costCenter">
+                                <input hidden required class="form-control" id="costCenter" asp-for="createdBy">
+                                <input hidden required class="form-control" id="costCenter" asp-for="notes">
+                                <input hidden required class="form-control" id="costCenter" asp-for="status">
                             </div>
                         </div>
                     </div>
@@ -73,6 +76,41 @@
                         </div>
                     </div>
 
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="mandatory">*</span> Product Category
+                            </label>
+                            <div class="form-control-wrap">
+                                <select class="form-control" required asp-for="catagory">
+                                    <option selected>
+                                        Legal
+                                    </option>
+                                    <option>
+                                        Compliance
+                                    </option>
+                                    <option>
+                                        Accounting
+                                    </option>
+                                    <option>
+                                        Marketing
+                                    </option>
+                                    <option>
+                                        Sales
+                                    </option>
+                                    <option>
+                                        Investor
+                                    </option>
+                                    <option>
+                                        Building
+                                    </option>
+                                    <option>
+                                        Operations
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label">

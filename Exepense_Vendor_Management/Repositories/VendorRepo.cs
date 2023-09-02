@@ -144,6 +144,7 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
+                v.modifiedBy = user.ActiveUserId();
                 _context.Vendor.Update(v);
                 _context.SaveChanges();
                 logs.AddLog("EditVendor" + $"Edited vendor with ID: {v.id}");
