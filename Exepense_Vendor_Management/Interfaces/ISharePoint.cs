@@ -2,6 +2,6 @@
 {
     public interface ISharePoint
     {
-        public Task<string> UploadToSharePointAsync(IFormFile file);
+        public Task<string> UploadToSharePointAsync(IFormFile file, string mediaType);
     }
 }

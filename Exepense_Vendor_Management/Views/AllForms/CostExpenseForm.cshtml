@@ -27,8 +27,9 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="submissionDate">
-                                <span class="mandatory">*</span> Submission Date
+                                Submission Date  <span class="mandatory">*</span>
                             </label>
+
                             <div class="form-control-wrap">
                                 <input class="form-control" type="date" id="submissionDate" asp-for="submissionDate" required>
                             </div>
@@ -38,7 +39,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="expenseOccurred">
-                                <span class="mandatory">*</span> Amount
+                                Amount<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
                                 <input class="form-control" type="number" asp-for="amount" required>
@@ -49,7 +50,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="expenseDate">
-                                <span class="mandatory">*</span> Expense Date
+                                Expense Date<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
                                 <input class="form-control" type="date" id="expenseDate" asp-for="expenseAccurred" required>
@@ -60,7 +61,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="expenseCategory">
-                                <span class="mandatory">*</span> Expense Category
+                                Expense Category<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
                                 <select class="form-select" id="expenseCategory" asp-for="expenseCategory">
@@ -78,7 +79,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="vendorName">
-                                <span class="mandatory">*</span> Vendor Name
+                                Vendor Name<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
                                 <input type="text" required class="form-control" id="vendorName" asp-for="vandorName">
@@ -89,7 +90,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="supportingDocs">
-                                <span class="mandatory">*</span> Supporting Documents
+                                Supporting Documents<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
                                 <input required type="file" id="supportingDocs" asp-for="SupportingMedia" accept=".pdf, .doc, .docx">
@@ -100,7 +101,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="expenseDescription">
-                                <span class="mandatory">*</span> Description
+                                Description <span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
                                 <textarea class="form-control" type="number" asp-for="expenseDescription" required style="min-height:auto;"></textarea>
@@ -108,16 +109,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" for="notes">
-                                <span class="mandatory">*</span> Notes
-                            </label>
-                            <div class="form-control-wrap">
-                                <textarea class="form-control" type="number" asp-for="notes" required style="min-height:auto;"></textarea>
-                            </div>
-                        </div>
-                    </div>
+          
 
                     <div class="col-12">
                         <div class="form-group">
