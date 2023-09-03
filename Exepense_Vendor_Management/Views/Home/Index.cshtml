@@ -5,23 +5,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
+<script>
+    var successMessage = "@TempData["SuccessMessage"]";
+    toastr.options = {
+        closeButton: true,
+        progressBar: true,
+        positionClass: 'toast-center', // Apply the CSS class for center alignment
+        timeOut: 30000 // 3 seconds
+    };
+
+    toastr.success(successMessage, 'Success');
+
+</script>
+
 @if (TempData.ContainsKey("SuccessMessage"))
 {
-    <script>
-        var successMessage = "@TempData["SuccessMessage"]";
-        toastr.options = {
-            "positionClass": "toast-top-right", // Position at the top right
-            "showDuration": "2000", // Auto-hide after 3 seconds (adjust as needed)
-            "hideDuration": "1000",
-            "timeOut": "3000", // Total display time (including fade in/out)
-            "extendedTimeOut": "1000", // Additional time to stay after hover
-            "showEasing": "swing",
-
-        };
-
-        toastr.success(successMessage, 'Success');
     
-    </script>
 }
 
 
