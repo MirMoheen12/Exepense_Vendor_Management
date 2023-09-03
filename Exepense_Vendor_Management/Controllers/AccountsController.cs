@@ -9,6 +9,8 @@ using Microsoft.Graph;
 using Azure.Identity;
 using System.Text.Json;
 using Newtonsoft.Json;
+using Exepense_Vendor_Management.Models;
+using System.Configuration;
 
 namespace Expense_Vendor_Management.Controllers
 {
@@ -19,11 +21,13 @@ namespace Expense_Vendor_Management.Controllers
         private SignInManager<IdentityUser> signInManager;
         private UserManager<IdentityUser> UserManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public AccountsController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> _roleManager)
+        private readonly IConfiguration configuration;
+        public AccountsController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> _roleManager,IConfiguration configuration)
         {
            
             this.signInManager = signInManager;
             this.UserManager = userManager;
+            this.configuration = configuration;
             this._roleManager = _roleManager;
         }
 
@@ -84,38 +88,8 @@ namespace Expense_Vendor_Management.Controllers
                 try
                 {
                     // Code snippets are only available for the latest version. Current version is 5.x
-                    var scopes = new[] { "https://graph.microsoft.com/.default" };
 
-                    // Values from app registration
-                    var clientId = "76e5585d-f738-4163-82eb-a1651776b761";                                          //get this from app settings.
-                    var tenantId = "711f2702-c004-4887-af6e-961f941df9ec";                                          //add this to app settings.
-                    var clientSecret = "nP88Q~rAB_AZNpkBlbc.vmKetOS16UPjz51Sfdtj";                                  //add this from app settings.
-
-                    // using Azure.Identity;
-                    var options = new ClientSecretCredentialOptions
-                    {
-                        AuthorityHost = AzureAuthorityHosts.AzurePublicCloud,
-                    };
-
-                    var clientSecretCredential = new ClientSecretCredential(
-                        tenantId, clientId, clientSecret, options);
-                    var graphClient = new GraphServiceClient(clientSecretCredential, scopes);
-
-                    var result = await graphClient.Users["consulting@rizemtg.com"].GetAsync((requestConfiguration) =>                           //add current user email here
-                    {
-                        requestConfiguration.QueryParameters.Select = new string[] { "customSecurityAttributes" };                              
-                    });
-                    if(result?.CustomSecurityAttributes != null)
-                    {
-                        var element = result.CustomSecurityAttributes.AdditionalData["UniversalAttributesForRize"];                             //add this to app settings.
-                        var jsonString = element.ToString();
-
-                        var customSecurityAttribute = System.Text.Json.JsonSerializer.Deserialize<CustomSecurityAttributeValue>(jsonString);
-                        List<string> CostCenter = customSecurityAttribute.CostCenter;                                                           // cost center for dashboard
-                        var department = customSecurityAttribute.Department;                                                                    // Department
-                        var role =customSecurityAttribute.RolesForVendorAndExpenseMgt;                                                          //Roles for all purposes
-                    }
-                    
+                   
 
 
 
@@ -165,6 +139,14 @@ namespace Expense_Vendor_Management.Controllers
                     }
                     await UserManager.AddLoginAsync(user, info);
                     await signInManager.SignInAsync(user, isPersistent: false);
+                    var data= getInfo(user.Email);
+                    if (data != null)
+                    {
+                        var defaultrole = _roleManager.FindByIdAsync(data.Result.Department).Result;
+                        var roleresult = await UserManager.AddToRoleAsync(user, defaultrole.Name);
+
+                    }
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -181,18 +163,7 @@ namespace Expense_Vendor_Management.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction("Login", "Accounts");
         }
-        public class CustomSecurityAttributeValue
-        {
-            public string ODataType { get; set; }
-
-            public string CostCenterODataType { get; set; }
-
-            public List<string> CostCenter { get; set; }
-
-            public string Department { get; set; }
-
-            public string RolesForVendorAndExpenseMgt { get; set; }
-        }
+     
 
 
         private async Task CreateRoles()
@@ -209,6 +180,44 @@ namespace Expense_Vendor_Management.Controllers
             }
         }
 
+        private async Task<CustomSecurityAttributeValue> getInfo(string Email)
+        {
+            try
+            {
+                
+                var scopes = new[] { "https://graph.microsoft.com/.default" };
+                var options = new ClientSecretCredentialOptions
+                {
+                    AuthorityHost = AzureAuthorityHosts.AzurePublicCloud,
+                };
 
+                var clientSecretCredential = new ClientSecretCredential(
+                        configuration.GetSection("Authentication2:AzureAD:Authority").Value, configuration.GetSection("Authentication2:AzureAD:ClientId").Value, configuration.GetSection("Authentication2:AzureAD:ClientSecret").Value, options);
+                var graphClient = new GraphServiceClient(clientSecretCredential, scopes);
+       
+
+                var result = await graphClient.Users[Email].GetAsync((requestConfiguration) =>
+                {
+                    requestConfiguration.QueryParameters.Select = new string[] { "customSecurityAttributes" };
+                });
+                if (result?.CustomSecurityAttributes != null)
+                {
+                    var element = result.CustomSecurityAttributes.AdditionalData["UniversalAttributesForRize"];                             //add this to app settings.
+                    var jsonString = element.ToString();
+
+                    var customSecurityAttribute = System.Text.Json.JsonSerializer.Deserialize<CustomSecurityAttributeValue>(jsonString);
+                    List<string> CostCenter = customSecurityAttribute.CostCenter;                                                           // cost center for dashboard
+                    var department = customSecurityAttribute.Department;                                                                    // Department
+                    var role = customSecurityAttribute.RolesForVendorAndExpenseMgt;
+                    return customSecurityAttribute;
+                        //Roles for all purposes
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

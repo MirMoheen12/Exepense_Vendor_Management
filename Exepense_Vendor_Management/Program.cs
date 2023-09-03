@@ -38,7 +38,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddAuthentication().AddOpenIdConnect("AzureAD", "Azure AD", options =>
 {
     options.ClientId = builder.Configuration["Authentication2:AzureAD:ClientId"];
-    options.Authority = builder.Configuration["Authentication2:AzureAD:Authority"];
+    options.Authority = "https://login.microsoftonline.com/"+builder.Configuration["Authentication2:AzureAD:Authority"];
     options.ClientSecret = builder.Configuration["Authentication2:AzureAD:ClientSecret"];
     options.ResponseType = "code";
     options.CallbackPath = "/Accounts/ExternalLoginCallBack/";
