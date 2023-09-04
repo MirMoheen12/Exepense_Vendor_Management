@@ -162,6 +162,18 @@
                                     <span class="profile-ud-value">@Model.expenseOccurred.ToShortDateString()</span>
                                 </div>
                             </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">Attachment(s)</span>
+
+                                    <span class="profile-ud-value">
+                                        <a href="~/AllMedia/MediaByid?id=@Model.id&reqtype=Expense">
+                                            <em style="font-size:32PX" class="icon ni ni-file-pdf"></em>
+                                        </a>
+                                    </span>
+
+                                </div>
+                            </div>
 
                         </div><!-- .profile-ud-list -->
                     </div><!-- .nk-block -->
