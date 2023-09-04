@@ -219,5 +219,11 @@ namespace Expense_Vendor_Management.Controllers
                 return null;
             }
         }
+
+        public IActionResult NoRole()
+        {
+
+            return View();
+        }
     }
 }
