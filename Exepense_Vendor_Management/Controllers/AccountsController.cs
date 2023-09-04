@@ -142,7 +142,8 @@ namespace Expense_Vendor_Management.Controllers
                     var data= getInfo(user.Email);
                     if (data != null)
                     {
-                        var defaultrole = _roleManager.FindByIdAsync(data.Result.Department).Result;
+                        
+                        var defaultrole = _roleManager.FindByIdAsync(data.Result.RolesForVendorAndExpenseMgt).Result;
                         var roleresult = await UserManager.AddToRoleAsync(user, defaultrole.Name);
 
                     }
