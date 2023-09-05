@@ -34,7 +34,12 @@ namespace Expense_Vendor_Management.Controllers
             await signInManager.SignOutAsync();
             return View();
         }
-
+        [AllowAnonymous]
+        public async Task<IActionResult> NoAccess()
+        {
+           
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
