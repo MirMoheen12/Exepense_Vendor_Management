@@ -88,11 +88,6 @@ namespace Expense_Vendor_Management.Controllers
                 try
                 {
                     // Code snippets are only available for the latest version. Current version is 5.x
-
-                   
-
-
-
                     return RedirectToAction("Index", "Home");
                 }
 
