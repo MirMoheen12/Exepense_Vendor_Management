@@ -103,10 +103,12 @@ namespace Expense_Vendor_Management.Controllers
                     if (rol != null)
                     {
                         var result = await UserManager.RemoveFromRolesAsync(us, rol);
-                        var data = await getInfo(us.Email);
+                        //change Email
+                        var data = await getInfo("consulting@rizemtg.com");
                         if (data != null)
                         {
                             var res = await UserManager.AddToRoleAsync(us, data.RolesForVendorAndExpenseMgt);
+                            var stat = await UserManager.GetRolesAsync(us);
                             return RedirectToAction("Index", "Home");
                         }
                     }
@@ -114,6 +116,7 @@ namespace Expense_Vendor_Management.Controllers
                     if (data2 != null)
                     {
                         var res = await UserManager.AddToRoleAsync(us, data2.RolesForVendorAndExpenseMgt);
+                        //var stat2 = await UserManager.GetRolesAsync(us);
                         return RedirectToAction("Index", "Home");
                     }
 
@@ -169,14 +172,17 @@ namespace Expense_Vendor_Management.Controllers
                         };
                         await UserManager.CreateAsync(user);
                     }
-                    await UserManager.AddLoginAsync(user, info);
-                    await signInManager.SignInAsync(user, isPersistent: false);
-                    var data= getInfo(user.Email).Result;
+                  
+                    //change Email
+                    var data= getInfo("consulting@rizemtg.com").Result;
                     if (data != null)
                     {
                         
-                        var defaultrole = _roleManager.FindByIdAsync(data.RolesForVendorAndExpenseMgt).Result;
+                        var defaultrole = _roleManager.FindByNameAsync(data.RolesForVendorAndExpenseMgt).Result;
                         var roleresult = await UserManager.AddToRoleAsync(user, defaultrole.Name);
+                        var stat = await UserManager.GetRolesAsync(user);
+                        await UserManager.AddLoginAsync(user, info);
+                        await signInManager.SignInAsync(user, isPersistent: false);
                         return RedirectToAction("Index", "Home");
 
                     }
