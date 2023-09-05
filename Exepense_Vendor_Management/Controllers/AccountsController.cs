@@ -11,6 +11,8 @@ using System.Text.Json;
 using Newtonsoft.Json;
 using Exepense_Vendor_Management.Models;
 using System.Configuration;
+using Exepense_Vendor_Management.Interfaces;
+using AngleSharp.Css;
 
 namespace Expense_Vendor_Management.Controllers
 {
@@ -21,14 +23,16 @@ namespace Expense_Vendor_Management.Controllers
         private SignInManager<IdentityUser> signInManager;
         private UserManager<IdentityUser> UserManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IUser user;
         private readonly IConfiguration configuration;
-        public AccountsController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> _roleManager,IConfiguration configuration)
+        public AccountsController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> _roleManager,IConfiguration configuration,IUser user)
         {
            
             this.signInManager = signInManager;
             this.UserManager = userManager;
             this.configuration = configuration;
             this._roleManager = _roleManager;
+            this.user = user;
         }
 
         public IActionResult Index()
@@ -87,13 +91,41 @@ namespace Expense_Vendor_Management.Controllers
             {
                 try
                 {
+                    var Prin = info.Principal;
+                    var emailClaim = Prin.FindFirst(ClaimTypes.Email);
+
+
                     // Code snippets are only available for the latest version. Current version is 5.x
+              
+                    var us = await UserManager.FindByEmailAsync(emailClaim.Value);
+                    var rol =  await UserManager.GetRolesAsync(us);
 
-                   
+                    if (rol != null)
+                    {
+                        var result = await UserManager.RemoveFromRolesAsync(us, rol);
+                        var data = await getInfo(us.Email);
+                        if (data != null)
+                        {
+                            var res = await UserManager.AddToRoleAsync(us, data.RolesForVendorAndExpenseMgt);
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    var data2 = await getInfo(us.Email);
+                    if (data2 != null)
+                    {
+                        var res = await UserManager.AddToRoleAsync(us, data2.RolesForVendorAndExpenseMgt);
+                        return RedirectToAction("Index", "Home");
+                    }
 
 
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("NoAccess", "Home");
+
+
+
+
+
+
                 }
 
                 catch(Exception ex)
@@ -139,16 +171,17 @@ namespace Expense_Vendor_Management.Controllers
                     }
                     await UserManager.AddLoginAsync(user, info);
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    var data= getInfo(user.Email);
+                    var data= getInfo(user.Email).Result;
                     if (data != null)
                     {
                         
-                        var defaultrole = _roleManager.FindByIdAsync(data.Result.RolesForVendorAndExpenseMgt).Result;
+                        var defaultrole = _roleManager.FindByIdAsync(data.RolesForVendorAndExpenseMgt).Result;
                         var roleresult = await UserManager.AddToRoleAsync(user, defaultrole.Name);
+                        return RedirectToAction("Index", "Home");
 
                     }
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("NoAccess", "Home");
                 }
                 else
                 {
