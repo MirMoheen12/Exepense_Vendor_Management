@@ -11,6 +11,8 @@ using System.Text.Json;
 using Newtonsoft.Json;
 using Exepense_Vendor_Management.Models;
 using System.Configuration;
+using Exepense_Vendor_Management.Interfaces;
+using AngleSharp.Css;
 
 namespace Expense_Vendor_Management.Controllers
 {
@@ -21,14 +23,16 @@ namespace Expense_Vendor_Management.Controllers
         private SignInManager<IdentityUser> signInManager;
         private UserManager<IdentityUser> UserManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IUser user;
         private readonly IConfiguration configuration;
-        public AccountsController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> _roleManager,IConfiguration configuration)
+        public AccountsController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> _roleManager,IConfiguration configuration,IUser user)
         {
            
             this.signInManager = signInManager;
             this.UserManager = userManager;
             this.configuration = configuration;
             this._roleManager = _roleManager;
+            this.user = user;
         }
 
         public IActionResult Index()
@@ -87,7 +91,16 @@ namespace Expense_Vendor_Management.Controllers
             {
                 try
                 {
+                    var Prin = info.Principal;
+                    var emailClaim = Prin.FindFirst(ClaimTypes.Email);
+
+
                     // Code snippets are only available for the latest version. Current version is 5.x
+
+                   
+
+
+
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -132,17 +145,22 @@ namespace Expense_Vendor_Management.Controllers
                         };
                         await UserManager.CreateAsync(user);
                     }
-                    await UserManager.AddLoginAsync(user, info);
-                    await signInManager.SignInAsync(user, isPersistent: false);
-                    var data= getInfo(user.Email);
+                  
+                    //change Email
+                    var data= getInfo("consulting@rizemtg.com").Result;
                     if (data != null)
                     {
-                        var defaultrole = _roleManager.FindByIdAsync(data.Result.Department).Result;
+                        
+                        var defaultrole = _roleManager.FindByNameAsync(data.RolesForVendorAndExpenseMgt).Result;
                         var roleresult = await UserManager.AddToRoleAsync(user, defaultrole.Name);
+                        var stat = await UserManager.GetRolesAsync(user);
+                        await UserManager.AddLoginAsync(user, info);
+                        await signInManager.SignInAsync(user, isPersistent: false);
+                        return RedirectToAction("Index", "Home");
 
                     }
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("NoAccess", "Home");
                 }
                 else
                 {
@@ -213,6 +231,12 @@ namespace Expense_Vendor_Management.Controllers
             {
                 return null;
             }
+        }
+
+        public IActionResult NoRole()
+        {
+
+            return View();
         }
     }
 }

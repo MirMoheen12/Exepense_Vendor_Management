@@ -25,14 +25,14 @@ namespace Expense_Vendor_Management.Repositories
             {
                 if (medias.mediaFile != null)
                 {
-                    medias.FileUrl = await Addfilesinserver(medias.mediaFile, medias.mediaType);
+                    medias.FileUrl = "https://rizemtg.sharepoint.com/" + await Addfilesinserver(medias.mediaFile, medias.mediaType);
                     medias.fileName=medias.mediaFile.FileName;
                     medias.isDeleted = false;
                     medias.createdBy = user.ActiveUserId();
                     medias.ReqID = ReqID;
                     medias.createdON = DateTime.Now;
                     medias.OldfileName = medias.mediaFile.FileName;
-                    if (string.IsNullOrEmpty(medias.FileUrl))
+                    if (medias.FileUrl!=null)
                     {
                         medias.FileUrl = medias.FileUrl;
                     }

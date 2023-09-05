@@ -30,6 +30,7 @@ namespace Expense_Vendor_Management.Repositories
                 ex.createdOn = DateTime.Now;
                 ex.createdBy = user.ActiveUserId();
                 ex.modifiedBy = user.ActiveUserId();
+                ex.notes = "Intial insert";
                 ex.status = "Submitted";
                 appContext.EmployeeExpense.Add(ex);
                 appContext.SaveChanges();

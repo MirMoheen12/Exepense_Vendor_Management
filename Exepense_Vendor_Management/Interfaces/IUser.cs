@@ -3,5 +3,6 @@
     public interface IUser
     {
         public string ActiveUserId();
+        public Task<IEnumerable<string>> GetUserRolesAsync(string id);
     }
 }

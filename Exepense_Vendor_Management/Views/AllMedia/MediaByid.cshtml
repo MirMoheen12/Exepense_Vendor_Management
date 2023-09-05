@@ -28,14 +28,12 @@
                         <th>
                             File Name
                         </th>
-                        <th>
-                            Old File Name
-                        </th>
+                       
                         <th>
                             Belong To
                         </th>
                         <th>
-                            Action
+                           Media
                         </th>
                     </tr>
                 </thead>
@@ -52,15 +50,13 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.fileName)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.OldfileName)
-                            </td>
+                 
                             <td>
                                 @Html.DisplayFor(modelItem => item.belongTo)
                             </td>
                             <td>
-                                <a href="~/ActionCenter/VendorActionCenter?id=@item.Id">
-                                    Details
+                                <a target="_blank" href="@item.FileUrl">
+                                    Preview
                                 </a>
                             </td>
                         </tr>
