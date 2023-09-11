@@ -10,7 +10,8 @@
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head">
         <div class="nk-block-head-content">
-            <h4 class="nk-block-title">Your Invoices</h4>
+            <br />
+            <h4 class="nk-block-title">Expense History</h4>
 
         </div>
     </div>
@@ -24,7 +25,7 @@
                             ID
                         </th>
                         <th>
-                            Name
+                           Vendor Name
                         </th>
                         <th>
                             Category
@@ -35,9 +36,12 @@
                             Amount
 
                         </th>
+                        <th>
+                            Status
 
+                        </th>
 
-                        <th>Action</th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +63,9 @@
                                 @Html.DisplayFor(modelItem => item.amount)
                             </td>
 
+                            <td>
+                                @Html.DisplayFor(modelItem => item.status)
+                            </td>
 
 
                             <td>

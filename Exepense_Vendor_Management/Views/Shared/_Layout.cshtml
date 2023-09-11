@@ -24,28 +24,14 @@
     <div class="nk-app-root">
         <div class="nk-apps-sidebar is-dark">
             <div class="nk-apps-brand">
-                <a class="logo-link">
+                <a class="logo-link" href="~/Home/Index">
                     <img class="logo-light logo-img" src="~/theme/assets/images/logo.png" srcset="~/theme/assets/images/logo.png 2x" alt="logo">
                     <img class="logo-dark logo-img" src="~/theme/assets/images/logo.png" srcset="~/theme/assets/images/logo.png 2x" alt="logo-dark">
                 </a>
             </div>
             <div class="nk-sidebar-element">
                 <div class="nk-sidebar-body">
-         @*           <div class="nk-sidebar-content" data-simplebar>
-                        <div class="nk-sidebar-menu">
-                            <!-- Menu -->
-                            <ul class="nk-menu apps-menu">
-                                <li class="nk-menu-item">
-                                    <a href="~/InvoiceSide/AllInvoices" class="nk-menu-link" title="All Invoices">
-                                        <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                    </div>*@
-                    <div class="nk-sidebar-profile nk-sidebar-profile-fixed dropdown">
+                  <div class="nk-sidebar-profile nk-sidebar-profile-fixed dropdown">
                         <a href="#" data-toggle="dropdown" data-offset="50,-60">
                             <div class="user-avatar" style="background-color: #F36C37;">
                                 <span>@(User.Identity.Name.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
@@ -189,7 +175,7 @@
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                        <span class="nk-menu-text">Vendors</span>
+                                        <span class="nk-menu-text">Vendors Management</span>
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
@@ -201,7 +187,7 @@
                                         <li class="nk-menu-item">
                                             <a href="~/AllForms/VendorForm" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
-                                                <span class="nk-menu-text">Vendor Form</span>
+                                                <span class="nk-menu-text">New Vendor Request Form</span>
                                             </a>
                                         </li>
                                     </ul><!-- .nk-menu-sub -->
@@ -218,13 +204,13 @@
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                        <span class="nk-menu-text">Expense</span>
+                                        <span class="nk-menu-text">Employee Expenses</span>
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
                                             <a href="~/ActionCenter/AllExpenseForms" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
-                                                <span class="nk-menu-text">All Expenses </span>
+                                                <span class="nk-menu-text">Expense History</span>
                                             </a>
                                         </li>
                                         <li class="nk-menu-item">
@@ -245,7 +231,7 @@
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                        <span class="nk-menu-text">Cost Expense</span>
+                                        <span class="nk-menu-text">Branch Expense Management</span>
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
