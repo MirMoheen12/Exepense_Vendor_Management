@@ -232,7 +232,7 @@ namespace Expense_Vendor_Management.Controllers
                 };
 
                 var clientSecretCredential = new ClientSecretCredential(
-                        configuration.GetSection("Authentication2:AzureAD:Authority").Value, configuration.GetSection("Authentication2:AzureAD:ClientId").Value, configuration.GetSection("Authentication2:AzureAD:ClientSecret").Value, options);
+                        configuration.GetSection("Authentication2:AzureAD:Authority2").Value, configuration.GetSection("Authentication2:AzureAD:ClientId2").Value, configuration.GetSection("Authentication2:AzureAD:ClientSecret2").Value, options);
                 var graphClient = new GraphServiceClient(clientSecretCredential, scopes);
        
 

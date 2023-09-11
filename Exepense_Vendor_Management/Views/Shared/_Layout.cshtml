@@ -31,7 +31,7 @@
             </div>
             <div class="nk-sidebar-element">
                 <div class="nk-sidebar-body">
-                    <div class="nk-sidebar-content" data-simplebar>
+         @*           <div class="nk-sidebar-content" data-simplebar>
                         <div class="nk-sidebar-menu">
                             <!-- Menu -->
                             <ul class="nk-menu apps-menu">
@@ -44,17 +44,17 @@
                             </ul>
                         </div>
 
-                    </div>
+                    </div>*@
                     <div class="nk-sidebar-profile nk-sidebar-profile-fixed dropdown">
                         <a href="#" data-toggle="dropdown" data-offset="50,-60">
-                            <div class="user-avatar">
+                            <div class="user-avatar" style="background-color: #F36C37;">
                                 <span>@(User.Identity.Name.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
                             </div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-md ml-4">
                             <div class="dropdown-inner user-card-wrap d-none d-md-block">
                                 <div class="user-card">
-                                    <div class="user-avatar">
+                                    <div class="user-avatar" style="background-color: #F36C37;">
                                         <span>@(User.Identity.Name.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
 
 
@@ -105,7 +105,7 @@
                                     <li class="dropdown user-dropdown">
                                         <a href="" class="dropdown-toggle mr-n1" data-toggle="dropdown">
                                             <div class="user-toggle">
-                                                <div class="user-avatar">
+                                                <div class="user-avatar" style="background-color: #F36C37;">
                                                     <span>@(User.Identity.Name.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
                                                 </div>
                                             </div>
@@ -113,7 +113,7 @@
                                         <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                                 <div class="user-card">
-                                                    <div class="user-avatar">
+                                                    <div class="user-avatar" style="background-color: #F36C37;">
                                                         <span>@(User.Identity.Name.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
 
                                                     </div>

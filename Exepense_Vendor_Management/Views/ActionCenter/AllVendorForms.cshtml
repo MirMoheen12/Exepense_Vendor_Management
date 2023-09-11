@@ -10,7 +10,7 @@
     <div class="nk-block nk-block-lg">
         <div class="nk-block-head">
             <div class="nk-block-head-content">
-                <h4 class="nk-block-title">Your Invoices</h4>
+            <h4 class="nk-block-title">Your Vendors</h4>
 
             </div>
         </div>
@@ -21,7 +21,7 @@
                     <thead>
                         <tr>
                             <th>
-                                    ID
+                                  Vendor ID
                             </th>
                             <th>
                                Name
@@ -30,20 +30,16 @@
                               Cost Center
                             </th>
                             <th>
-                           Product Type
+                           Service Type
                             </th>
                             <th>
                                 Category
 
                             </th>
                   
-                            <th>
-                                Amount
-
-                            </th>
-              
+                              
                         
-                            <th>Action</th>
+                            <th>Detail</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,11 +61,7 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.catagory)
                                 </td>
-                  
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.paymentAmount)
-                                </td>
-             
+                             
                
                          
                                 <td>
