@@ -91,49 +91,24 @@ namespace Expense_Vendor_Management.Controllers
             {
                 try
                 {
-                    var Prin = info.Principal;
-                    var emailClaim = Prin.FindFirst(ClaimTypes.Email);
-
-
-                    // Code snippets are only available for the latest version. Current version is 5.x
-              
-                    var us = await UserManager.FindByEmailAsync(emailClaim.Value);
-                    var rol =  await UserManager.GetRolesAsync(us);
-
-                    if (rol != null)
+                    var email = info.Principal.FindFirstValue(ClaimTypes.Upn);
+                    var user = await UserManager.FindByEmailAsync(email);
+                    var data = getInfo(email).Result;
+                    if (data != null)
                     {
-                        var result = await UserManager.RemoveFromRolesAsync(us, rol);
-                        //change Email
-                        var data = await getInfo("consulting@rizemtg.com");
-                        if (data != null)
-                        {
-                            var res = await UserManager.AddToRoleAsync(us, data.RolesForVendorAndExpenseMgt);
-                            var stat = await UserManager.GetRolesAsync(us);
-                            return RedirectToAction("Index", "Home");
-                        }
-                    }
-                    var data2 = await getInfo(us.Email);
-                    if (data2 != null)
-                    {
-                        var res = await UserManager.AddToRoleAsync(us, data2.RolesForVendorAndExpenseMgt);
-                        //var stat2 = await UserManager.GetRolesAsync(us);
+
+                        var defaultrole = _roleManager.FindByNameAsync(data.RolesForVendorAndExpenseMgt).Result;
+                        var roleresult = await UserManager.AddToRoleAsync(user, defaultrole.Name);
+                        var stat = await UserManager.GetRolesAsync(user);
+                        await UserManager.AddLoginAsync(user, info);
+                        await signInManager.SignInAsync(user, isPersistent: false);
                         return RedirectToAction("Index", "Home");
                     }
-
-
-
-                    return RedirectToAction("NoAccess", "Home");
-
-
-
-
-
-
+                    return RedirectToAction("Index", "Home");
                 }
 
                 catch(Exception ex)
                 {
-                    
                     return RedirectToAction("Index", "Home");
                 }
                 
@@ -154,8 +129,18 @@ namespace Expense_Vendor_Management.Controllers
                         };
                         await UserManager.CreateAsync(user);
                     }
-                    await UserManager.AddLoginAsync(user, info);
-                    await signInManager.SignInAsync(user, isPersistent: false);
+                    var data = getInfo(user.Email).Result;
+                    if (data != null)
+                    {
+
+                        var defaultrole = _roleManager.FindByNameAsync(data.RolesForVendorAndExpenseMgt).Result;
+                        var roleresult = await UserManager.AddToRoleAsync(user, defaultrole.Name);
+                        var stat = await UserManager.GetRolesAsync(user);
+                        await UserManager.AddLoginAsync(user, info);
+                        await signInManager.SignInAsync(user, isPersistent: false);
+                        return RedirectToAction("Index", "Home");
+
+                    }
                     return RedirectToAction("Index", "Home");
                 }
                 email= info.Principal.FindFirstValue(ClaimTypes.Email);
@@ -174,7 +159,7 @@ namespace Expense_Vendor_Management.Controllers
                     }
                   
                     //change Email
-                    var data= getInfo("consulting@rizemtg.com").Result;
+                    var data= getInfo(user.Email).Result;
                     if (data != null)
                     {
                         
@@ -234,8 +219,8 @@ namespace Expense_Vendor_Management.Controllers
                 var clientSecretCredential = new ClientSecretCredential(
                         configuration.GetSection("Authentication2:AzureAD:Authority2").Value, configuration.GetSection("Authentication2:AzureAD:ClientId2").Value, configuration.GetSection("Authentication2:AzureAD:ClientSecret2").Value, options);
                 var graphClient = new GraphServiceClient(clientSecretCredential, scopes);
-       
 
+                //var result1 = await graphClient.Users["consulting_personal_outlook.com#EXT#@NETORGFT11843804.onmicrosoft.com"].GetAsync();
                 var result = await graphClient.Users[Email].GetAsync((requestConfiguration) =>
                 {
                     requestConfiguration.QueryParameters.Select = new string[] { "customSecurityAttributes" };
