@@ -18,6 +18,10 @@ namespace Expense_Vendor_Management.Models
         public string costCenter { get; set;}   
         public string poductType { get; set;}
         public string catagory { get; set;}
+        public string? ContactName { get; set; }
+        public string? ContactEmail { get; set; }
+        public string? ContactPhone { get; set; }
+        public string? ContactWebsite { get; set; }
         public string criticalVendor { get; set;}
      
         [NotMapped]
@@ -36,8 +40,7 @@ namespace Expense_Vendor_Management.Models
         public string notes{ get; set;}  
         public Boolean TechnolgyVendor { get; set; }
         public Boolean CustomerAccess { get; set; }
-        [NotMapped]
-        public Customer Customer { get; set; }
+   
 
     }
 }
