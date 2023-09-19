@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 
-<body class="nk-body npc-default has-apps-sidebar has-sidebar ">
+<body class="nk-body npc-default has-apps-sidebar has-sidebar " style="background-color:#efe5e2 !important">
     <div class="nk-app-root">
         <div class="nk-apps-sidebar is-dark">
             <div class="nk-apps-brand">
@@ -29,7 +29,7 @@
                     <img class="logo-dark logo-img" src="~/theme/assets/images/logo.png" srcset="~/theme/assets/images/logo.png 2x" alt="logo-dark">
                 </a>
             </div>
-            <div class="nk-sidebar-element">
+            <div class="nk-sidebar-element" style="background-color:#efe5e2 !important">
                 <div class="nk-sidebar-body">
                   <div class="nk-sidebar-profile nk-sidebar-profile-fixed dropdown">
                         <a href="#" data-toggle="dropdown" data-offset="50,-60">
@@ -66,27 +66,19 @@
             </div>
         </div>
         <!-- main  -->
-        <div class="nk-main ">
+        <div class="nk-main " style="background-color:#efe5e2 !important">
             <!-- wrap  -->
             <div class="nk-wrap ">
                 <!-- main header  -->
-                <div class="nk-header nk-header-fixed is-light">
+                <div class="nk-header nk-header-fixed is-light" style="background-color:#efe5e2 !important">
                     <div class="container-fluid">
                         <div class="nk-header-wrap">
                             <div class="nk-menu-trigger d-xl-none ml-n1">
                                 <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
                             </div>
-                            <div class="nk-header-app-name">
-                                <div class="nk-header-app-logo">
-                                    <em class="icon ni ni-dashlite bg-purple-dim"></em>
-                                </div>
-                                <div class="nk-header-app-info">
-                                    <span class="sub-text"></span>
-                                    <span class="lead-text">Dashboard</span>
-                                </div>
-                            </div>
+                 
 
-                            <div class="nk-header-tools">
+                            <div class="nk-header-tools" style="background-color:#efe5e2 !important">
                                 <ul class="nk-quick-nav">
                                     <li class="dropdown user-dropdown">
                                         <a href="" class="dropdown-toggle mr-n1" data-toggle="dropdown">
@@ -131,7 +123,7 @@
                     </div>
                 </div>
                 <!-- main header -->
-                <div class="nk-sidebar" data-content="sidebarMenu">
+                <div class="nk-sidebar" data-content="sidebarMenu" style="background-color:#efe5e2 !important">
                     <div class="nk-sidebar-inner" data-simplebar>
                         <ul class="nk-menu nk-menu-md">
                             <li class="nk-menu-heading">
@@ -187,7 +179,7 @@
                                         <li class="nk-menu-item">
                                             <a href="~/AllForms/VendorForm" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
-                                                <span class="nk-menu-text">New Vendor Request Form</span>
+                                                <span class="nk-menu-text">New vendor submission</span>
                                             </a>
                                         </li>
                                     </ul><!-- .nk-menu-sub -->
@@ -204,13 +196,13 @@
                                 <li class="nk-menu-item has-sub">
                                     <a href="#" class="nk-menu-link nk-menu-toggle">
                                         <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
-                                        <span class="nk-menu-text">Employee Expenses</span>
+                                        <span class="nk-menu-text">Tax Benifit Plan</span>
                                     </a>
                                     <ul class="nk-menu-sub">
                                         <li class="nk-menu-item">
                                             <a href="~/ActionCenter/AllExpenseForms" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
-                                                <span class="nk-menu-text">Expense History</span>
+                                                <span class="nk-menu-text">@(User.Identity.Name.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "") History</span>
                                             </a>
                                         </li>
                                         <li class="nk-menu-item">

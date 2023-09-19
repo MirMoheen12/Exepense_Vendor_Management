@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Exepense_Vendor_Management.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Expense_Vendor_Management.Models
@@ -32,7 +33,11 @@ namespace Expense_Vendor_Management.Models
         public  DateTime contractExpiration { get; set;}
         public string autoRenew{ get; set;}
         public DateTime dateToCancel { get; set; }
-        public string notes{ get; set;}    
+        public string notes{ get; set;}  
+        public Boolean TechnolgyVendor { get; set; }
+        public Boolean CustomerAccess { get; set; }
+        [NotMapped]
+        public Customer Customer { get; set; }
 
     }
 }
