@@ -57,6 +57,7 @@ namespace Expense_Vendor_Management.Controllers
         [HttpPost]
         public async Task<IActionResult> CostExpenseForm(CostCenterExpense ce)
         {
+            ce.submissionDate = DateTime.Now;
             var res = await costExp.AddNewCostExp(ce);
             TempData["SuccessMessage"] = "Form submitted successfully!";
             return RedirectToAction("Index", "Home");

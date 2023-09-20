@@ -24,17 +24,7 @@
             </div>
             <form asp-action="CostExpenseForm" asp-controller="AllForms" id="fileuploadlist" enctype="multipart/form-data" method="post">
                 <div class="row g-4">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" for="submissionDate">
-                                Submission Date  <span class="mandatory">*</span>
-                            </label>
-
-                            <div class="form-control-wrap">
-                                <input class="form-control" type="date" id="submissionDate" asp-for="submissionDate" required>
-                            </div>
-                        </div>
-                    </div>
+       
                     <input type="hidden" asp-for="notes" value="Intial Insert"/>
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -67,9 +57,16 @@
                                 <select class="form-select" id="expenseCategory" asp-for="expenseCategory">
                                     <option value="">Select Expense Category</option>
                                     <option value="Administrative">Administrative</option>
-                                    <option value="Mileage">Mileage</option>
-                                    <option value="Travel">Travel</option>
+                                    <option value="Communication">Communication</option>
+                                    <option value="Dues & Subscriptions">Dues & Subscriptions</option>
+                                    <option value="Education">Education</option>
                                     <option value="Lodging">Lodging</option>
+                                    <option value="Marketing (including lunch & learns)">Marketing (including lunch & learns)</option>
+                                    <option value="Meals & Entertainment (deductible at 50%)">Meals & Entertainment (deductible at 50%)</option>
+                                    <option value="Mileage">Mileage</option>
+                                    <option value="Office Supplies">Office Supplies</option>
+                                    <option value="Travel">Travel</option>
+
                                     <!-- Add more options here if needed -->
                                 </select>
                             </div>
@@ -113,7 +110,7 @@
 
                     <div class="col-12">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-lg btn-primary">Save Information</button>
+                            <button type="submit" class="btn btn-lg btn-primary">Submit</button>
                         </div>
                     </div>
                 </div>
