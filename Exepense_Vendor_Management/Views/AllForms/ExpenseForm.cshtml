@@ -24,16 +24,8 @@
             </div>
             <form asp-action="ExpenseForm" asp-controller="AllForms" id="fileuploadlist" enctype="multipart/form-data" method="post">
                 <div class="row g-4">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" for="submissionDate">
-                                Submission Date<span class="mandatory">*</span>
-                            </label>
-                            <div class="form-control-wrap">
-                                <input class="form-control" type="date" id="submissionDate" asp-for="submissionDate" required>
-                            </div>
-                        </div>
-                    </div>
+                    <input class="form-control" type="date" id="submissionDate" hidden asp-for="submissionDate" value="@DateTime.Now">
+
 
                     <div class="col-lg-6">
                         <div class="form-group">

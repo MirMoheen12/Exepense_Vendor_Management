@@ -193,6 +193,45 @@
                                     <span class="profile-ud-value">@Model.dateToCancel.ToShortDateString()</span>
                                 </div>
                             </div>
+                                    <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">Technology Vendor</span>
+                                    <span class="profile-ud-value">@(Model.TechnolgyVendor == true ? "Yes" : "No")</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label">Customer Access</span>
+                                    <span class="profile-ud-value">@(Model.CustomerAccess == true ? "Yes" : "No")</span>
+                                </div>
+                            </div>
+                            @if (Model.ContactName != null)
+                            {
+                                <div class="profile-ud-item">
+                                    <div class="profile-ud wider">
+                                        <span class="profile-ud-label">Customer Name</span>
+                                        <span class="profile-ud-value">@(Model.ContactName)</span>
+                                    </div>
+                                </div>
+                                <div class="profile-ud-item">
+                                    <div class="profile-ud wider">
+                                        <span class="profile-ud-label">Customer Email</span>
+                                        <span class="profile-ud-value">@(Model.ContactEmail)</span>
+                                    </div>
+                                </div>
+                                <div class="profile-ud-item">
+                                    <div class="profile-ud wider">
+                                        <span class="profile-ud-label">Customer Phone</span>
+                                        <span class="profile-ud-value">@(Model.ContactPhone)</span>
+                                    </div>
+                                </div>
+                                <div class="profile-ud-item">
+                                    <div class="profile-ud wider">
+                                        <span class="profile-ud-label">Customer Website</span>
+                                        <span class="profile-ud-value">@(Model.ContactWebsite)</span>
+                                    </div>
+                                </div>
+                            }
                             <div class="profile-ud-item">
                                 <div class="profile-ud wider">
                                     <span class="profile-ud-label">Attachment(s)</span>
@@ -211,7 +250,7 @@
                     </div><!-- .nk-block -->
                     <div class="nk-block">
                         <div class="nk-block-head nk-block-head-line">
-                            <h6 class="title overline-title text-base">Update Information</h6>
+                            <h6 class="title overline-title text-base">Vendor Management Internal team</h6>
                         </div><!-- .nk-block-head -->
                         <form method="post" asp-action="VendorActionCenter" asp-controller="ActionCenter" id="reqforupdateinvoice" enctype="multipart/form-data">
                             <div class="profile-ud-list">
@@ -229,6 +268,8 @@
                                                 <option value="Active">Active</option>
                                                 <option value="In-Active">In-Active</option>
                                                 <option value="On-boarding">On-boarding</option>
+                                                <option value="Denied">Denied</option>
+                                                <option value="Terminated">Terminated</option>
                                            
                                             </select>
                                         </span>
