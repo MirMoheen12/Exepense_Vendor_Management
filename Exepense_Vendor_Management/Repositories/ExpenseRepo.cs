@@ -4,6 +4,7 @@ using Expense_Vendor_Management.Interfaces;
 using Expense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Globalization;
 
 namespace Expense_Vendor_Management.Repositories
 {
@@ -26,6 +27,9 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
+                int count = appContext.EmployeeExpense.ToList().Count()+1;
+                ex.Vid = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(DateTime.Now.Month)+"-"+ count;
+
                 ex.isDeleted = false;
                 ex.createdOn = DateTime.Now;
                 ex.createdBy = user.ActiveUserId();
