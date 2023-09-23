@@ -4,11 +4,68 @@
     ViewData["Title"] = "Cost Expense";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <style>
     .mandatory {
         color: red;
     }
+    @@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500&display=swap');
+
+
+.tooltip-container {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip {
+    opacity: 0;
+    z-index: 99;
+    color: #bbb;
+    width: 240px;
+    display: block;
+    font-size: 14px;
+  font-family:'cairo',serif;
+    padding: 5px 10px;
+    border-radius: 3px;
+    text-align: center;
+    text-shadow: 1px 1px 2px #111;
+    background: rgba(51,51,51,0.9);
+    border: 1px solid rgba(34,34,34,0.9);
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -o-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    position: absolute;
+    right: -80px;
+    bottom: 40px;
+}
+
+.tooltip:before,.tooltip:after {
+    content: '';
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba(51,51,51,0.9);
+    position: absolute;
+    bottom: -10px;
+    left: 43%;
+}
+
+.tooltip-container:hover .tooltip,a:hover .tooltip {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
 </style>
 
 <div class="nk-block nk-block-lg">
@@ -24,7 +81,7 @@
             </div>
             <form asp-action="CostExpenseForm" asp-controller="AllForms" id="fileuploadlist" enctype="multipart/form-data" method="post">
                 <div class="row g-4">
-       
+                 
                     <input type="hidden" asp-for="notes" value="Intial Insert"/>
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -75,8 +132,17 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="vendorName">
-                                Vendor Name<span class="mandatory">*</span>
+                            <label class="form-label tooltip-container" for="vendorName">
+                                <div class="form-icon form-icon-right" >
+                                    <em class="icon ni ni-info" style="margin-left: 55PX;margin-top: -11PX;"></em>
+                                </div>
+                                Vendor Name<span class="mandatory">*
+
+                                
+                                </span>
+                             
+                                <span class="tooltip">if this is a reimbursement for multiple expenses on your credit card just type "My Credit Card" for vendor, if it is for another employee in your Cost Center then please write type their name in as the vendor</span>
+
                             </label>
                             <div class="form-control-wrap">
                                 <input type="text" required class="form-control" id="vendorName" asp-for="vandorName">
