@@ -243,10 +243,31 @@
                             <!-- .profile-ud-list -->
                         </form>
                     </div><!-- .nk-block -->
-
+                    <form class="comment-form" asp-action="AddComments" asp-controller="Commentsside" method="post">
+                        <input type="hidden" name="ID" value="@Model.id" />
+                        <input type="hidden" name="Comfor" value="Expense" />
+                        <textarea id="comment" name="Description" required></textarea>
+                        <button type="submit">Post Comment</button>
+                    </form>
                     <div class="nk-divider divider md"></div>
 
                 </div><!-- .card-inner -->
+                <div class="comment-section">
+                    <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
+                        <li class="nav-item">
+                            <a class="nav-link active"><em class="icon ni ni-user-circle"></em><span>All Comments</span></a>
+                        </li>
+
+                    </ul>
+                    @for (int i = 0; i < ViewBag.cmt.Count; i++)
+                    {
+                        <div class="comment">
+                            <div class="comment-author">@ViewBag.cmt[i].Commentsby</div>
+                            <div class="comment-date">@ViewBag.cmt[i].CommentsDate</div>
+                            <div class="comment-content">@ViewBag.cmt[i].Description </div>
+                        </div>
+                    }
+                </div>
             </div><!-- .card-content -->
 
         </div><!-- .card-aside-wrap -->

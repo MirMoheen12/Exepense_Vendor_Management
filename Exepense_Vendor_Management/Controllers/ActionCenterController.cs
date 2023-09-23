@@ -1,18 +1,22 @@
-﻿using Expense_Vendor_Management.Interfaces;
+﻿using Exepense_Vendor_Management.Interfaces;
+using Expense_Vendor_Management.Interfaces;
+using Expense_Vendor_Management.Migrations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Expense_Vendor_Management.Controllers
 {
     public class ActionCenterController : Controller
     {
+        private readonly ICommentSide commentSide;
         private readonly IVendor ivend;
         private readonly IExpense ex;
         private readonly ICostExp costExp;
-        public ActionCenterController(IVendor ivend, IExpense ex,ICostExp costExp)
+        public ActionCenterController(IVendor ivend, IExpense ex,ICostExp costExp,ICommentSide commentSide)
         {
             this.ivend = ivend;
             this.ex = ex;
             this.costExp = costExp;
+            this.commentSide = commentSide;
 
         }
         public IActionResult AllVendorForms()
@@ -39,6 +43,8 @@ namespace Expense_Vendor_Management.Controllers
         [HttpGet]
         public IActionResult ExpenseactionCenter(int ID)
         {
+            var cmt = commentSide.AllComments(ID);
+            ViewBag.cmt = cmt;
             var dt = ex.GetExpById(ID);
             return View(dt);
         }
