@@ -177,7 +177,8 @@
                                 Contract Expiration<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <input type="date" asp-for="contractExpiration" class="form-control" id="contractExpiration">
+                                <input type="date" asp-for="contractExpiration" class="form-control" id="contractExpiration" min="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+
                             </div>
                         </div>
                     </div>
@@ -207,20 +208,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label">
-                                Technology Vendor<span class="mandatory">*</span>
-                            </label>
-                            <div class="form-control-wrap">
-                                <select class="form-control" required>
-                                    <option selected value="Yes">Yes</option>
-                                    <option value="No">NO</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                  
+                           
                     
 
                  
