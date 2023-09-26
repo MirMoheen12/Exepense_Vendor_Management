@@ -171,11 +171,21 @@
                         </div>
                     </div>
 
-          
 
-                    <div class="col-12">
+
+                    <input type="text" class="custom-control-input" hidden name="newform" value="" id="newforminput">
+
+
+
+                    <div class="col-lg-2">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                            <button type="submit" id="submitform" class="btn btn-lg btn-primary">Submit</button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-lg btn-success" id="Newform">Submit and Add New</button>
                         </div>
                     </div>
                 </div>
@@ -183,3 +193,16 @@
         </div>
     </div>
 </div>
+<script src="~/theme/assets/js/bundle.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Newform").click(function () {
+            $("#newforminput").val("New Val");
+            $("#submitform").click();
+
+            // You can perform other actions here
+        });
+
+    });
+
+</script>

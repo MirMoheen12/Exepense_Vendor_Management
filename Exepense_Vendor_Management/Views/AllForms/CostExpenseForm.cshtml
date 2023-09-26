@@ -171,14 +171,22 @@
                             </div>
                         </div>
                     </div>
+                    <input type="text" class="custom-control-input" hidden name="newform" value="" id="newforminput">
 
-          
 
-                    <div class="col-12">
+
+                    <div class="col-lg-2">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                            <button type="submit" id="submitform" class="btn btn-lg btn-primary">Submit</button>
                         </div>
                     </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-lg btn-success" id="Newform">Submit and Add New</button>
+                        </div>
+                    </div>
+
                     <div class="col-12">
                         <h8>Per company policy if a branch is not fully reserved managers are not approved to spend in excess off the expenses already being paid by the branch.  Any expenses submitted in that situation are unauthorized and will not be reimbursed through the cost center.  You may, however be able to use the employee expense- Tax Benefit Plan.  If you have any questions or concerns please contact your direct manager or the finance department</h8>
 
@@ -188,3 +196,16 @@
         </div>
     </div>
 </div>
+<script src="~/theme/assets/js/bundle.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Newform").click(function () {
+            $("#newforminput").val("New Val");
+            $("#submitform").click();
+
+            // You can perform other actions here
+        });
+      
+    });
+
+</script>

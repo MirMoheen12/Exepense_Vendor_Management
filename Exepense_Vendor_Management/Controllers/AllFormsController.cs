@@ -27,10 +27,15 @@ namespace Expense_Vendor_Management.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> VendorForm(Vendor v)
+        public async Task<IActionResult> VendorForm(Vendor v,string newform)
         {
+            
             await vendor.AddNewVendor(v);
             TempData["SuccessMessage"] = "Form submitted successfully!";
+            if (newform == "New Val")
+            {
+                return RedirectToAction("VendorForm", "AllForms");
+            }
             return RedirectToAction("Index", "Home");
         }
 
@@ -43,10 +48,14 @@ namespace Expense_Vendor_Management.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> ExpenseForm(EmployeeExpense e)
+        public async Task<IActionResult> ExpenseForm(EmployeeExpense e, string newform)
         {
             var res = expense.AddNewExpense(e);
             TempData["SuccessMessage"] = "Form submitted successfully!";
+            if (newform == "New Val")
+            {
+                return RedirectToAction("ExpenseForm", "AllForms");
+            }
             return RedirectToAction("Index", "Home");
         }
         [HttpGet]
@@ -55,11 +64,15 @@ namespace Expense_Vendor_Management.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CostExpenseForm(CostCenterExpense ce)
+        public async Task<IActionResult> CostExpenseForm(CostCenterExpense ce, string newform)
         {
             ce.submissionDate = DateTime.Now;
             var res = await costExp.AddNewCostExp(ce);
             TempData["SuccessMessage"] = "Form submitted successfully!";
+            if (newform == "New Val")
+            {
+                return RedirectToAction("CostExpenseForm", "AllForms");
+            }
             return RedirectToAction("Index", "Home");
         }
         [HttpGet]
