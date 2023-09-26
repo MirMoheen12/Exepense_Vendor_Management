@@ -7,6 +7,7 @@
         public string CostCenterODataType { get; set; }
 
         public List<string> CostCenter { get; set; }
+        public string DisplayName { get; set; }
 
         public string Department { get; set; }
 
