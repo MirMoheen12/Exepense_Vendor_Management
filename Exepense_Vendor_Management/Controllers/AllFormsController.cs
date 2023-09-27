@@ -27,9 +27,16 @@ namespace Expense_Vendor_Management.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> VendorForm(Vendor v,string newform)
+        public async Task<IActionResult> VendorForm(Vendor v,string newform,string otherserv,string othercat)
         {
-            
+            if (v.catagory == "Others")
+            {
+                v.catagory = othercat;
+            }
+            if (v.poductType == "Others")
+            {
+                v.poductType = otherserv;
+            }
             await vendor.AddNewVendor(v);
             TempData["SuccessMessage"] = "Form submitted successfully!";
             if (newform == "New Val")
