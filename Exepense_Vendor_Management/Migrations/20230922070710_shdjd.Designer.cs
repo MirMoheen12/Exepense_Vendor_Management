@@ -4,6 +4,7 @@ using Expense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Expense_Vendor_Management.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230922070710_shdjd")]
+    partial class shdjd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,37 +46,6 @@ namespace Expense_Vendor_Management.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Baselogs");
-                });
-
-            modelBuilder.Entity("Exepense_Vendor_Management.Models.CommentsSection", b =>
-                {
-                    b.Property<int>("CSID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CSID"), 1L, 1);
-
-                    b.Property<string>("Comfor")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CommentsDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Commentsby")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ID")
-                        .HasColumnType("int");
-
-                    b.HasKey("CSID");
-
-                    b.ToTable("CommentsSection");
                 });
 
             modelBuilder.Entity("Exepense_Vendor_Management.Models.ErrorLogs", b =>

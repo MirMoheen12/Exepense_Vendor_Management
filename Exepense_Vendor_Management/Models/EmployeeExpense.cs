@@ -15,6 +15,7 @@ namespace Expense_Vendor_Management.Models
         public float amount { get; set; }
         public DateTime expenseOccurred { get; set; }
         public string expenseCategory { get; set; }
+        public string Vid { get; set; }
 
         public string vandorName { get;set; }
         [NotMapped]

@@ -96,7 +96,11 @@ namespace Expense_Vendor_Management.Controllers
                     var data = getInfo(email).Result;
                     if (data != null)
                     {
-
+                        if (data.DisplayName != null)
+                        {
+                            user.UserName=data.DisplayName;
+                            var r = await UserManager.UpdateAsync(user);
+                        }
                         var defaultrole = _roleManager.FindByNameAsync(data.RolesForVendorAndExpenseMgt).Result;
                         var roleresult = await UserManager.AddToRoleAsync(user, defaultrole.Name);
                         var stat = await UserManager.GetRolesAsync(user);
@@ -132,7 +136,11 @@ namespace Expense_Vendor_Management.Controllers
                     var data = getInfo(user.Email).Result;
                     if (data != null)
                     {
-
+                        if (data.DisplayName != null)
+                        {
+                            user.UserName = data.DisplayName;
+                            var r = await UserManager.UpdateAsync(user);
+                        }
                         var defaultrole = _roleManager.FindByNameAsync(data.RolesForVendorAndExpenseMgt).Result;
                         var roleresult = await UserManager.AddToRoleAsync(user, defaultrole.Name);
                         var stat = await UserManager.GetRolesAsync(user);
@@ -217,13 +225,17 @@ namespace Expense_Vendor_Management.Controllers
                 };
 
                 var clientSecretCredential = new ClientSecretCredential(
-                        configuration.GetSection("Authentication2:AzureAD:Authority2").Value, configuration.GetSection("Authentication2:AzureAD:ClientId2").Value, configuration.GetSection("Authentication2:AzureAD:ClientSecret2").Value, options);
+                        configuration.GetSection("Authentication2:AzureAD:Authority").Value, configuration.GetSection("Authentication2:AzureAD:ClientId").Value, configuration.GetSection("Authentication2:AzureAD:ClientSecret").Value, options);
                 var graphClient = new GraphServiceClient(clientSecretCredential, scopes);
 
                 //var result1 = await graphClient.Users["consulting_personal_outlook.com#EXT#@NETORGFT11843804.onmicrosoft.com"].GetAsync();
                 var result = await graphClient.Users[Email].GetAsync((requestConfiguration) =>
                 {
                     requestConfiguration.QueryParameters.Select = new string[] { "customSecurityAttributes" };
+                });
+                var Username = await graphClient.Users[Email].GetAsync((requestConfiguration) =>
+                {
+                    requestConfiguration.QueryParameters.Select = new string[] { "displayName" };
                 });
                 if (result?.CustomSecurityAttributes != null)
                 {
@@ -234,6 +246,7 @@ namespace Expense_Vendor_Management.Controllers
                     List<string> CostCenter = customSecurityAttribute.CostCenter;                                                           // cost center for dashboard
                     var department = customSecurityAttribute.Department;                                                                    // Department
                     var role = customSecurityAttribute.RolesForVendorAndExpenseMgt;
+                    customSecurityAttribute.DisplayName = Username.DisplayName;
                     return customSecurityAttribute;
                         //Roles for all purposes
                 }

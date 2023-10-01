@@ -68,8 +68,18 @@
                                     <option value="Verification Service">Verification Service</option>
                                     <option value="Warehouse Lender">Warehouse Lender</option>
                                     <option value="Wholesale Lender">Wholesale Lender</option>
-                                    <option value="other">Other</option>
+                                    <option value="Others">Others</option>
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="display:none" id="othersermain">
+                        <div class="form-group">
+                            <label class="form-label">
+                                Other Service<span class="mandatory">*</span>
+                            </label>
+                            <div class="form-control-wrap">
+                                <input type="text" name="otherserv" id="otherserv" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -79,7 +89,7 @@
                                 Product Category<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <select class="form-control" required asp-for="catagory">
+                                <select class="form-control" required id="Pcat" asp-for="catagory">
                                     <option selected>Accounting</option>
                                     <option>Building</option>
                                     <option>Compliance</option>
@@ -89,8 +99,18 @@
                                     <option>Marketing</option>
                                     <option>Operations</option>
                                     <option>Sales</option>
-                                      <option>Others</option>
+                                    <option>Others</option>
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="display:none" id="othercatmain">
+                        <div class="form-group">
+                            <label class="form-label">
+                                Other Category<span class="mandatory">*</span>
+                            </label>
+                            <div class="form-control-wrap">
+                                <input type="text" name="othercat" id="othercat" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -107,6 +127,7 @@
                             </div>
                         </div>
                     </div>
+          
 
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -177,7 +198,8 @@
                                 Contract Expiration<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <input type="date" asp-for="contractExpiration" class="form-control" id="contractExpiration">
+                                <input type="date" asp-for="contractExpiration" class="form-control" id="contractExpiration" min="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+
                             </div>
                         </div>
                     </div>
@@ -207,20 +229,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label">
-                                Technology Vendor<span class="mandatory">*</span>
-                            </label>
-                            <div class="form-control-wrap">
-                                <select class="form-control" required>
-                                    <option selected value="Yes">Yes</option>
-                                    <option value="No">NO</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                  
+                           
                     
 
                  
@@ -293,6 +302,7 @@
                             </ul>
                         </div>
                     </div>
+                    <input type="text" class="custom-control-input" hidden name="newform" value="" id="newforminput">
                    <span style="display:none" id="customeeinfo">
                        <div class="row">
                     <div class="col-lg-6">
@@ -338,9 +348,15 @@
                         </div>
             </span>
    
-                    <div class="col-lg-12">
+                    <div class="col-lg-2">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                            <button type="submit" id="submitform" class="btn btn-lg btn-primary">Submit</button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-lg btn-success" id="Newform">Submit and Add New</button>
                         </div>
                     </div>
                 </div>
@@ -353,6 +369,40 @@
 <script src="~/theme/assets/js/scripts.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#Newform").click(function () {
+            $("#newforminput").val("New Val");
+            $("#submitform").click();
+
+            // You can perform other actions here
+        });
+        
+
+        $("#productCenter").change(function () {
+            if ($("#productCenter").val() == "Others") {
+                $("#otherserv").prop("required", true);
+                $('#othersermain').show();
+            }
+            else {
+                $("#otherserv").prop("required", false);
+                $('#othersermain').hide();
+            }
+        });
+
+
+        $("#Pcat").change(function()
+        {
+            if($("#Pcat").val()=="Others")
+            {
+                $("#othercat").prop("required", true);
+                $('#othercatmain').show();
+            }
+            else
+            {
+                $("#othercat").prop("required", false);
+                $('#othercatmain').hide();
+            }
+        });
+
         // Original function when the checkbox is changed
         $("#customSwitch1").change(function () {
             if ($(this).is(":checked")) 

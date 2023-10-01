@@ -12,6 +12,7 @@ namespace Expense_Vendor_Management.Models
         }
         public DbSet<Vendor> Vendor { get; set; }
         public DbSet<EmployeeExpense> EmployeeExpense { get; set; }
+        public DbSet<CommentsSection> CommentsSection { get; set; }
         public DbSet<CostCenterExpense> CostCenterExpense { get; set; }
         public DbSet<Media> Media { get; set; }
         public DbSet<Baselogs> Baselogs { get; set; }

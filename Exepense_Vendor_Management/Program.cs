@@ -59,6 +59,7 @@ builder.Services.AddTransient<IUser, UserRepo>();
 builder.Services.AddTransient<IDashboard, DashboardRepo>();
 builder.Services.AddTransient<IDashboard, DashboardRepo>();
 builder.Services.AddTransient<ISharePoint, SharePointRepo>();
+builder.Services.AddTransient<ICommentSide, CommentsRepo>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.ConfigureApplicationCookie(options =>
 {
