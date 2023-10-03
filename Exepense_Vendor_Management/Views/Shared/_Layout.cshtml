@@ -22,55 +22,13 @@
 
 <body class="nk-body npc-default has-apps-sidebar has-sidebar " style="background-color:#efe5e2 !important">
     <div class="nk-app-root">
-        <div class="nk-apps-sidebar is-dark">
-            <div class="nk-apps-brand">
-                <a class="logo-link" href="~/Home/Index">
-                    <img class="logo-light logo-img" src="~/theme/assets/images/logo.png" srcset="~/theme/assets/images/logo.png 2x" alt="logo">
-                    <img class="logo-dark logo-img" src="~/theme/assets/images/logo.png" srcset="~/theme/assets/images/logo.png 2x" alt="logo-dark">
-                </a>
-            </div>
-            <div class="nk-sidebar-element" style="background-color:#efe5e2 !important">
-                <div class="nk-sidebar-body">
-                  <div class="nk-sidebar-profile nk-sidebar-profile-fixed dropdown">
-                        <a href="#" data-toggle="dropdown" data-offset="50,-60">
-                            <div class="user-avatar" style="background-color: #F36C37;">
-                                <span>@(User.Identity.Name.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-md ml-4">
-                            <div class="dropdown-inner user-card-wrap d-none d-md-block">
-                                <div class="user-card">
-                                    <div class="user-avatar" style="background-color: #F36C37;">
-                                        <span>@(User.Identity.Name.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
-
-
-                                    </div>
-                                    <div class="user-info">
-                                        <span class="lead-text">@User.Identity.Name</span>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dropdown-inner">
-                                <ul class="link-list">
-                                </ul>
-                            </div>
-                            <div class="dropdown-inner">
-                                <ul class="link-list">
-                                    <li><a href="~/Accounts/Logout/"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
         <!-- main  -->
         <div class="nk-main " style="background-color:#efe5e2 !important">
             <!-- wrap  -->
             <div class="nk-wrap ">
                 <!-- main header  -->
-                <div class="nk-header nk-header-fixed is-light" style="background-color:#efe5e2 !important">
+                <div class="nk-header nk-header-fixed is-light" style="background-color:#241c4f !important">
                     <div class="container-fluid">
                         <div class="nk-header-wrap">
                             <div class="nk-menu-trigger d-xl-none ml-n1">
@@ -78,7 +36,7 @@
                             </div>
                  
 
-                            <div class="nk-header-tools" style="background-color:#efe5e2 !important">
+                            <div class="nk-header-tools">
                                 <ul class="nk-quick-nav">
                                     <li class="dropdown user-dropdown">
                                         <a href="" class="dropdown-toggle mr-n1" data-toggle="dropdown">
@@ -123,7 +81,7 @@
                     </div>
                 </div>
                 <!-- main header -->
-                <div class="nk-sidebar" data-content="sidebarMenu" style="background-color:#efe5e2 !important">
+                <div class="nk-sidebar" data-content="sidebarMenu" style="background-color:#fffbf3 !important">
                     <div class="nk-sidebar-inner" data-simplebar>
                         <ul class="nk-menu nk-menu-md">
                             <li class="nk-menu-heading">
