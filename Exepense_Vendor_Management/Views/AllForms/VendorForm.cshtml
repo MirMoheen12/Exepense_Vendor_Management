@@ -34,6 +34,75 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
+                        <div class="row">
+                        <div class="col-lg-8">
+                            <div class="form-group">
+                                <label class="form-label">Contact Information</label>
+                                <span class="form-note">would you want to Add Customer Information</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <ul class="custom-control-group g-3 align-center flex-wrap">
+                                <div class="custom-control custom-switch" style="margin-left:60PX">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                    <label class="custom-control-label" for="customSwitch1">Yes/No</label>
+                                </div>
+
+
+                            </ul>
+                        </div>
+                        </div>
+                    </div>
+
+                    <input type="text" class="custom-control-input" hidden name="newform" value="" id="newforminput">
+
+
+                    <div class="col-lg-6" style="display:none" id="customername">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Contact Name<span class="mandatory">*</span>
+                                    </label>
+                                    <div class="form-control-wrap">
+                                        <input asp-for="ContactName" id="ContactName" class="form-control" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                    <div class="col-lg-6" style="display:none" id="customerEmail">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Contact Email<span class="mandatory">*</span>
+                                    </label>
+                                    <div class="form-control-wrap">
+                                        <input asp-for="ContactEmail" id="ContactEmail" class="form-control" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                    <div class="col-lg-6" style="display:none" id="customerPhone">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Contact Phone<span class="mandatory">*</span>
+                                    </label>
+                                    <div class="form-control-wrap">
+                                        <input asp-for="ContactPhone" id="ContactPhone" class="form-control" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                    <div class="col-lg-6" style="display:none" id="customerNumber">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Contact website<span class="mandatory">*</span>
+                                    </label>
+                                    <div class="form-control-wrap">
+                                        <input asp-for="ContactWebsite" id="ContactWebsite" class="form-control" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+                    </span>
+                    
+                    
+                    
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" for="costCenter">
                                 Cost Center<span class="mandatory">*</span>
@@ -279,69 +348,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-12 align-center">
-                        <div class="col-lg-4">
-                            <div class="form-group">
-                                <label class="form-label">Contact Information</label>
-                                <span class="form-note">would you want to Add Customer Information</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <ul class="custom-control-group g-3 align-center flex-wrap">
-                                <div class="custom-control custom-switch" style="margin-left:60PX">
-                                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                                    <label class="custom-control-label" for="customSwitch1">Yes/No</label>
-                                </div>
-
-
-                            </ul>
-                        </div>
-                    </div>
-                    <input type="text" class="custom-control-input" hidden name="newform" value="" id="newforminput">
-                   <span style="display:none" id="customeeinfo">
-                       <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label">
-                                Contact Name<span class="mandatory">*</span>
-                            </label>
-                            <div class="form-control-wrap">
-                                        <input asp-for="ContactName" id="ContactName" class="form-control" type="text">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label">
-                                Contact Email<span class="mandatory">*</span>
-                            </label>
-                            <div class="form-control-wrap">
-                                        <input asp-for="ContactEmail" id="ContactEmail" class="form-control" type="text">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label">
-                                Contact Phone<span class="mandatory">*</span>
-                            </label>
-                            <div class="form-control-wrap">
-                                        <input asp-for="ContactPhone" id="ContactPhone" class="form-control" type="text">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label">
-                                Contact website<span class="mandatory">*</span>
-                            </label>
-                            <div class="form-control-wrap">
-                                        <input asp-for="ContactWebsite" id="ContactWebsite" class="form-control" type="text">
-                            </div>
-                        </div>
-                    </div>
-                        </div>
-            </span>
+            
+                
    
                     <div class="col-lg-2">
                         <div class="form-group">
@@ -402,7 +410,10 @@
         $("#customSwitch1").change(function () {
             if ($(this).is(":checked")) 
             {
-                $('#customeeinfo').show();
+                $('#customername').show();
+                $('#customerEmail').show();
+                $('#customerPhone').show();
+                $('#customerNumber').show();
                 $("#ContactName").prop("required", true);
                 $("#ContactEmail").prop("required", true);
                 $("#ContactPhone").prop("required", true);
@@ -410,7 +421,10 @@
 
           
             } else {
-                $('#customeeinfo').hide();
+                $('#customername').hide();
+                $('#customerEmail').hide();
+                $('#customerPhone').hide();
+                $('#customerNumber').hide();
                 $("#ContactName").prop("required", false);
                 $("#ContactEmail").prop("required", false);
                 $("#ContactPhone").prop("required", false);
