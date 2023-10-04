@@ -167,7 +167,7 @@
                                         <li class="nk-menu-item">
                                             <a href="~/ActionCenter/AllExpenseForms" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
-                                                <span class="nk-menu-text">@User.Identity.Name History</span>
+                                                <span class="nk-menu-text">@User.Identity.Name.Split(" ")[0] History</span>
                                             </a>
                                         </li>
                                         
@@ -229,7 +229,9 @@
                         </ul><!-- .nk-menu -->
                     </div>
                 </div>
+                <div style="padding:10px">
                 @RenderBody()
+                </div>
                 <!-- content -->
             </div>
             <!-- wrap  -->

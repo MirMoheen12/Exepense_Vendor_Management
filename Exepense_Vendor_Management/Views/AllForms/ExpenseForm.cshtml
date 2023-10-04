@@ -94,8 +94,18 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="expenseDate">
-                                Expense Date<span class="mandatory">*</span>
+
+
+                            <label class="form-label tooltip-container" for="expenseDate">
+                                <div class="form-icon form-icon-right">
+                                    <em class="icon ni ni-info" style="margin-left: 55PX;margin-top: -11PX;"></em>
+                                </div>
+                                Expense Date<span class="mandatory">
+                                    *
+                                </span>
+
+                                <span class="tooltip">Please Add Text here</span>
+
                             </label>
                             <div class="form-control-wrap">
                                 <input class="form-control" type="date" id="expenseDate" asp-for="expenseOccurred" required>
