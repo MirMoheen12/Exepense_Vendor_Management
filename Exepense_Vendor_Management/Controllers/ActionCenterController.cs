@@ -11,13 +11,14 @@ namespace Expense_Vendor_Management.Controllers
         private readonly IVendor ivend;
         private readonly IExpense ex;
         private readonly ICostExp costExp;
-        public ActionCenterController(IVendor ivend, IExpense ex,ICostExp costExp,ICommentSide commentSide)
+        private readonly IMedia media;
+        public ActionCenterController(IVendor ivend, IExpense ex,ICostExp costExp, ICommentSide commentSide, IMedia media)
         {
             this.ivend = ivend;
             this.ex = ex;
             this.costExp = costExp;
             this.commentSide = commentSide;
-
+            this.media = media;
         }
         public IActionResult AllVendorForms()
         {
@@ -27,6 +28,7 @@ namespace Expense_Vendor_Management.Controllers
         public IActionResult VendorActionCenter(int ID)
         {
             var dt=ivend.GetVendorById(ID);
+            ViewBag.media = media.getAllMediaByID(ID, "Vendor");
             return View(dt);
         }
         [HttpPost]

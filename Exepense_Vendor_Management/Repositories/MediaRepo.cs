@@ -71,6 +71,10 @@ namespace Expense_Vendor_Management.Repositories
             try
             {
                 var data = _context.Media.Where(x => x.ReqID == id.ToString() && x.belongTo == belongTo && x.isDeleted == false).ToList();
+                for (int i = 0; i < data.Count; i++)
+                {
+                    data[i].createdBy = user.GetUserName(data[i].createdBy).Result;
+                }
                 logs.AddLog("getAllMediaByID" + "Retrieved media data.");
                 return data;
             }

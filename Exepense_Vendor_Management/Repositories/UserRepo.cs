@@ -8,12 +8,17 @@ namespace Exepense_Vendor_Management.Repositories
     {
 
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private UserManager<IdentityUser> UserManager;
+        private readonly UserManager<IdentityUser> UserManager;
 
         public UserRepo(IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> UserManager)
         {
             _httpContextAccessor = httpContextAccessor;
             UserManager = UserManager;
+        }
+        public async Task<string> GetUserName(string userid)
+        {
+            var user = await UserManager.FindByIdAsync(userid);
+            return user.UserName;
         }
         public string ActiveUserId()
         {
