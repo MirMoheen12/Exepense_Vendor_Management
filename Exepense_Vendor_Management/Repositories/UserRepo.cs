@@ -1,5 +1,6 @@
 ﻿using Exepense_Vendor_Management.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Kiota.Abstractions;
 using System.Security.Claims;
 
 namespace Exepense_Vendor_Management.Repositories
@@ -8,16 +9,16 @@ namespace Exepense_Vendor_Management.Repositories
     {
 
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly UserManager<IdentityUser> UserManager;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public UserRepo(IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> UserManager)
+        public UserRepo(IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> _userManager)
         {
             _httpContextAccessor = httpContextAccessor;
-            UserManager = UserManager;
+            this._userManager = _userManager;
         }
         public async Task<string> GetUserName(string userid)
         {
-            var user = await UserManager.FindByIdAsync(userid);
+            var user = await _userManager.FindByIdAsync(userid);
             return user.UserName;
         }
         public string ActiveUserId()
@@ -27,15 +28,15 @@ namespace Exepense_Vendor_Management.Repositories
         }
         public async Task<IEnumerable<string>> GetUserRolesAsync(string id)
         {
-            var user = await UserManager.FindByIdAsync(id);
+            var Userinfo = await _userManager.FindByIdAsync(id);
 
-            if (user == null)
+            if (Userinfo == null)
             {
                 // Handle the case where the user doesn't exist
                 return null;
             }
 
-            var userRoles = await UserManager.GetRolesAsync(user);
+            var userRoles = await _userManager.GetRolesAsync(Userinfo);
 
             return userRoles;
         }
