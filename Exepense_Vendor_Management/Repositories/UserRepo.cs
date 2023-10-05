@@ -17,8 +17,18 @@ namespace Exepense_Vendor_Management.Repositories
         }
         public async Task<string> GetUserName(string userid)
         {
-            var user = await UserManager.FindByIdAsync(userid);
-            return user.UserName;
+            try
+            {
+                return "Not Found";
+                //var user = await UserManager.FindByIdAsync(userid);
+                //return user.UserName;
+            }
+            catch (Exception)
+            {
+
+                return "Not Found";
+            }
+           
         }
         public string ActiveUserId()
         {

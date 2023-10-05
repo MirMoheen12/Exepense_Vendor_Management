@@ -127,46 +127,46 @@
                     <div class="nk-block">
                         <div class="profile-ud-list">
                             <div class="profile-ud-item">
-                                <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Cost Center ID</span>
-                                    <span class="profile-ud-value">@Model.id</span>
+                                <div class="profile-ud wider" >
+                                    <span class="profile-ud-label" style="color:#241c4f">Cost Center ID</span>
+                                    <span class="profile-ud-value" style="color:#241c4f">@Model.id</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item" >
+                                <div class="profile-ud wider" >
+                                    <span class="profile-ud-label" style="color:#241c4f">Full Name</span>
+                                    <span class="profile-ud-value" style="color:#241c4f">@Model.vandorName</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item" >
+                                <div class="profile-ud wider" >
+                                    <span class="profile-ud-label" style="color:#241c4f">Expense Category </span>
+                                    <span class="profile-ud-value" style="color:#241c4f">@Model.expenseCategory</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item" >
+                                <div class="profile-ud wider" >
+                                    <span class="profile-ud-label" style="color:#241c4f">Amount</span>
+                                    <span class="profile-ud-value" style="color:#241c4f">$@Model.amount .00</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider" >
+                                    <span class="profile-ud-label" style="color:#241c4f">Submission Date</span>
+                                    <span class="profile-ud-value" style="color:#241c4f">@Model.submissionDate.ToShortDateString()</span>
                                 </div>
                             </div>
                             <div class="profile-ud-item">
                                 <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Full Name</span>
-                                    <span class="profile-ud-value">@Model.vandorName</span>
+                                    <span class="profile-ud-label" style="color:#241c4f">Incurred Date</span>
+                                    <span class="profile-ud-value" style="color:#241c4f">@Model.expenseAccurred.ToShortDateString()</span>
                                 </div>
                             </div>
                             <div class="profile-ud-item">
                                 <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Expense Category </span>
-                                    <span class="profile-ud-value">@Model.expenseCategory</span>
-                                </div>
-                            </div>
-                            <div class="profile-ud-item">
-                                <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Amount</span>
-                                    <span class="profile-ud-value">$@Model.amount .00</span>
-                                </div>
-                            </div>
-                            <div class="profile-ud-item">
-                                <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Submission Date</span>
-                                    <span class="profile-ud-value">@Model.submissionDate.ToShortDateString()</span>
-                                </div>
-                            </div>
-                            <div class="profile-ud-item">
-                                <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Incurred Date</span>
-                                    <span class="profile-ud-value">@Model.expenseAccurred.ToShortDateString()</span>
-                                </div>
-                            </div>
-                            <div class="profile-ud-item">
-                                <div class="profile-ud wider">
-                                    <span class="profile-ud-label">Attachment(s)</span>
+                                    <span class="profile-ud-label" style="color:#241c4f">Attachment(s)</span>
 
-                                    <span class="profile-ud-value">
+                                    <span class="profile-ud-value" style="color:#241c4f">
                                         <a href="~/AllMedia/MediaByid?id=@Model.id&reqtype=Cost">
                                             <em style="font-size:32PX" class="icon ni ni-file-pdf"></em>
                                         </a>
@@ -190,8 +190,8 @@
                             <div class="row g-4">
                                 <div class="col-lg-6">
                                     <div class="profile-ud wider">
-                                        <span class="profile-ud-label">Status</span>
-                                        <span class="profile-ud-value">
+                                        <span class="profile-ud-label" style="color:#241c4f">Status</span>
+                                        <span class="profile-ud-value" style="color:#241c4f">
                                             <select required name="Fstatus" id="FormStatus" type="text" class="form-control">
                                                 <option value="">Select Status</option>
                                                 <option>
@@ -218,7 +218,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label class="form-label" for="full-name-1">Remarks</label>
+                                        <label class="form-label" style="color:#241c4f" for="full-name-1">Remarks</label>
                                         <div class="form-control-wrap">
                                             <textarea type="text" required name="Remarks" class="form-control"></textarea>
                                         </div>
@@ -229,7 +229,7 @@
                             <div class="row g-4" id="ApprovalDoc">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="full-name-1">Approval DOc</label>
+                                        <label class="form-label" style="color:#241c4f" for="full-name-1">Approval DOc</label>
                                         <div class="form-control-wrap">
                                             <input type="file" id="Approvaldocfile" name="file" class="form-control">
                                         </div>

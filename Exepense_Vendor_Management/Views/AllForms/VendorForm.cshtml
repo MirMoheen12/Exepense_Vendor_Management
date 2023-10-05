@@ -25,7 +25,7 @@
                 <div class="row g-4">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="full-name-1">
+                            <label class="form-label" style="color:#241c4f" for="full-name-1">
                                 Vendor Name<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -37,7 +37,7 @@
                         <div class="row">
                         <div class="col-lg-8">
                             <div class="form-group">
-                                <label class="form-label">Contact Information</label>
+                                <label class="form-label" style="color:#241c4f">Contact Information</label>
                                 <span class="form-note">would you want to Add Customer Information</span>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
 
                     <div class="col-lg-6" style="display:none" id="customername">
                                 <div class="form-group">
-                                    <label class="form-label">
+                                    <label class="form-label" style="color:#241c4f">
                                         Contact Name<span class="mandatory">*</span>
                                     </label>
                                     <div class="form-control-wrap">
@@ -69,7 +69,7 @@
                             </div>
                     <div class="col-lg-6" style="display:none" id="customerEmail">
                                 <div class="form-group">
-                                    <label class="form-label">
+                                    <label class="form-label" style="color:#241c4f">
                                         Contact Email<span class="mandatory">*</span>
                                     </label>
                                     <div class="form-control-wrap">
@@ -79,7 +79,7 @@
                             </div>
                     <div class="col-lg-6" style="display:none" id="customerPhone">
                                 <div class="form-group">
-                                    <label class="form-label">
+                                    <label class="form-label" style="color:#241c4f">
                                         Contact Phone<span class="mandatory">*</span>
                                     </label>
                                     <div class="form-control-wrap">
@@ -89,7 +89,7 @@
                             </div>
                     <div class="col-lg-6" style="display:none" id="customerNumber">
                                 <div class="form-group">
-                                    <label class="form-label">
+                                    <label class="form-label" style="color:#241c4f">
                                         Contact website<span class="mandatory">*</span>
                                     </label>
                                     <div class="form-control-wrap">
@@ -104,7 +104,7 @@
                     
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="costCenter">
+                            <label class="form-label" style="color:#241c4f" for="costCenter">
                                 Cost Center<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -114,7 +114,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="productCenter">
+                            <label class="form-label" style="color:#241c4f" for="productCenter">
                                 Service Type<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -137,9 +137,27 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" style="color:#241c4f" for="productCenter">
+                                Renewal Period<span class="mandatory">*</span>
+                            </label>
+                            <div class="form-control-wrap">
+                                <select class="form-control"  asp-for="renewalPeriod">
+                                    <option value="Monthly">Monthly</option>
+                                    <option value="Quaterly">Quaterly</option>
+                                    <option value="Semi Anually">Semi Anually</option>
+                                    <option value="60 days">60 days</option>
+                                    <option value="Yearly">Yearly</option>
+                                    <option value="Other">Other</option>
+                                   
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-6" style="display:none" id="othersermain">
                         <div class="form-group">
-                            <label class="form-label">
+                            <label class="form-label" style="color:#241c4f">
                                 Other Service<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -149,7 +167,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label">
+                            <label class="form-label" style="color:#241c4f">
                                 Product Category<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -170,7 +188,7 @@
                     </div>
                     <div class="col-lg-6" style="display:none" id="othercatmain">
                         <div class="form-group">
-                            <label class="form-label">
+                            <label class="form-label" style="color:#241c4f">
                                 Other Category<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -180,7 +198,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label">
+                            <label class="form-label" style="color:#241c4f">
                                 Critical Vendor<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -195,7 +213,7 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label">
+                            <label class="form-label" style="color:#241c4f">
                                 Contract Documents<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -206,7 +224,7 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label">
+                            <label class="form-label" style="color:#241c4f">
                                 Assessments<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -217,7 +235,7 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="otherdocument">
+                            <label class="form-label" style="color:#241c4f" for="otherdocument">
                                 Other Documents
                             </label>
                             <div class="form-control-wrap">
@@ -228,7 +246,7 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="paymentAmount">
+                            <label class="form-label" style="color:#241c4f" for="paymentAmount">
                                 Payment Amount<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -244,7 +262,7 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label">
+                            <label class="form-label" style="color:#241c4f">
                                 Auto Payment<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -258,7 +276,7 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="contractExpiration">
+                            <label class="form-label" style="color:#241c4f" for="contractExpiration">
                                 Contract Expiration<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -270,7 +288,7 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label">
+                            <label class="form-label" style="color:#241c4f">
                                 Auto Renew<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -284,7 +302,7 @@
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" for="dateToCancel">
+                            <label class="form-label" style="color:#241c4f" for="dateToCancel">
                                 Date To Cancel<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
@@ -301,8 +319,8 @@
                             <div class="col-lg-6 align-center">
                                 <div class="col-lg-7">
                                     <div class="form-group">
-                                        <label class="form-label">Technology vendor</label>
-                                        <span class="form-note">Is this vendor a technology vendor Y/N</span>
+                                        <label class="form-label" style="color:#241c4f">Technology vendor</label>
+                                <span class="form-note" style="color:#241c4f">Is this vendor a technology vendor Y/N</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-5">
@@ -326,8 +344,8 @@
                     <div class="col-lg-6 align-center">
                         <div class="col-lg-7">
                             <div class="form-group">
-                                <label class="form-label">Customer Access</label>
-                                <span class="form-note">Will the Vendor have access to Customer or employee Personal/Private Information (PII)</span>
+                                <label class="form-label" style="color:#241c4f">Customer Access</label>
+                                <span class="form-note" style="color:#241c4f">Will the Vendor have access to Customer or employee Personal/Private Information (PII)</span>
                             </div>
                         </div>
                         <div class="col-lg-5">
