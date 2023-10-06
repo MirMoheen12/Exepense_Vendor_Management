@@ -108,7 +108,7 @@ namespace Expense_Vendor_Management.Repositories
             }
         }
 
-        public bool ChangeVendorAction(int ID, string Remarks, string Fstatus, IFormFile? file)
+        public bool ChangeVendorAction(int ID, string Remarks, string Fstatus, IFormFile? file,string RNotfi)
         {
             try
             {
@@ -122,6 +122,7 @@ namespace Expense_Vendor_Management.Repositories
                 data.status = Fstatus;
                 data.modifiedBy = "SAdmin/Finance";
                 data.notes = Remarks;
+                data.RNotfication= RNotfi;
                 _context.Vendor.Update(data);
                 _context.SaveChanges();
 

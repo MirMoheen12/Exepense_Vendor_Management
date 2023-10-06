@@ -32,9 +32,18 @@ namespace Expense_Vendor_Management.Controllers
             return View(dt);
         }
         [HttpPost]
-        public IActionResult VendorActionCenter(int ID,string Remarks,string Fstatus,IFormFile? file)
+        public IActionResult VendorActionCenter(int ID,string Remarks,string Fstatus,IFormFile? file, string[] RNotfication)
         {
-            var dt = ivend.ChangeVendorAction(ID,Remarks,Fstatus,file);
+            string Notfi = "";
+            for (int i = 0; i < RNotfication.Count(); i++)
+            {
+                Notfi = Notfi + RNotfication[i];
+                if (i != RNotfication.Count()-1)
+                {
+                    Notfi = Notfi + ",";
+                }
+            }
+            var dt = ivend.ChangeVendorAction(ID,Remarks,Fstatus,file, Notfi);
             return RedirectToAction("AllVendorForms");
         }
 

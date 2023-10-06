@@ -24,6 +24,7 @@ namespace Expense_Vendor_Management.Models
         public string? ContactWebsite { get; set; }
         public string criticalVendor { get; set;}
         public string? renewalPeriod { get; set; }
+        public string? RNotfication { get; set; }
 
         [NotMapped]
         public IFormFile? Contractdoc { get; set; } 
