@@ -1,4 +1,5 @@
-﻿using Expense_Vendor_Management.Models;
+﻿using Exepense_Vendor_Management.Models;
+using Expense_Vendor_Management.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,9 @@ namespace Expense_Vendor_Management.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private SignInManager<IdentityUser> signInManager;
+        private SignInManager<ApplicationUser> signInManager;
 
-        public HomeController(ILogger<HomeController> logger, SignInManager<IdentityUser> signInManager)
+        public HomeController(ILogger<HomeController> logger, SignInManager<ApplicationUser> signInManager)
         {
             _logger = logger;
             this.signInManager = signInManager;

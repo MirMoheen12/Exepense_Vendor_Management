@@ -11,11 +11,12 @@ using Expense_Vendor_Management.Repositories;
 using System.Xml.Linq;
 using Exepense_Vendor_Management.Repositories;
 using Exepense_Vendor_Management.Interfaces;
+using Exepense_Vendor_Management.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().
 
                 AddDefaultTokenProviders().
              AddEntityFrameworkStores<AppDbContext>();

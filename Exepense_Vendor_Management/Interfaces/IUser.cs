@@ -5,5 +5,6 @@
         public string ActiveUserId();
         public Task<IEnumerable<string>> GetUserRolesAsync(string id);
         public Task<string> GetUserName(string userid);
+      
     }
 }

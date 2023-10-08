@@ -8,10 +8,10 @@ namespace Exepense_Vendor_Management.Repositories
 {
     public class CommentsRepo:ICommentSide
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly AppDbContext _context;
-        public CommentsRepo(AppDbContext context, UserManager<IdentityUser> _userManager, RoleManager<IdentityRole> _roleManager)
+        public CommentsRepo(AppDbContext context, UserManager<ApplicationUser> _userManager, RoleManager<IdentityRole> _roleManager)
         {
 
             this._context = context;

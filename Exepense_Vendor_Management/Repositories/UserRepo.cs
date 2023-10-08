@@ -1,4 +1,5 @@
 ﻿using Exepense_Vendor_Management.Interfaces;
+using Exepense_Vendor_Management.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Kiota.Abstractions;
 using System.Security.Claims;
@@ -9,9 +10,9 @@ namespace Exepense_Vendor_Management.Repositories
     {
 
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserRepo(IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> _userManager)
+        public UserRepo(IHttpContextAccessor httpContextAccessor, UserManager<ApplicationUser> _userManager)
         {
             _httpContextAccessor = httpContextAccessor;
             this._userManager = _userManager;
@@ -20,9 +21,9 @@ namespace Exepense_Vendor_Management.Repositories
         {
             try
             {
-                return "Not Found";
-                //var user = await UserManager.FindByIdAsync(userid);
-                //return user.UserName;
+                //return "Not Found";
+                var user = await _userManager.FindByIdAsync(userid);
+                return user.UserName;
             }
             catch (Exception)
             {

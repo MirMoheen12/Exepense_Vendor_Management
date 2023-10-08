@@ -1,4 +1,8 @@
-﻿@using System.Security.Principal
+﻿﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<Exepense_Vendor_Management.Models.ApplicationUser> _usermanager
+@{
+    var user = await _usermanager.GetUserAsync(User);
+}
 <!DOCTYPE html>
 <html lang="zxx" class="js">
 
@@ -45,7 +49,7 @@
                                         <a href="" class="dropdown-toggle mr-n1" data-toggle="dropdown">
                                             <div class="user-toggle">
                                                 <div class="user-avatar" style="background-color: #F36C37;">
-                                                    <span>@(User.Identity.Name.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
+                                                    <span>@(@user.DisplayName.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
                                                 </div>
                                             </div>
                                         </a>
@@ -53,11 +57,11 @@
                                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                                 <div class="user-card">
                                                     <div class="user-avatar" style="background-color: #F36C37;">
-                                                        <span>@(User.Identity.Name.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
+                                                        <span>@(@user.DisplayName.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
 
                                                     </div>
                                                     <div class="user-info">
-                                                        <span class="lead-text">@User.Identity.Name</span>
+                                                        <span class="lead-text">@user.DisplayName</span>
 
                                                     </div>
                                                 </div>
@@ -170,7 +174,7 @@
                                         <li class="nk-menu-item">
                                             <a href="~/ActionCenter/AllExpenseForms" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
-                                                <span class="nk-menu-text">@User.Identity.Name.Split(" ")[0] History</span>
+                                                <span class="nk-menu-text">@user.DisplayName.Split(" ")[0] History</span>
                                             </a>
                                         </li>
                                         

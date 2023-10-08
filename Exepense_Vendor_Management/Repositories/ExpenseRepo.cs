@@ -27,12 +27,21 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
-                int count = appContext.EmployeeExpense.ToList().Count()+1;
-                ex.Vid = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(DateTime.Now.Month)+"-"+ count;
-
+                int count = appContext.EmployeeExpense.ToList().Count() + 1;
+                ex.createdBy = user.ActiveUserId();
+                var name = user.GetUserName(ex.createdBy).Result.ToString();
+                if (name != null && getlastename(name) != "NotFound")
+                {
+                    ex.Vid = getlastename(name) + "-" + count;
+                }
+                else
+                {
+                    ex.Vid = "NotFound-" + count;
+                }
+                
+              
                 ex.isDeleted = false;
                 ex.createdOn = DateTime.Now;
-                ex.createdBy = user.ActiveUserId();
                 ex.modifiedBy = user.ActiveUserId();
                 ex.notes = "Intial insert";
                 ex.status = "Submitted";
@@ -57,7 +66,14 @@ namespace Expense_Vendor_Management.Repositories
                 return false;
             }
         }
-
+        string getlastename(string name)
+        {
+            var res = name.Split(" ");
+            if(res.Length > 1 ) {
+                return res[1];
+            }
+            return "Notfound";
+        }
         public List<EmployeeExpense> GetAllExpenses()
         {
             try
@@ -86,7 +102,7 @@ namespace Expense_Vendor_Management.Repositories
             }
         }
 
-        public async Task<bool> ChangeExpenseAction(int ID, string Remarks, string Fstatus, IFormFile? file)
+        public async Task<bool> ChangeExpenseAction(int ID, string Remarks, string Fstatus, IFormFile? file, float Amount)
         {
             try
             {
@@ -96,7 +112,14 @@ namespace Expense_Vendor_Management.Repositories
                     logs.AddLog("ChangeExpenseAction" + $"Expense with ID {ID} not found.");
                     return false;
                 }
-
+                if (Amount == null)
+                {
+                    data.ApprovedAmount = 0;
+                }
+                else
+                {
+                    data.ApprovedAmount= Amount;
+                }
                 data.status = Fstatus;
                 data.modifiedBy = "SAdmin/Finance";
                 data.notes = Remarks;

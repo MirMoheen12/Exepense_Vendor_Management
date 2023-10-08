@@ -20,12 +20,12 @@ namespace Expense_Vendor_Management.Controllers
     public class AccountsController : Controller
     {
 
-        private SignInManager<IdentityUser> signInManager;
-        private UserManager<IdentityUser> UserManager;
+        private SignInManager<ApplicationUser> signInManager;
+        private UserManager<ApplicationUser> UserManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IUser user;
         private readonly IConfiguration configuration;
-        public AccountsController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> _roleManager,IConfiguration configuration,IUser user)
+        public AccountsController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> _roleManager,IConfiguration configuration,IUser user)
         {
            
             this.signInManager = signInManager;
@@ -98,7 +98,7 @@ namespace Expense_Vendor_Management.Controllers
                     {
                         if (data.DisplayName != null)
                         {
-                            user.UserName=data.DisplayName;
+                            user.DisplayName=data.DisplayName;
                             var r = await UserManager.UpdateAsync(user);
                         }
                         var defaultrole = _roleManager.FindByNameAsync(data.RolesForVendorAndExpenseMgt).Result;
@@ -123,24 +123,35 @@ namespace Expense_Vendor_Management.Controllers
                 if (email != null)
                 {
                     var user = await UserManager.FindByEmailAsync(email);
+                    var data = getInfo(email).Result;
                     if (user == null)
-                    {
-                        user = new IdentityUser
-                        {
-                            UserName = info.Principal.FindFirstValue(ClaimTypes.Name),
-                            Email = info.Principal.FindFirstValue(ClaimTypes.Upn),
-
-                        };
-                        await UserManager.CreateAsync(user);
-                    }
-                    var data = getInfo(user.Email).Result;
-                    if (data != null)
                     {
                         if (data.DisplayName != null)
                         {
-                            user.UserName = data.DisplayName;
-                            var r = await UserManager.UpdateAsync(user);
+                            user = new ApplicationUser
+                            {
+                                UserName = info.Principal.FindFirstValue(ClaimTypes.Name),
+                                DisplayName=data.DisplayName,
+                                Email = info.Principal.FindFirstValue(ClaimTypes.Upn)
+
+                            };
                         }
+                        else
+                        {
+                            user = new ApplicationUser
+                            {
+                                UserName = info.Principal.FindFirstValue(ClaimTypes.Name),
+                                Email = info.Principal.FindFirstValue(ClaimTypes.Upn),
+
+                            };
+                        }
+                      
+                        await UserManager.CreateAsync(user);
+                    }
+                 
+                    if (data != null)
+                    {
+                       
                         var defaultrole = _roleManager.FindByNameAsync(data.RolesForVendorAndExpenseMgt).Result;
                         var roleresult = await UserManager.AddToRoleAsync(user, defaultrole.Name);
                         var stat = await UserManager.GetRolesAsync(user);
@@ -157,7 +168,7 @@ namespace Expense_Vendor_Management.Controllers
                     var user = await UserManager.FindByEmailAsync(email);
                     if (user == null)
                     {
-                        user = new IdentityUser
+                        user = new ApplicationUser
                         {
                             UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
                             Email = info.Principal.FindFirstValue(ClaimTypes.Email),

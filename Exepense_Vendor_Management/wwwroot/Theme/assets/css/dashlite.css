@@ -10837,7 +10837,9 @@ body.nav-shown { overflow: hidden; }
 
 .nk-menu-link { padding: 0.625rem 40px 0.625rem 24px; color: #6e82a5; font-family: Roboto, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.01em; text-transform: none; line-height: 1.25rem; }
 
-.nk-menu-link:hover, .active > .nk-menu-link { color: #7f8dff; }
+    .nk-menu-link:hover, .active > .nk-menu-link {
+        color: #f36c37;
+    }
 
 .nk-menu-link:hover .count, .active > .nk-menu-link .count { color: #7f8dff; }
 
@@ -10867,7 +10869,9 @@ body.nav-shown { overflow: hidden; }
 
 .nk-menu-icon .icon { font-size: 24px; letter-spacing: normal; vertical-align: middle; color: currentColor; transition: color .4s, background-color .4s; }
 
-.nk-menu-link:hover .nk-menu-icon, .nk-menu-item.active > .nk-menu-link .nk-menu-icon, .nk-menu-item.current-menu > .nk-menu-link .nk-menu-icon { color: #7f8dff; }
+.nk-menu-link:hover .nk-menu-icon, .nk-menu-item.active > .nk-menu-link .nk-menu-icon, .nk-menu-item.current-menu > .nk-menu-link .nk-menu-icon {
+    color: #f36c37;
+}
 
 .is-theme .nk-menu-link:hover .nk-menu-icon, .is-theme .nk-menu-item.active > .nk-menu-link .nk-menu-icon, .is-theme .nk-menu-item.current-menu > .nk-menu-link .nk-menu-icon { color: #fff; }
 
@@ -10911,11 +10915,15 @@ body.nav-shown { overflow: hidden; }
 
 .active > .nk-menu-sub { display: block; }
 
-.nk-menu-sub .nk-menu-link:hover { color: #6576ff; }
+.nk-menu-sub .nk-menu-link:hover {
+    color: #f36c37;
+}
 
 .is-theme .nk-menu-sub .nk-menu-link:hover { color: #fff; }
 
-.nk-menu-sub .active > .nk-menu-link { color: #6576ff; }
+.nk-menu-sub .active > .nk-menu-link {
+    color: #f36c37;
+}
 
 .is-theme .nk-menu-sub .active > .nk-menu-link { color: #fff; }
 
