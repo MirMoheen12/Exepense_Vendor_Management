@@ -10835,7 +10835,16 @@ body.nav-shown { overflow: hidden; }
 
 .nk-menu > .nk-menu-item.menu-without-icon > .nk-menu-sub .nk-menu-link { padding-left: 0; }
 
-.nk-menu-link { padding: 0.625rem 40px 0.625rem 24px; color: #6e82a5; font-family: Roboto, sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.01em; text-transform: none; line-height: 1.25rem; }
+.nk-menu-link {
+    padding: 0.625rem 40px 0.625rem 24px;
+    color: #241c4f;
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    line-height: 1.25rem;
+}
 
     .nk-menu-link:hover, .active > .nk-menu-link {
         color: #f36c37;

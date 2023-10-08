@@ -87,7 +87,7 @@
                                 Amount<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <input class="form-control" type="number" asp-for="amount" required>
+                                <input class="form-control" type="number"  asp-for="amount" required>
                             </div>
                         </div>
                     </div>
@@ -104,11 +104,11 @@
                                     *
                                 </span>
 
-                                <span class="tooltip">Please Add Text here</span>
+                                <span class="tooltip">Section 1.62-2(g)(2)(i) of the IRS provides a fixed date method safe harbor for purposes of satisfying the 'reasonable period of time' requirement. Under this safe harbor, an expense substantiated to the payor within 60 days after it is paid or incurred will be treated as substantiated within a reasonable period of time.</span>
 
                             </label>
                             <div class="form-control-wrap">
-                                <input class="form-control" type="date" id="expenseDate" asp-for="expenseOccurred" required>
+                                <input class="form-control" type="date" min="@DateTime.Now.AddDays(-60)"  id="expenseDate" asp-for="expenseOccurred" required>
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                                 Expense Category<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <select class="form-select" id="expenseCategory" asp-for="expenseCategory">
+                                <select class="form-select" required id="expenseCategory" asp-for="expenseCategory">
                                     <option value="">Select Expense Category</option>
                                     <option value="Administrative">Administrative</option>
                                     <option value="Communication">Communication</option>
