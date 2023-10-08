@@ -33,7 +33,7 @@ namespace Expense_Vendor_Management.Repositories
                 if (name != null && name != "NotFound")
                 {
                    var newid = name.Split(' ');
-                    ex.Vid = newid.LastOrDefault() + "-" + count;
+                    ex.Vid = newid.LastOrDefault() + "-" + count.ToString("D4");
                 }
                 else
                 {

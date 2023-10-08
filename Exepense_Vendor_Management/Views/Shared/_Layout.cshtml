@@ -2,6 +2,12 @@
 @inject UserManager<Exepense_Vendor_Management.Models.ApplicationUser> _usermanager
 @{
     var user = await _usermanager.GetUserAsync(User);
+    var username = user.DisplayName.Split(" ").FirstOrDefault();
+    string displ = username.Substring(username.Length - 1);
+    if (displ != "s")
+    {
+        username = username + "'s";   
+    }
 }
 <!DOCTYPE html>
 <html lang="zxx" class="js">
@@ -174,7 +180,7 @@
                                         <li class="nk-menu-item">
                                             <a href="~/ActionCenter/AllExpenseForms" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
-                                                <span class="nk-menu-text">@user.DisplayName.Split(" ")[0] History</span>
+                                                <span class="nk-menu-text">@username History</span>
                                             </a>
                                         </li>
                                         
