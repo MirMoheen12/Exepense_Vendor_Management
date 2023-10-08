@@ -24,10 +24,12 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
+                var count = appDbContext.CostCenterExpense.ToList().Count()+1;
                 ce.isDeleted = false;
+                ce.displayid = ce.costcenterid.Substring(ce.costcenterid.Length - 4)+" -"+count;
                 ce.createdOn=DateTime.Now;
-                ce.createdBy = user.ActiveUserId();
-                ce.modifiedBy = user.ActiveUserId();
+                ce.createdBy = user.ActiveUserId().Result;
+                ce.modifiedBy = user.ActiveUserId().Result;
                 ce.status = "Submitted";
                 appDbContext.CostCenterExpense.Add(ce);
                 appDbContext.SaveChanges();
@@ -60,7 +62,7 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
-                logs.AddLog("GetCostById");
+               // logs.AddLog("GetCostById");
                 return appDbContext.CostCenterExpense.Where(x => x.id == vendorId).FirstOrDefault();
                 
             }
@@ -85,7 +87,7 @@ namespace Expense_Vendor_Management.Repositories
                     Media m = new Media();
                     m.mediaFile = file;
                     m.mediaType = "Approve";
-                    m.createdBy = user.ActiveUserId();
+                    m.createdBy = user.ActiveUserId().Result;
                     m.belongTo = "Cost";
                     media.AddMedia(m, ID.ToString());
                 }

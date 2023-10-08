@@ -1,4 +1,5 @@
-﻿using Expense_Vendor_Management.Interfaces;
+﻿using Exepense_Vendor_Management.Interfaces;
+using Expense_Vendor_Management.Interfaces;
 using Expense_Vendor_Management.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,13 +12,16 @@ namespace Expense_Vendor_Management.Controllers
         private readonly IVendor vendor;
         private readonly IExpense expense;
         private readonly ICostExp costExp;
-        private readonly IMedia media;
-        public AllFormsController(IVendor vendor, IExpense expense, ICostExp costExp, IMedia media)
+
+        private readonly IMedia media; 
+        private readonly IUser _user;
+        public AllFormsController(IVendor vendor, IExpense expense, ICostExp costExp, IMedia media, IUser _user)
         {
             this.vendor = vendor;
             this.expense = expense;
             this.costExp = costExp;
             this.media = media; 
+            this._user = _user;
         }
 
         [HttpGet]
@@ -68,6 +72,7 @@ namespace Expense_Vendor_Management.Controllers
         [HttpGet]
         public IActionResult CostExpenseForm()
         {
+            ViewBag.costexpense = _user.CostCentersbyid(_user.ActiveUserId().Result);
             return View();
         }
         [HttpPost]
@@ -96,6 +101,7 @@ namespace Expense_Vendor_Management.Controllers
         public IActionResult EditCostExpenseForm(int id)
         {
             ViewBag.media = media.getAllMediaByID(id,"Cost");
+            ViewBag.costexpense = _user.CostCentersbyid(_user.ActiveUserId().Result);
             var data = costExp.GetCostById(id);
             return View(data);
         }

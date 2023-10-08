@@ -12,9 +12,11 @@ namespace Expense_Vendor_Management.Controllers
         private readonly IExpense ex;
         private readonly ICostExp costExp;
         private readonly IMedia media;
-        public ActionCenterController(IVendor ivend, IExpense ex,ICostExp costExp, ICommentSide commentSide, IMedia media)
+        private readonly IUser user;
+        public ActionCenterController(IVendor ivend, IExpense ex,ICostExp costExp, ICommentSide commentSide, IMedia media, IUser user)
         {
             this.ivend = ivend;
+            this.user=user;
             this.ex = ex;
             this.costExp = costExp;
             this.commentSide = commentSide;
@@ -49,11 +51,14 @@ namespace Expense_Vendor_Management.Controllers
 
         public IActionResult AllExpenseForms()
         {
+
+            ViewBag.Name = user.GetUserName(user.ActiveUserId().Result).Result.Split(" ").FirstOrDefault();
             return View(ex.GetAllExpenses());
         }
         [HttpGet]
         public IActionResult ExpenseactionCenter(int ID)
         {
+            ViewBag.media = media.getAllMediaByID(ID, "Expense");
             var cmt = commentSide.AllComments(ID);
             ViewBag.cmt = cmt;
             var dt = ex.GetExpById(ID);
@@ -78,6 +83,7 @@ namespace Expense_Vendor_Management.Controllers
         [HttpGet]
         public IActionResult CostactionCenter(int ID)
         {
+            ViewBag.media = media.getAllMediaByID(ID, "Cost");
             var dt = costExp.GetCostById(ID);
             return View(dt);
         }

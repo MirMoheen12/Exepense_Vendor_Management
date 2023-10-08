@@ -6,14 +6,14 @@ namespace Expense_Vendor_Management.Repositories
 {
     public class MediaRepo : IMedia
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContext dbappDbContext;
         private readonly IUser user;
         private readonly ILogs logs;
         private readonly ISharePoint sharePoint;
 
-        public MediaRepo(AppDbContext _context, IUser user, ILogs logs, ISharePoint sharePoint)
+        public MediaRepo(AppDbContext dbappDbContext, IUser user, ILogs logs, ISharePoint sharePoint)
         {
-            this._context = _context;
+            this.dbappDbContext = dbappDbContext;
             this.user = user;
             this.logs = logs;
             this.sharePoint = sharePoint;
@@ -28,7 +28,7 @@ namespace Expense_Vendor_Management.Repositories
                     medias.FileUrl = "https://rizemtg.sharepoint.com/" + await Addfilesinserver(medias.mediaFile, medias.mediaType);
                     medias.fileName=medias.mediaFile.FileName;
                     medias.isDeleted = false;
-                    medias.createdBy = user.ActiveUserId();
+                    medias.createdBy = user.ActiveUserId().Result;
                     medias.ReqID = ReqID;
                     medias.createdON = DateTime.Now;
                     medias.OldfileName = medias.mediaFile.FileName;
@@ -40,8 +40,8 @@ namespace Expense_Vendor_Management.Repositories
                     {
                         medias.FileUrl = "AzureURL"; // You can update this logic
                     }
-                    _context.Media.Add(medias);
-                    _context.SaveChanges();
+                    dbappDbContext.Media.Add(medias);
+                    dbappDbContext.SaveChanges();
 
                     logs.AddLog("AddMedia" + "Media added.");
                     return medias.Id;
@@ -70,12 +70,13 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
-                var data = _context.Media.Where(x => x.ReqID == id.ToString() && x.belongTo == belongTo && x.isDeleted == false).ToList();
-                for (int i = 0; i < data.Count; i++)
-                {
-                    data[i].createdBy = user.GetUserName(data[i].createdBy).Result;
-                }
                 logs.AddLog("getAllMediaByID" + "Retrieved media data.");
+                var data = dbappDbContext.Media.Where(x => x.ReqID == id.ToString() && x.belongTo == belongTo && x.isDeleted == false).ToList();
+                //for (int i = 0; i < data.Count; i++)
+                //{
+                //    data[i].createdBy = user.GetUserName(data[i].createdBy).Result;
+                //}
+                
                 return data;
             }
             catch (Exception e)

@@ -16,7 +16,7 @@ namespace Exepense_Vendor_Management.Repositories
         public void AddLog(string Event)
         {
             Baselogs baselogs=new Baselogs();
-            baselogs.CreatedBy = user.ActiveUserId();
+            baselogs.CreatedBy = user.ActiveUserId().Result;
             baselogs.CreatedOn=DateTime.Now;
             baselogs.Events = Event;       
             _context.Baselogs.Add(baselogs);
@@ -26,7 +26,7 @@ namespace Exepense_Vendor_Management.Repositories
         public void ErrorLog(string Errormsg,string Desc)
         {
             ErrorLogs errorLogs = new ErrorLogs();
-            errorLogs.Userid = user.ActiveUserId();
+            errorLogs.Userid = user.ActiveUserId().Result;
             errorLogs.CreatedOn = DateTime.Now;
             errorLogs.ErrorMsg = Errormsg;
             errorLogs.ErrorDesc=Desc;

@@ -94,6 +94,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" style="color:#241c4f" for="expenseCategory">
+                                Cost Center ID<span class="mandatory">*</span>
+                            </label>
+                            <div class="form-control-wrap">
+                                <select class="form-select" required asp-for="costcenterid">
+                                    <option value="">Select Cost Center</option>
+                                    @foreach (var item in ViewBag.costexpense)
+                                    {
+                                        <option value="@item.CostCenterID">@item.CostCenterID</option>
+                                    }
+
+                                    <!-- Add more options here if needed -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">

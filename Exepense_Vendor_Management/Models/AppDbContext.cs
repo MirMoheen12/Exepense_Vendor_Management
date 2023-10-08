@@ -17,5 +17,6 @@ namespace Expense_Vendor_Management.Models
         public DbSet<Media> Media { get; set; }
         public DbSet<Baselogs> Baselogs { get; set; }
         public DbSet<ErrorLogs> ErrorLogs { get; set; }
+        public DbSet<CostCenter> costCenter { get; set; }
     }
 }

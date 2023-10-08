@@ -28,11 +28,12 @@ namespace Expense_Vendor_Management.Repositories
             try
             {
                 int count = appContext.EmployeeExpense.ToList().Count() + 1;
-                ex.createdBy = user.ActiveUserId();
+                ex.createdBy = user.ActiveUserId().Result;
                 var name = user.GetUserName(ex.createdBy).Result.ToString();
-                if (name != null && getlastename(name) != "NotFound")
+                if (name != null && name != "NotFound")
                 {
-                    ex.Vid = getlastename(name) + "-" + count;
+                   var newid = name.Split(' ');
+                    ex.Vid = newid.LastOrDefault() + "-" + count;
                 }
                 else
                 {
@@ -42,7 +43,7 @@ namespace Expense_Vendor_Management.Repositories
               
                 ex.isDeleted = false;
                 ex.createdOn = DateTime.Now;
-                ex.modifiedBy = user.ActiveUserId();
+                ex.modifiedBy = user.ActiveUserId().Result;
                 ex.notes = "Intial insert";
                 ex.status = "Submitted";
                 appContext.EmployeeExpense.Add(ex);
@@ -92,7 +93,7 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
-                logs.AddLog("GetExpById" + $"Getting expense with ID: {id}");
+               // logs.AddLog("GetExpById" + $"Getting expense with ID: {id}");
                 return appContext.EmployeeExpense.FirstOrDefault(x => x.id == id);
             }
             catch (Exception e)
@@ -131,7 +132,6 @@ namespace Expense_Vendor_Management.Repositories
                     Media m = new Media();
                     m.mediaFile = file;
                     m.mediaType = "Approve";
-                    m.createdBy = "";
                     m.belongTo = "Expense";
                   
                     media.AddMedia(m, ID.ToString());

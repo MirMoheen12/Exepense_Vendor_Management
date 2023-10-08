@@ -39,8 +39,8 @@ namespace Expense_Vendor_Management.Repositories
             try
             {
                 vendor.createdOn = DateTime.Now;
-                vendor.createdBy = user.ActiveUserId();
-                vendor.modifiedBy = user.ActiveUserId();
+                vendor.createdBy = user.ActiveUserId().Result;
+                vendor.modifiedBy = user.ActiveUserId().Result;
                 vendor.notes = "Initial Insert";
                 if (vendor.paymentAmount == null)
                 {
@@ -149,7 +149,7 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
-                v.modifiedBy = user.ActiveUserId();
+                v.modifiedBy = user.ActiveUserId().Result;
                 _context.Vendor.Update(v);
                 _context.SaveChanges();
                 logs.AddLog("EditVendor" + $"Edited vendor with ID: {v.id}");

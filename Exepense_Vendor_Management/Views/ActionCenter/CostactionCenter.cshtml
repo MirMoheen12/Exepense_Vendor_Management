@@ -129,7 +129,7 @@
                             <div class="profile-ud-item">
                                 <div class="profile-ud wider" >
                                     <span class="profile-ud-label" style="color:#241c4f">Cost Center ID</span>
-                                    <span class="profile-ud-value" style="color:#241c4f">@Model.id</span>
+                                    <span class="profile-ud-value" style="color:#241c4f">@Model.displayid</span>
                                 </div>
                             </div>
                             <div class="profile-ud-item" >
@@ -258,6 +258,52 @@
 
 
     </div><!-- .card -->
+    <div class="card card-preview">
+        <div class="card-inner">
+            <div class="nk-block-head">
+                <div class="nk-block-head-content">
+                    <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
+                        <li class="nav-item">
+                            <a class="nav-link active"><em class="icon ni ni-user-circle"></em><span>Invoice Documents</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <table class="datatable-init-export nowrap table">
+                <thead>
+                    <tr>
+                        <th>File Name</th>
+                        <th>Attachment</th>
+                        <th>Created By</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < ViewBag.Media.Count; i++)
+                    {
+                        <tr>
+
+                            <td>
+                                @ViewBag.Media[i].fileName
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <em style="font-size:32px" class="icon ni ni-file-pdf"></em>
+                                </a>
+                            </td>
+
+                            <td>
+                                @ViewBag.Media[i].createdBy
+                            </td>
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>

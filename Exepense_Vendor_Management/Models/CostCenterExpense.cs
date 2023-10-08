@@ -7,11 +7,12 @@ namespace Expense_Vendor_Management.Models
     {
         [Key]
         public int id { get; set; }
+        public string displayid { get; set; }
         public DateTime createdOn { get; set; }
         public string modifiedBy { get; set; }
         public bool isDeleted { get; set; }
         public string createdBy { get; set; }
-
+        public string costcenterid { get; set; }
         public DateTime submissionDate { get; set; }
         public float amount { get; set; }
         public DateTime expenseAccurred { get; set; }

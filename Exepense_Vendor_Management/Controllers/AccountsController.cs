@@ -23,16 +23,17 @@ namespace Expense_Vendor_Management.Controllers
         private SignInManager<ApplicationUser> signInManager;
         private UserManager<ApplicationUser> UserManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IUser user;
+        private readonly IUser _user;
         private readonly IConfiguration configuration;
-        public AccountsController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> _roleManager,IConfiguration configuration,IUser user)
+        
+        public AccountsController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> _roleManager,IConfiguration configuration,IUser _user)
         {
            
             this.signInManager = signInManager;
             this.UserManager = userManager;
             this.configuration = configuration;
             this._roleManager = _roleManager;
-            this.user = user;
+            this._user = _user;
         }
 
         public IActionResult Index()
@@ -101,7 +102,18 @@ namespace Expense_Vendor_Management.Controllers
                             user.DisplayName=data.DisplayName;
                             var r = await UserManager.UpdateAsync(user);
                         }
-                        var defaultrole = _roleManager.FindByNameAsync(data.RolesForVendorAndExpenseMgt).Result;
+                        var co = _user.CostCentersbyid(user.Id);
+                        foreach (var item in data.CostCenter)
+                        {
+
+                            var re = co.Where(x => x.CostCenterID == item).FirstOrDefault();
+                            if (re == null)
+                            {
+                                _user.AddCostCenter(item, user.Id);
+                            }
+                        }
+
+                            var defaultrole = _roleManager.FindByNameAsync(data.RolesForVendorAndExpenseMgt).Result;
                         var roleresult = await UserManager.AddToRoleAsync(user, defaultrole.Name);
                         var stat = await UserManager.GetRolesAsync(user);
                         await UserManager.AddLoginAsync(user, info);
@@ -154,6 +166,17 @@ namespace Expense_Vendor_Management.Controllers
                        
                         var defaultrole = _roleManager.FindByNameAsync(data.RolesForVendorAndExpenseMgt).Result;
                         var roleresult = await UserManager.AddToRoleAsync(user, defaultrole.Name);
+                        var co = _user.CostCentersbyid(user.Id);
+                        foreach (var item in data.CostCenter)
+                        {
+                            
+                            var re = co.Where(x => x.CostCenterID == item).FirstOrDefault();
+                            if (re == null)
+                            {
+                                _user.AddCostCenter(item, user.Id);
+                            }
+                           
+                        }
                         var stat = await UserManager.GetRolesAsync(user);
                         await UserManager.AddLoginAsync(user, info);
                         await signInManager.SignInAsync(user, isPersistent: false);
@@ -166,19 +189,22 @@ namespace Expense_Vendor_Management.Controllers
                 if(email!=null)
                 {
                     var user = await UserManager.FindByEmailAsync(email);
+                    var data = getInfo(user.Email).Result;
                     if (user == null)
                     {
                         user = new ApplicationUser
                         {
+                            DisplayName = data.DisplayName,
                             UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
                             Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                            
 
                         };
                         await UserManager.CreateAsync(user);
                     }
                   
                     //change Email
-                    var data= getInfo(user.Email).Result;
+                  
                     if (data != null)
                     {
                         
@@ -187,6 +213,17 @@ namespace Expense_Vendor_Management.Controllers
                         var stat = await UserManager.GetRolesAsync(user);
                         await UserManager.AddLoginAsync(user, info);
                         await signInManager.SignInAsync(user, isPersistent: false);
+                        var co = _user.CostCentersbyid(user.Id);
+                        foreach (var item in data.CostCenter)
+                        {
+
+                            var re = co.Where(x => x.CostCenterID == item).FirstOrDefault();
+                            if (re == null)
+                            {
+                                _user.AddCostCenter(item, user.Id);
+                            }
+
+                        }
                         return RedirectToAction("Index", "Home");
 
                     }

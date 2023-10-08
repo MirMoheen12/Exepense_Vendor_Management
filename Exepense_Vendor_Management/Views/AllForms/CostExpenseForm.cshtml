@@ -128,6 +128,26 @@
                         </div>
                     </div>
 
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" style="color:#241c4f" for="expenseCategory">
+                                Cost Center ID<span class="mandatory">*</span>
+                            </label>
+                            <div class="form-control-wrap">
+                                <select class="form-select" required asp-for="costcenterid">
+                                    <option value="">Select Cost Center</option>
+                                    @foreach (var item in ViewBag.costexpense)
+                                    {
+                                        <option value="@item.CostCenterID">@item.CostCenterID</option>
+                                    }
+
+                                    <!-- Add more options here if needed -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label tooltip-container" for="vendorName">
@@ -172,6 +192,10 @@
                     <input type="text" class="custom-control-input" hidden name="newform" value="" id="newforminput">
 
 
+             
+                </div>
+                <br />
+                <div class="row">
 
                     <div class="col-lg-2">
                         <div class="form-group">
@@ -185,10 +209,12 @@
                         </div>
                     </div>
 
-                    <div class="col-12" style="color:#241c4f">
-                        <h8>Per company policy, if a branch is not fully reserved, managers are not approved to spend in excess of the expenses already being paid by the branch. Any expenses submitted in that situation are unauthorized and will not be reimbursed through the cost center. You may, however, be able to use the employee Expense - Tax Benefit Plan. If you have any questions or concerns, please contact your direct manager or the finance department.</h8>
+                </div>
 
-                    </div>
+
+                <div class="col-12" style="color:#241c4f">
+                    <h8>Per company policy, if a branch is not fully reserved, managers are not approved to spend in excess of the expenses already being paid by the branch. Any expenses submitted in that situation are unauthorized and will not be reimbursed through the cost center. You may, however, be able to use the employee Expense - Tax Benefit Plan. If you have any questions or concerns, please contact your direct manager or the finance department.</h8>
+
                 </div>
             </form>
         </div>

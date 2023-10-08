@@ -52,7 +52,7 @@ builder.Services.AddRazorPages()
 
 
 builder.Services.AddTransient<IVendor, VendorRepo>();
-builder.Services.AddTransient<IMedia, MediaRepo>();
+builder.Services.AddScoped<IMedia, MediaRepo>();
 builder.Services.AddTransient<IExpense, ExpenseRepo>();
 builder.Services.AddTransient<ICostExp, CostExpenseRepo>();
 builder.Services.AddTransient<ILogs, LogRepo>();
