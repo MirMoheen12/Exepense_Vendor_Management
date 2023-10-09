@@ -10852,7 +10852,16 @@ body.nav-shown { overflow: hidden; }
 
 .nk-menu-link:hover .count, .active > .nk-menu-link .count { color: #7f8dff; }
 
-.nk-menu-sub .nk-menu-link { padding: 0.375rem 40px 0.375rem 36px; font-family: Roboto, sans-serif; font-weight: 400; font-size: 14px; letter-spacing: normal; text-transform: none; line-height: 1.25rem; color: #6e82a5; }
+.nk-menu-sub .nk-menu-link {
+    padding: 0.375rem 40px 0.375rem 36px;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: normal;
+    text-transform: none;
+    line-height: 1.25rem;
+    color: #241c4f;
+}
 
 .nk-menu-link.is-disable { cursor: default; }
 
@@ -10870,7 +10879,14 @@ body.nav-shown { overflow: hidden; }
 
 .nk-menu-link span.small { color: #8094ae; margin-left: .5rem; }
 
-.nk-menu-icon { font-weight: normal; letter-spacing: normal; width: 36px; line-height: 1; flex-grow: 0; color: #8094ae; }
+.nk-menu-icon {
+    font-weight: normal;
+    letter-spacing: normal;
+    width: 36px;
+    line-height: 1;
+    flex-grow: 0;
+    color: #241c4f;
+}
 
 .is-theme .nk-menu-icon { color: #9cadfd; }
 
@@ -10888,7 +10904,11 @@ body.nav-shown { overflow: hidden; }
 
 .is-theme .nk-menu-link.is-disable:hover .nk-menu-icon { color: #c4cefe; }
 
-.nk-menu-text { flex-grow: 1; display: inline-block; }
+.nk-menu-text {
+    flex-grow: 1;
+    display: inline-block;
+  
+}
 
 .nk-menu-badge { border-radius: 3px; padding: 0 .4rem; font-size: 11px; color: #798bff; background: #eff1ff; position: absolute; top: 50%; right: 24px; transform: translateY(-50%); }
 
@@ -10925,7 +10945,7 @@ body.nav-shown { overflow: hidden; }
 .active > .nk-menu-sub { display: block; }
 
 .nk-menu-sub .nk-menu-link:hover {
-    color: #f36c37;
+    color: #f36c37 !important;
 }
 
 .is-theme .nk-menu-sub .nk-menu-link:hover { color: #fff; }
