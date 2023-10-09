@@ -88,9 +88,9 @@ namespace Expense_Vendor_Management.Controllers
             return View(dt);
         }
         [HttpPost]
-        public async Task<IActionResult> CostactionCenter(int ID, string Remarks, string Fstatus, IFormFile? file)
+        public async Task<IActionResult> CostactionCenter(int ID, string Remarks, float Amount, string Fstatus, IFormFile? file)
         {
-            var dt = await costExp.ChangeCostAction(ID, Remarks, Fstatus, file);
+            var dt = await costExp.ChangeCostAction(ID, Remarks, Fstatus, file,Amount);
             return RedirectToAction("AllCostExpense");
         }
 

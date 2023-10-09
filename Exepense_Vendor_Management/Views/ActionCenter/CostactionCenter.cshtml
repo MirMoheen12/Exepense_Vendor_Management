@@ -153,7 +153,13 @@
                             <div class="profile-ud-item" >
                                 <div class="profile-ud wider" >
                                     <span class="profile-ud-label" style="color:#241c4f">Amount</span>
-                                    <span class="profile-ud-value" style="color:#241c4f">$@Model.amount .00</span>
+                                    <span class="profile-ud-value" style="color:#241c4f">$@Model.amount.00</span>
+                                </div>
+                            </div>
+                            <div class="profile-ud-item">
+                                <div class="profile-ud wider">
+                                    <span class="profile-ud-label" style="color:#241c4f">Approved Amount</span>
+                                    <span class="profile-ud-value" style="color:#241c4f">$@Model.ApprovedAmount.00</span>
                                 </div>
                             </div>
                             <div class="profile-ud-item">
@@ -207,6 +213,16 @@
                                                     Pending
                                                 </option>
                                             </select>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6" id="ApprovalAmt" style="display:none;">
+                                    <div class="profile-ud wider">
+                                        <span class="profile-ud-label" style="color:#241c4f">Approved Amount</span>
+                                        <span class="profile-ud-value" style="color:#241c4f">
+                                            <input type="number" id="ApprovedAmount" name="Amount" class="form-control">
                                         </span>
 
                                     </div>
@@ -324,6 +340,17 @@
             if (instatus == 'Approved') {
                 $("#ApprovalDoc").show();
                 $("#Approvaldocfile").attr("required", true);
+            }
+            else if (instatus == 'Approved-Amended') {
+                $("#ApprovalAmt").show();
+                $("#ApprovedAmount").attr("required", true);
+
+            }
+            else {
+                $("#ApprovalDoc").hide();
+                $("#Approvaldocfile").attr("required", false);
+                $("#ApprovalAmt").hide();
+                $("#ApprovedAmount").attr("required", false);
             }
 
 

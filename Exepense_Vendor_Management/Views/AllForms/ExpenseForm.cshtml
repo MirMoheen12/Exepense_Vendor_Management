@@ -23,9 +23,9 @@
         opacity: 0;
         z-index: 99;
         color: #bbb;
-        width: 240px;
+        width: 300px;
         display: block;
-        font-size: 14px;
+        font-size: 13px;
         font-family: 'cairo',serif;
         padding: 5px 10px;
         border-radius: 3px;
@@ -45,8 +45,8 @@
         -ms-transform: scale(0);
         transform: scale(0);
         position: absolute;
-        right: -80px;
-        bottom: 40px;
+        right: -180px;
+        bottom: 30px;
     }
 
         .tooltip:before, .tooltip:after {
@@ -92,26 +92,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="form-group">
-
-
-                            <label class="form-label tooltip-container" for="expenseDate">
-                                <div class="form-icon form-icon-right">
-                                    <em class="icon ni ni-info" style="margin-left: 55PX;margin-top: -11PX;"></em>
-                                </div>
-                                Incurred Date<span class="mandatory">
-                                    *
-                                </span>
-
-                                <span class="tooltip">Section 1.62-2(g)(2)(i) of the IRS provides a fixed date method safe harbor for purposes of satisfying the 'reasonable period of time' requirement. Under this safe harbor, an expense substantiated to the payor within 60 days after it is paid or incurred will be treated as substantiated within a reasonable period of time.</span>
-
-                            </label>
-                            <div class="form-control-wrap">
-                                <input class="form-control" type="date" min="@DateTime.Now.AddDays(-60)"  id="expenseDate" asp-for="expenseOccurred" required>
-                            </div>
-                        </div>
-                    </div>
+               
 
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -136,7 +117,26 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
 
+
+                            <label class="form-label tooltip-container" for="expenseDate">
+                                <div class="form-icon form-icon-right">
+                                    <em class="icon ni ni-info" style="margin-left: 55PX;margin-top: -11PX;"></em>
+                                </div>
+                                Incurred Date<span class="mandatory">
+                                    *
+                                </span>
+
+                                <span class="tooltip">Section 1.62-2(g)(2)(i) of the IRS provides a fixed date method safe harbor for purposes of satisfying the 'reasonable period of time' requirement. Under this safe harbor, an expense substantiated to the payor within 60 days after it is paid or incurred will be treated as substantiated within a reasonable period of time.</span>
+
+                            </label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="date" min="@DateTime.Now.AddDays(-60)" id="expenseDate" asp-for="expenseOccurred" required>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label tooltip-container" for="vendorName">
@@ -191,7 +191,7 @@
 
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <button type="button" class="btn btn-lg btn-success" id="Newform">Submit and Add New</button>
+                            <button type="button" class="btn btn-lg btn-primary" id="Newform">Submit and Add New</button>
                         </div>
                     </div>
                 </div>

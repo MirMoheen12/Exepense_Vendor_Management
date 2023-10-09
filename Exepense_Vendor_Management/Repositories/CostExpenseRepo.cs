@@ -72,12 +72,21 @@ namespace Expense_Vendor_Management.Repositories
             }
         }
 
-        public async Task<bool> ChangeCostAction(int ID, string Remarks, string Fstatus, IFormFile? file)
+        public async Task<bool> ChangeCostAction(int ID, string Remarks, string Fstatus, IFormFile? file,float Amount)
         {
             try
             {
                 var data = appDbContext.CostCenterExpense.Where(x => x.id == ID).FirstOrDefault();
                 data.status = Fstatus;
+                if (Amount != null)
+                {
+                    data.ApprovedAmount = Amount.ToString();
+                }
+                else
+                {
+                    data.ApprovedAmount = "0";
+                }
+             
                 data.modifiedBy = "SAdmin/Finance";
                 data.notes = Remarks;
                 appDbContext.CostCenterExpense.Update(data);
