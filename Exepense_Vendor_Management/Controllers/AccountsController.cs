@@ -13,6 +13,7 @@ using Exepense_Vendor_Management.Models;
 using System.Configuration;
 using Exepense_Vendor_Management.Interfaces;
 using AngleSharp.Css;
+using AngleSharp.Css.Values;
 
 namespace Expense_Vendor_Management.Controllers
 {
@@ -110,6 +111,14 @@ namespace Expense_Vendor_Management.Controllers
                             if (re == null)
                             {
                                 _user.AddCostCenter(item, user.Id);
+                            }
+                        }
+                        for (int j = 0; j < co.Count; j++)
+                        {
+                            var ff = data.CostCenter.Where(x => x.Equals(co[j].CostCenterID)).FirstOrDefault();
+                            if (ff == null)
+                            {
+                                _user.DeleteCostCenter(co[j].CostCenterID,user.Id);
                             }
                         }
 
@@ -224,6 +233,14 @@ namespace Expense_Vendor_Management.Controllers
                             }
 
                         }
+                        for (int j = 0; j < co.Count; j++)
+                        {
+                            var ff = data.CostCenter.Where(x => x.Equals(co[j].CostCenterID)).FirstOrDefault();
+                            if (ff == null)
+                            {
+                                _user.DeleteCostCenter(co[j].CostCenterID, user.Id);
+                            }
+                        }
                         return RedirectToAction("Index", "Home");
 
                     }
@@ -294,7 +311,14 @@ namespace Expense_Vendor_Management.Controllers
                     List<string> CostCenter = customSecurityAttribute.CostCenter;                                                           // cost center for dashboard
                     var department = customSecurityAttribute.Department;                                                                    // Department
                     var role = customSecurityAttribute.RolesForVendorAndExpenseMgt;
-                    customSecurityAttribute.DisplayName = Username.DisplayName;
+                    if (Username.DisplayName == null)
+                    {
+                        customSecurityAttribute.DisplayName = "User LastName";
+                    }
+                    else
+                    {
+                        customSecurityAttribute.DisplayName = Username.DisplayName;
+                    }
                     return customSecurityAttribute;
                         //Roles for all purposes
                 }

@@ -102,14 +102,15 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" style="color:#241c4f" for="expenseCategory">
+                        <div class="from-group">
+                        
+
+
+                                <label class="form-label" style="color:#241c4f" for="expenseCategory">
                                 Expense Category<span class="mandatory">*</span>
-                            </label>
-                            <div class="form-control-wrap">
-                                <select class="form-select" id="expenseCategory" asp-for="expenseCategory">
+                                </label>
+                                <select class="form-select" required name="ecatagory[]" multiple="multiple" data-placeholder="Select Multiple options">
                                     <option value="">Select Expense Category</option>
                                     <option value="Administrative">Administrative</option>
                                     <option value="Communication">Communication</option>
@@ -121,14 +122,12 @@
                                     <option value="Mileage">Mileage</option>
                                     <option value="Office Supplies">Office Supplies</option>
                                     <option value="Travel">Travel</option>
-
-                                    <!-- Add more options here if needed -->
                                 </select>
-                            </div>
+                            </span>
+
                         </div>
                     </div>
-
-
+      
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" style="color:#241c4f" for="expenseCategory">
@@ -223,6 +222,25 @@
 <script src="~/theme/assets/js/bundle.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+
+
+
+
+        var $select = $('#mySelect');
+        var selectedOptions = $select.find('option:selected');
+        selectedOptions.each(function () {
+            var selectedValue = $(this).val();
+            console.log('Selected value: ' + selectedValue);
+        });
+
+
+
+
+
+
+
+
+
         $("#Newform").click(function () {
             $("#newforminput").val("New Val");
             $("#submitform").click();

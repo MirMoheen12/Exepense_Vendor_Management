@@ -76,8 +76,18 @@ namespace Expense_Vendor_Management.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CostExpenseForm(CostCenterExpense ce, string newform)
+        public async Task<IActionResult> CostExpenseForm(CostCenterExpense ce, string newform, string[] ecatagory)
         {
+            string ecat = "";
+            for (int i = 0; i < ecatagory.Count(); i++)
+            {
+                ecat = ecat + ecatagory[i];
+                if (i != ecatagory.Count() - 1)
+                {
+                    ecat = ecat + ",";
+                }
+            }
+            ce.expenseCategory = ecat;
             ce.submissionDate = DateTime.Now;
             var res = await costExp.AddNewCostExp(ce);
             TempData["SuccessMessage"] = "Form submitted successfully!";

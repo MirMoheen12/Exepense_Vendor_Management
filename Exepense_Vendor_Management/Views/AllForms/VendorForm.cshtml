@@ -281,7 +281,7 @@
                                 Contract Expiration<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <input type="date" asp-for="contractExpiration" class="form-control" id="contractExpiration" min="@DateTime.Now.ToString("yyyy-MM-dd")"/>
+                                <input type="date" asp-for="contractExpiration" class="form-control" id="contractExpiration" min="@DateTime.Now.ToString("MM-dd-YYYY")"/>
 
                             </div>
                         </div>
@@ -301,17 +301,23 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
+              
+                    <div class="col-sm-6">
                         <div class="form-group">
-                            <label class="form-label" style="color:#241c4f" for="dateToCancel">
+                            <label class="form-label">
+
                                 Date To Cancel<span class="mandatory">*</span>
+
                             </label>
                             <div class="form-control-wrap">
-                                <input class="form-control" asp-for="dateToCancel" type="date" id="dateToCancel">
+                                <div class="form-icon form-icon-right">
+                                    <em class="icon ni ni-calendar-alt"></em>
+                                </div>
+                                <input type="text" asp-for="dateToCancel"  id="datepicker" placeholder="MM/DD/YYYY" id="dateToCancel" class="form-control date-picker">
                             </div>
+                            <div class="form-note">Date format <code>mm/dd/yyyy</code></div>
                         </div>
                     </div>
-
                            
                     
 
@@ -393,7 +399,10 @@
 </div>
 <script src="~/theme/assets/js/bundle.js"></script>
 <script type="text/javascript">
+
     $(document).ready(function () {
+       
+
         $("#Newform").click(function () {
             $("#newforminput").val("New Val");
             $("#submitform").click();

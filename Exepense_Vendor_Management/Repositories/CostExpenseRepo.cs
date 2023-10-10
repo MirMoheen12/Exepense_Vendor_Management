@@ -26,7 +26,7 @@ namespace Expense_Vendor_Management.Repositories
             {
                 var count = appDbContext.CostCenterExpense.ToList().Count()+1;
                 ce.isDeleted = false;
-                ce.displayid = ce.costcenterid.Substring(ce.costcenterid.Length - 4)+" -"+count;
+                ce.displayid = ce.costcenterid.Substring(ce.costcenterid.Length - 4)+" -"+count.ToString("D4");
                 ce.createdOn=DateTime.Now;
                 ce.createdBy = user.ActiveUserId().Result;
                 ce.modifiedBy = user.ActiveUserId().Result;

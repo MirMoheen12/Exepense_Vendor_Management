@@ -8,5 +8,6 @@ namespace Exepense_Vendor_Management.Models
         public int ID { get; set; }
         public string CostCenterID {get; set;}
         public string Userid { get; set;}
+        public bool IsDelete { get; set; }
     }
 }

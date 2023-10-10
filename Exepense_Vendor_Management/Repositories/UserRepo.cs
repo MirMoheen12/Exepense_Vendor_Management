@@ -71,8 +71,29 @@ namespace Exepense_Vendor_Management.Repositories
                 CostCenter costCenter = new CostCenter();
                 costCenter.CostCenterID = id;
                 costCenter.Userid = userid;
+                costCenter.IsDelete = false;
                 _context.costCenter.Add(costCenter);
                 _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public bool DeleteCostCenter(string id, string userid)
+        {
+            try
+            {
+                var data = _context.costCenter.Where(x => x.Userid == userid && x.CostCenterID == id).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsDelete = true;
+                    _context.costCenter.Update(data);
+                    _context.SaveChanges();
+                }
+                   
+                
                 return true;
             }
             catch (Exception)
