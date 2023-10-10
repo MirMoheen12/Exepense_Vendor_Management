@@ -14,8 +14,8 @@ namespace Expense_Vendor_Management.Models
         public string createdBy { get; set; }
         public string costcenterid { get; set; }
         public DateTime submissionDate { get; set; }
-        public float amount { get; set; }
-        public string? ApprovedAmount { get; set; }
+        public decimal amount { get; set; }
+        public decimal? ApprovedAmount { get; set; }
 
         
         public DateTime expenseAccurred { get; set; }

@@ -44,7 +44,7 @@ namespace Expense_Vendor_Management.Repositories
                 vendor.notes = "Initial Insert";
                 if (vendor.paymentAmount == null)
                 {
-                    vendor.paymentAmount = "0";
+                    vendor.paymentAmount = 0;
                 }
                 vendor.isDeleted = false;
 

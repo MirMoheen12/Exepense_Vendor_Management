@@ -5,7 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<style>
+    .buttons-pdf {
+        display: none;
+    }
+</style>
 
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head">
@@ -18,7 +22,7 @@
     <div class="card card-preview">
         <div class="card-inner">
             <h5 class="nk-block-title"> @ViewBag.Name History</h5>
-            <table class="datatable-init table">
+            <table class="datatable-init-export nowrap table">
                 <thead style="color:#241c4f">
                     <tr>
                         <th>
@@ -64,7 +68,7 @@
 
 
                             <td>
-                               $@Html.DisplayFor(modelItem => item.amount) .00
+                               $@Html.DisplayFor(modelItem => item.amount)
                             </td>
 
                             <td>

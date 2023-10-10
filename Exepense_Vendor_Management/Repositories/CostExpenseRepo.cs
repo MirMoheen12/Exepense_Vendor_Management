@@ -80,11 +80,11 @@ namespace Expense_Vendor_Management.Repositories
                 data.status = Fstatus;
                 if (Amount != null)
                 {
-                    data.ApprovedAmount = Amount.ToString();
+                    data.ApprovedAmount = Convert.ToDecimal(Amount);
                 }
                 else
                 {
-                    data.ApprovedAmount = "0";
+                    data.ApprovedAmount = 0;
                 }
              
                 data.modifiedBy = "SAdmin/Finance";

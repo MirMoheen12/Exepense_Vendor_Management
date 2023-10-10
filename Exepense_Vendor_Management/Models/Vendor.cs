@@ -34,7 +34,7 @@ namespace Expense_Vendor_Management.Models
     
         [NotMapped]
         public IFormFile? otherdoc { get; set; }
-        public string paymentAmount { get; set;}
+        public decimal paymentAmount { get; set;}
         public string autoPayment { get; set;}
         public  DateTime contractExpiration { get; set;}
         public string autoRenew{ get; set;}

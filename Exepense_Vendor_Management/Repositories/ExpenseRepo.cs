@@ -27,6 +27,7 @@ namespace Expense_Vendor_Management.Repositories
         {
             try
             {
+               
                 int count = appContext.EmployeeExpense.ToList().Count() + 1;
                 ex.createdBy = user.ActiveUserId().Result;
                 var name = user.GetUserName(ex.createdBy).Result.ToString();
@@ -119,7 +120,7 @@ namespace Expense_Vendor_Management.Repositories
                 }
                 else
                 {
-                    data.ApprovedAmount= Amount;
+                    data.ApprovedAmount= Convert.ToDecimal(Amount);
                 }
                 data.status = Fstatus;
                 data.modifiedBy = "SAdmin/Finance";

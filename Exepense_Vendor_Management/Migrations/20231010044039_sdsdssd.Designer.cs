@@ -4,6 +4,7 @@ using Expense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Expense_Vendor_Management.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231010044039_sdsdssd")]
+    partial class sdsdssd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -214,11 +216,11 @@ namespace Expense_Vendor_Management.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<decimal?>("ApprovedAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("ApprovedAmount")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("amount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("amount")
+                        .HasColumnType("real");
 
                     b.Property<string>("costcenterid")
                         .IsRequired()
@@ -281,8 +283,8 @@ namespace Expense_Vendor_Management.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
-                    b.Property<decimal?>("ApprovedAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float?>("ApprovedAmount")
+                        .HasColumnType("real");
 
                     b.Property<string>("Vid")
                         .IsRequired()
@@ -450,8 +452,9 @@ namespace Expense_Vendor_Management.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("paymentAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("paymentAmount")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("poductType")
                         .IsRequired()
