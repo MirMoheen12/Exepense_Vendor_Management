@@ -130,6 +130,7 @@ namespace Expense_Vendor_Management.Repositories
                 {
                     Media m = new Media();
                     m.mediaFile = file;
+                    m.belongTo = "Vendor";
                     m.mediaType = "Approve";
                     m.createdBy = "";
                     media.AddMedia(m, ID.ToString());

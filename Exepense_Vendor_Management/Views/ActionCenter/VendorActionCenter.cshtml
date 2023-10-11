@@ -168,13 +168,14 @@
                                 </div>
 
                             </div>
-
+                          
                             <div class="profile-ud-item">
                                 <div class="profile-ud wider">
                                     <span class="profile-ud-label" style="color:#241c4f"style="color:#241c4f">Critical Vendor</span>
                                     <span class="profile-ud-value" style="color:#241c4f">@Model.criticalVendor</span>
                                 </div>
                             </div>
+                            <input id="RNotfi" value="@Model.RNotfication" hidden/>
                             <div class="profile-ud-item">
                                 <div class="profile-ud wider">
                                     <span class="profile-ud-label" style="color:#241c4f"style="color:#241c4f">Payment Amount</span>
@@ -297,7 +298,7 @@
                                     <div class="profile-ud wider">
                                         <span class="profile-ud-label" style="color:#241c4f">Renewal Notfication</span>
                                         <span class="profile-ud-value" style="color:#241c4f">
-                                          <select class="form-select" name="RNotfication[]" multiple="multiple" data-placeholder="Select Multiple options">
+                                          <select class="form-select" id="RNotfication" name="RNotfication[]" multiple="multiple" data-placeholder="Select Multiple options">
                                                 <option value="">Select Status</option>
                                                 <option value="Accounting">Accounting</option>
                                                 <option value="HR">HR</option>
@@ -385,7 +386,7 @@
                                 @ViewBag.Media[i].fileName
                             </td>
                             <td>
-                                <a href="#">
+                                <a href="@ViewBag.Media[i].FileUrl">
                                     <em style="font-size:32px" class="icon ni ni-file-pdf"></em>
                                 </a>
                             </td>
@@ -416,7 +417,7 @@
 
     });
 </script>
-
+<script src="~/theme/assets/js/bundle.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
     
@@ -430,6 +431,27 @@
 
 
         });
+
+       
+        var cat = $('#RNotfi').val();
+        var itemss=cat.split(',');
+
+        if(cat!='')
+        {
+
+            $.each(itemss, function (index, item) {
+                var $selects = $("select#RNotfication");
+                var found = false;
+                $selects.each(function () {
+                    var $option = $(this).find('option[value="' + item + '"]');
+                    if ($option.length) {
+                        $option.prop('selected', true);
+                        found = true;
+                    }
+                });
+            });
+        }
+
     });
 </script>
 
