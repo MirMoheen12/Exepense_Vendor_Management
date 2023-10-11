@@ -135,7 +135,7 @@ namespace Expense_Vendor_Management.Controllers
             {
                 ecat = ecat + "," + othercat;
             }
-            ce.expenseCategory = othercat;
+            ce.expenseCategory = ecat;
             costExp.EditCostExp(ce);
             TempData["SuccessMessage"] = "Form Edited successfully!";
             return RedirectToAction("Index", "Home");
