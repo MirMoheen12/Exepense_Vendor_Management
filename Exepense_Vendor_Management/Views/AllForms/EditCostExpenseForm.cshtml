@@ -134,30 +134,43 @@
                             </div>
                         </div>
                     </div>
-
+                    <input class="form-control" type="text" id="expensecategoryall" hidden asp-for="expenseCategory" required>
                     <div class="col-lg-6">
-                        <div class="form-group">
+                        <div class="from-group">
+
+
+
                             <label class="form-label" style="color:#241c4f" for="expenseCategory">
                                 Expense Category<span class="mandatory">*</span>
                             </label>
+                            <select class="form-select" id="expensecat" required name="ecatagory[]" multiple="multiple" data-placeholder="Select Multiple options">
+                                <option value="">Select Expense Category</option>
+                                <option value="Administrative">Administrative</option>
+                                <option value="Communication">Communication</option>
+                                <option value="Dues & Subscriptions">Dues & Subscriptions</option>
+                                <option value="Education">Education</option>
+                                <option value="Lodging">Lodging</option>
+                                <option value="Marketing (including lunch & learns)">Marketing (including lunch & learns)</option>
+                                <option value="Meals & Entertainment (deductible at 50%)">Meals & Entertainment (deductible at 50%)</option>
+                                <option value="Mileage">Mileage</option>
+                                <option value="Office Supplies">Office Supplies</option>
+                                <option value="Travel">Travel</option>
+                                <option value="Others">Others</option>
+                            </select>
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6" style="display:none;" id="othercatsection">
+                        <div class="form-group">
+                            <label class="form-label" style="color:#241c4f" for="expenseDate">
+                                Other category<span class="mandatory">*</span>
+                            </label>
                             <div class="form-control-wrap">
-                                <select class="form-select" id="expenseCategory" asp-for="expenseCategory">
-                                    <option value="">Select Expense Category</option>
-                                    <option value="Administrative">Administrative</option>
-                                    <option value="Communication">Communication</option>
-                                    <option value="Dues & Subscriptions">Dues & Subscriptions</option>
-                                    <option value="Education">Education</option>
-                                    <option value="Lodging">Lodging</option>
-                                    <option value="Marketing (including lunch & learns)">Marketing (including lunch & learns)</option>
-                                    <option value="Meals & Entertainment (deductible at 50%)">Meals & Entertainment (deductible at 50%)</option>
-                                    <option value="Mileage">Mileage</option>
-                                    <option value="Office Supplies">Office Supplies</option>
-                                    <option value="Travel">Travel</option>
-                                </select>
+                                <input class="form-control" type="text" name="othercat" id="othercatnew">
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label tooltip-container" for="vendorName">
@@ -274,3 +287,42 @@
         </div>
     </div>
 </div>
+<script src="~/theme/assets/js/bundle.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var cat = $('#expensecategoryall').val();
+
+        var items = cat.split(",");
+        var notFoundItems = [];
+        $.each(items, function (index, item) {
+            var $selects = $("select#expensecat");
+            var found = false;
+            $selects.each(function () {
+                var $option = $(this).find('option[value="' + item + '"]');
+                if ($option.length) {
+                    $option.prop('selected', true);
+                    found = true;
+                }
+            });
+
+            if (!found) {
+                console.log("Item not found: " + item);
+                notFoundItems.push(item); // Store not-found item in the array
+            }
+        });
+        if (notFoundItems.length === 1) {
+       
+            $("#othercatsection").show();
+            $("#othercatnew").attr("required", true);
+            $("#othercatnew").val(notFoundItems[0]);
+
+        }
+        else
+        {
+            $("#othercatsection").hide();
+            $("#othercatnew").attr("required", false);
+        }
+
+    
+    });
+</script>

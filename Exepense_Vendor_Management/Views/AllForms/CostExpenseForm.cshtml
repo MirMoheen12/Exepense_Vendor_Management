@@ -110,7 +110,7 @@
                                 <label class="form-label" style="color:#241c4f" for="expenseCategory">
                                 Expense Category<span class="mandatory">*</span>
                                 </label>
-                                <select class="form-select" required name="ecatagory[]" multiple="multiple" data-placeholder="Select Multiple options">
+                            <select class="form-select" id="expensecat" required name="ecatagory[]" multiple="multiple" data-placeholder="Select Multiple options">
                                     <option value="">Select Expense Category</option>
                                     <option value="Administrative">Administrative</option>
                                     <option value="Communication">Communication</option>
@@ -122,19 +122,29 @@
                                     <option value="Mileage">Mileage</option>
                                     <option value="Office Supplies">Office Supplies</option>
                                     <option value="Travel">Travel</option>
+                                <option value="Others">Others</option>
                                 </select>
-                            </span>
+                       
 
                         </div>
                     </div>
-      
+                    <div class="col-lg-6" id="othercatsection" style="display:none;">
+                        <div class="form-group">
+                            <label class="form-label" style="color:#241c4f" for="expenseOccurred">
+                                Others Category<span class="mandatory">*</span>
+                            </label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" id="othercat" type="text" name="Othercat">
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" style="color:#241c4f" for="expenseCategory">
                                 Cost Center ID<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <select class="form-select" required asp-for="costcenterid">
+                                <select class="form-select"  required asp-for="costcenterid">
                                     <option value="">Select Cost Center</option>
                                     @foreach (var item in ViewBag.costexpense)
                                     {
@@ -204,7 +214,7 @@
 
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <button type="button" class="btn btn-lg btn-success" id="Newform">Submit and Add New</button>
+                            <button type="button" class="btn btn-lg btn-primary" id="Newform">Submit and Add New</button>
                         </div>
                     </div>
 
@@ -221,18 +231,36 @@
 </div>
 <script src="~/theme/assets/js/bundle.js"></script>
 <script type="text/javascript">
+  
+
+
+
     $(document).ready(function () {
 
+        $("#expensecat").change(function () {
+            var $select = $('#expensecat');
+            var test="0";
+            var selectedOptions = $select.find('option:selected');
+            selectedOptions.each(function () {
+                var selectedValue = $(this).val();
+                if(selectedValue=="Others")
+                {
+                    test="1";
+                    $("#othercatsection").show();
+                    $("#othercat").attr("required", true);
+                }
+            });
+            if(test=="0")
+            {
+                $("#othercatsection").hide();
+                $("#othercat").attr("required", false);
+            }
 
-
-
-        var $select = $('#mySelect');
-        var selectedOptions = $select.find('option:selected');
-        selectedOptions.each(function () {
-            var selectedValue = $(this).val();
-            console.log('Selected value: ' + selectedValue);
+        
         });
 
+
+       
 
 
 

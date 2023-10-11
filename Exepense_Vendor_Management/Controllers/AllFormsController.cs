@@ -76,7 +76,7 @@ namespace Expense_Vendor_Management.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CostExpenseForm(CostCenterExpense ce, string newform, string[] ecatagory)
+        public async Task<IActionResult> CostExpenseForm(CostCenterExpense ce, string newform,string Othercat, string[] ecatagory)
         {
             string ecat = "";
             for (int i = 0; i < ecatagory.Count(); i++)
@@ -86,6 +86,10 @@ namespace Expense_Vendor_Management.Controllers
                 {
                     ecat = ecat + ",";
                 }
+            }
+            if (Othercat != null)
+            {
+                ecat = ecat + "," + Othercat;
             }
             ce.expenseCategory = ecat;
             ce.submissionDate = DateTime.Now;
@@ -116,8 +120,22 @@ namespace Expense_Vendor_Management.Controllers
             return View(data);
         }
         [HttpPost]
-        public IActionResult EditCostExpenseForm(CostCenterExpense ce)
+        public IActionResult EditCostExpenseForm(CostCenterExpense ce, string[] ecatagory,string othercat)
         {
+            string ecat = "";
+            for (int i = 0; i < ecatagory.Count(); i++)
+            {
+                ecat = ecat + ecatagory[i];
+                if (i != ecatagory.Count() - 1)
+                {
+                    ecat = ecat + ",";
+                }
+            }
+            if (othercat != null)
+            {
+                ecat = ecat + "," + othercat;
+            }
+            ce.expenseCategory = othercat;
             costExp.EditCostExp(ce);
             TempData["SuccessMessage"] = "Form Edited successfully!";
             return RedirectToAction("Index", "Home");
