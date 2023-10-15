@@ -19,7 +19,7 @@
       <div class="card card-bordered">
         <div class="card-inner">
             <div class="card-head">
-                <h5 class="card-title">New Vendor request Form</h5>
+                <h5 class="card-title">New Vendor Request Form</h5>
             </div>
             <form asp-action="VendorForm" asp-controller="AllForms" id="fileuploadlist" enctype="multipart/form-data" method="post">
                 <div class="row g-4">
@@ -38,14 +38,14 @@
                         <div class="col-lg-8">
                             <div class="form-group">
                                 <label class="form-label" style="color:#241c4f">Contact Information</label>
-                                    <span class="form-note" style="color:#241c4f">Would you want to Add Contact Information</span>
+                                    <span class="form-note" style="color:#241c4f">Would you like to add contact information?</span>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <ul class="custom-control-group g-3 align-center flex-wrap">
                                 <div class="custom-control custom-switch" style="margin-left:60PX">
                                     <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                                    <label class="custom-control-label" for="customSwitch1">Yes/No</label>
+                                    <label class="custom-control-label" for="customSwitch1">No/Yes</label>
                                 </div>
 
 
@@ -132,7 +132,7 @@
                                     <option value="Verification Service">Verification Service</option>
                                     <option value="Warehouse Lender">Warehouse Lender</option>
                                     <option value="Wholesale Lender">Wholesale Lender</option>
-                                    <option value="Others">Others</option>
+                                    <option value="Other">Other</option>
                                 </select>
                             </div>
                         </div>
@@ -182,7 +182,7 @@
                                     <option>Marketing</option>
                                     <option>Operations</option>
                                     <option>Sales</option>
-                                    <option>Others</option>
+                                    <option>Other</option>
                                 </select>
                             </div>
                         </div>
@@ -315,7 +315,6 @@
                                 </div>
                                 <input type="text" asp-for="dateToCancel"  id="datepicker" placeholder="MM/DD/YYYY" id="dateToCancel" class="form-control date-picker">
                             </div>
-                            <div class="form-note">Date format <code>mm/dd/yyyy</code></div>
                         </div>
                     </div>
                            
