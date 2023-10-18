@@ -33,11 +33,11 @@ namespace Expense_Vendor_Management.Controllers
         [HttpPost]
         public async Task<IActionResult> VendorForm(Vendor v,string newform,string otherserv,string othercat)
         {
-            if (v.catagory == "Others")
+            if (v.catagory == "Other")
             {
                 v.catagory = othercat;
             }
-            if (v.poductType == "Others")
+            if (v.poductType == "Other")
             {
                 v.poductType = otherserv;
             }

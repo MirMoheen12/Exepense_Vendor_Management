@@ -256,7 +256,12 @@
                                     <option value="fixed">Fixed Amount</option>
                                     <option value="other">Variable</option>
                                 </select>
-                                <input type="text" id="paymentAmountTextBox" asp-for="paymentAmount" class="form-control hidden" placeholder="Enter Amount">
+                                <div id="fixedAmountWrap" class="input-group hidden">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input type="number" id="paymentAmountTextBox" asp-for="paymentAmount" class="form-control" placeholder="Enter Amount">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -310,10 +315,8 @@
 
                             </label>
                             <div class="form-control-wrap">
-                                <div class="form-icon form-icon-right">
-                                    <em class="icon ni ni-calendar-alt"></em>
-                                </div>
-                                <input type="text" asp-for="dateToCancel"  id="datepicker" placeholder="MM/DD/YYYY" id="dateToCancel" class="form-control date-picker">
+                                <input type="date" asp-for="dateToCancel" class="form-control" id="contractExpiration" min="@DateTime.Now.ToString("MM-dd-YYYY")" />
+
                             </div>
                         </div>
                     </div>
@@ -411,7 +414,7 @@
         
 
         $("#productCenter").change(function () {
-            if ($("#productCenter").val() == "Others") {
+            if ($("#productCenter").val() == "Other") {
                 $("#otherserv").prop("required", true);
                 $('#othersermain').show();
             }
@@ -424,7 +427,7 @@
 
         $("#Pcat").change(function()
         {
-            if($("#Pcat").val()=="Others")
+            if($("#Pcat").val()=="Other")
             {
                 $("#othercat").prop("required", true);
                 $('#othercatmain').show();
@@ -464,12 +467,13 @@
     });
     function toggleTextBox() {
         var select = document.getElementById("paymentAmount");
-        var textBox = document.getElementById("paymentAmountTextBox");
+        var fixedAmountWrap = document.getElementById("fixedAmountWrap");
 
         if (select.value === "fixed") {
-            textBox.classList.remove("hidden");
+            fixedAmountWrap.classList.remove("hidden");
         } else {
-            textBox.classList.add("hidden");
+            fixedAmountWrap.classList.add("hidden");
         }
     }
+
 </script>

@@ -72,10 +72,10 @@ namespace Expense_Vendor_Management.Repositories
             {
                 logs.AddLog("getAllMediaByID" + "Retrieved media data.");
                 var data = dbappDbContext.Media.Where(x => x.ReqID == id.ToString() && x.belongTo == belongTo && x.isDeleted == false).ToList();
-                //for (int i = 0; i < data.Count; i++)
-                //{
-                //    data[i].createdBy = user.GetUserName(data[i].createdBy).Result;
-                //}
+                foreach(var media in data)
+                {
+                    media.createdBy = user.GetUserName(media.createdBy).Result;
+                }
                 
                 return data;
             }

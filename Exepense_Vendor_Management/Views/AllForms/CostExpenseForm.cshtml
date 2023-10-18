@@ -87,15 +87,28 @@
                                 Amount<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <input class="form-control" type="number" asp-for="amount" required>
+                                <div id="fixedAmountWrap" class="input-group hidden">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input type="number" id="amount" asp-for="amount" class="form-control" placeholder="Enter Amount" required>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" style="color:#241c4f" for="expenseDate">
-                                Incurred Date<span class="mandatory">*</span>
+                            <label class="form-label tooltip-container" for="expenseDate">
+                                <div class="form-icon form-icon-right">
+                                    <em class="icon ni ni-info" style="margin-left: 55PX;margin-top: -11PX;color:#241c4f;"></em>
+                                </div>
+                                Incurred Date<span class="mandatory">
+                                    *
+                                </span>
+
+                                <span class="tooltip">Section 1.62-2(g)(2)(i) of the IRS provides a fixed date method safe harbor for purposes of satisfying the 'reasonable period of time' requirement. Under this safe harbor, an expense substantiated to the payor within 60 days after it is paid or incurred will be treated as substantiated within a reasonable period of time.</span>
+
                             </label>
                             <div class="form-control-wrap">
                                 <input class="form-control" type="date" id="expenseDate" asp-for="expenseAccurred" required>
@@ -244,7 +257,7 @@
             var selectedOptions = $select.find('option:selected');
             selectedOptions.each(function () {
                 var selectedValue = $(this).val();
-                if(selectedValue=="Others")
+                if(selectedValue=="Other")
                 {
                     test="1";
                     $("#othercatsection").show();

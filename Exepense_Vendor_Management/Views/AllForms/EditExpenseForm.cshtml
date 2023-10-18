@@ -98,7 +98,13 @@
                                 Amount<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <input class="form-control" type="number" asp-for="amount" required>
+                                <div id="fixedAmountWrap" class="input-group hidden">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input type="number" id="amount" asp-for="amount" class="form-control" placeholder="Enter Amount" required>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -244,7 +250,7 @@
                             </td>
                             <td>
                                 <a href="#">
-                                    <em style="font-size:32px" class="icon ni ni-file-pdf"></em>
+                                    <em style="font-size:32px; color:#241c4f;" class="icon ni ni-file-pdf"></em>
                                 </a>
                             </td>
                             <td>

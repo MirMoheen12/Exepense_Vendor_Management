@@ -92,7 +92,7 @@
                                     <option>Marketing</option>
                                     <option>Operations</option>
                                     <option>Sales</option>
-                                    <option>Others</option>
+                                    <option>Other</option>
                                 </select>
                             </div>
                         </div>
@@ -155,7 +155,12 @@
                                     <option value="fixed">Fixed Amount</option>
                                     <option value="other">Other Amount</option>
                                 </select>
-                                <input type="text" id="paymentAmountTextBox" asp-for="paymentAmount" class="form-control hidden" placeholder="Enter Amount">
+                                <div id="fixedAmountWrap" class="input-group hidden">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input type="number" id="paymentAmountTextBox" asp-for="paymentAmount" class="form-control" placeholder="Enter Amount" required>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -373,7 +378,7 @@
                             </td>
                             <td>
                                 <a href="#">
-                                    <em style="font-size:32px" class="icon ni ni-file-pdf"></em>
+                                    <em style="font-size:32px; color:#241c4f;" class="icon ni ni-file-pdf"></em>
                                 </a>
                             </td>
                             <td>
@@ -404,14 +409,15 @@
 <script>
     function toggleTextBox() {
         var select = document.getElementById("paymentAmount");
-        var textBox = document.getElementById("paymentAmountTextBox");
+        var fixedAmountWrap = document.getElementById("fixedAmountWrap");
 
         if (select.value === "fixed") {
-            textBox.classList.remove("hidden");
+            fixedAmountWrap.classList.remove("hidden");
         } else {
-            textBox.classList.add("hidden");
+            fixedAmountWrap.classList.add("hidden");
         }
     }
+
     $(document).ready(function () {
         // Original function when the checkbox is changed
         $("#customSwitch1").change(function () {

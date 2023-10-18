@@ -120,7 +120,12 @@
                                 Amount<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <input class="form-control" type="number" asp-for="amount" required>
+                                <div id="fixedAmountWrap" class="input-group hidden">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input type="number" id="amount" asp-for="amount" class="form-control" placeholder="Enter Amount" required>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -131,6 +136,7 @@
                                 Expense Date<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
+
                                 <input class="form-control" type="date" id="expenseDate" asp-for="expenseAccurred" required>
                             </div>
                         </div>
@@ -156,7 +162,7 @@
                                 <option value="Mileage">Mileage</option>
                                 <option value="Office Supplies">Office Supplies</option>
                                 <option value="Travel">Travel</option>
-                                <option value="Others">Others</option>
+                                <option value="Other">Other</option>
                             </select>
 
 
@@ -261,7 +267,7 @@
                             </td>
                             <td>
                                 <a href="#">
-                                    <em style="font-size:32px" class="icon ni ni-file-pdf"></em>
+                                    <em style="font-size:32px; color:#241c4f;" class="icon ni ni-file-pdf"></em>
                                 </a>
                             </td>
                             <td>
@@ -336,7 +342,7 @@
 
         selectedOptions.each(function () {
             var selectedValue = $(this).val();
-            if (selectedValue == "Others") {
+            if (selectedValue == "Other") {
                 test = "1";
                 $("#othercatsection").show();
                 $("#othercatnew").attr("required", true);
