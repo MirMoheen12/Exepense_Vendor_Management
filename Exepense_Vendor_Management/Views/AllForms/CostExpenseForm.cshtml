@@ -9,64 +9,66 @@
     .mandatory {
         color: red;
     }
+
     @@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500&display=swap');
 
 
-.tooltip-container {
-    cursor: pointer;
-    position: relative;
-    display: inline-block;
-}
+    .tooltip-container {
+        cursor: pointer;
+        position: relative;
+        display: inline-block;
+    }
 
-.tooltip {
-    opacity: 0;
-    z-index: 99;
-    color: #bbb;
-    width: 240px;
-    display: block;
-    font-size: 14px;
-  font-family:'cairo',serif;
-    padding: 5px 10px;
-    border-radius: 3px;
-    text-align: center;
-    text-shadow: 1px 1px 2px #111;
-    background: rgba(51,51,51,0.9);
-    border: 1px solid rgba(34,34,34,0.9);
-    box-shadow: 0 0 3px rgba(0,0,0,0.5);
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
-    -ms-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
-    -webkit-transform: scale(0);
-    -moz-transform: scale(0);
-    -o-transform: scale(0);
-    -ms-transform: scale(0);
-    transform: scale(0);
-    position: absolute;
-    right: -80px;
-    bottom: 40px;
-}
+    .tooltip {
+        opacity: 0;
+        z-index: 99;
+        color: #bbb;
+        width: 300px;
+        display: block;
+        font-size: 13px;
+        font-family: 'cairo',serif;
+        padding: 5px 10px;
+        border-radius: 3px;
+        text-align: center;
+        text-shadow: 1px 1px 2px #111;
+        background: rgba(51,51,51,0.9);
+        border: 1px solid rgba(34,34,34,0.9);
+        box-shadow: 0 0 3px rgba(0,0,0,0.5);
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -o-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+        position: absolute;
+        right: -180px;
+        bottom: 30px;
+    }
 
-.tooltip:before,.tooltip:after {
-    content: '';
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid rgba(51,51,51,0.9);
-    position: absolute;
-    bottom: -10px;
-    left: 43%;
-}
+        .tooltip:before, .tooltip:after {
+            content: '';
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid rgba(51,51,51,0.9);
+            position: absolute;
+            bottom: -10px;
+            left: 43%;
+        }
 
-.tooltip-container:hover .tooltip,a:hover .tooltip {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    -o-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-}
+    .tooltip-container:hover .tooltip, a:hover .tooltip {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
 </style>
+
 
 <div class="nk-block nk-block-lg">
     <div class="nk-block-head">
@@ -139,6 +141,25 @@
                                 </select>
                        
 
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label tooltip-container" for="expenseDate">
+                                <div class="form-icon form-icon-right">
+                                    <em class="icon ni ni-info" style="margin-left: 55PX;margin-top: -11PX;"></em>
+                                </div>
+                                Incurred Date<span class="mandatory">
+                                    *
+                                </span>
+
+                                <span class="tooltip">Section 1.62-2(g)(2)(i) of the IRS provides a fixed date method safe harbor for purposes of satisfying the 'reasonable period of time' requirement. Under this safe harbor, an expense substantiated to the payor within 60 days after it is paid or incurred will be treated as substantiated within a reasonable period of time.</span>
+
+                            </label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="date" id="expenseDate" asp-for="expenseAccurred" required>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6" id="othercatsection" style="display:none;">
