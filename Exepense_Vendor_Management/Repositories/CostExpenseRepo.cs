@@ -35,11 +35,17 @@ namespace Expense_Vendor_Management.Repositories
                 appDbContext.SaveChanges();
                 if (ce.SupportingMedia != null)
                 {
-                    Media m = new Media();
-                    m.mediaFile = ce.SupportingMedia;
-                    m.mediaType = "Cost Center";
-                    m.belongTo = "Cost";
-                    media.AddMedia(m,ce.id.ToString());
+                    for (int i = 0; i < ce.SupportingMedia.Length; i++)
+                    {
+
+
+                        Media m = new Media();
+                        m.mediaFile = ce.SupportingMedia[i];
+                        m.mediaType = "Cost Center";
+                        m.belongTo = "Cost";
+                        m.belongcate = "Supporting Document";
+                        media.AddMedia(m, ce.id.ToString());
+                    }
                 }
                 logs.AddLog("AddNewCostExp");
                 return true;
@@ -72,7 +78,7 @@ namespace Expense_Vendor_Management.Repositories
             }
         }
 
-        public async Task<bool> ChangeCostAction(int ID, string Remarks, string Fstatus, IFormFile? file,float Amount)
+        public async Task<bool> ChangeCostAction(int ID, string Remarks, string Fstatus, IFormFile[]? file,float Amount)
         {
             try
             {
@@ -93,12 +99,18 @@ namespace Expense_Vendor_Management.Repositories
                 appDbContext.SaveChanges();
                 if (file != null)
                 {
-                    Media m = new Media();
-                    m.mediaFile = file;
-                    m.mediaType = "Approve";
-                    m.createdBy = user.ActiveUserId().Result;
-                    m.belongTo = "Cost";
-                    media.AddMedia(m, ID.ToString());
+                    for (int i = 0; i < file.Length; i++)
+                    {
+                        Media m = new Media();
+                        m.mediaFile = file[i];
+                        m.mediaType = "Approve";
+                        m.createdBy = user.ActiveUserId().Result;
+                        m.belongTo = "Cost";
+                        m.belongcate = "Approval Document";
+                        media.AddMedia(m, ID.ToString());
+
+                    }
+                  
                 }
                 logs.AddLog("ChangeCostAction");
                 return true;

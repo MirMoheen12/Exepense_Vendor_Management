@@ -120,7 +120,7 @@ namespace Expense_Vendor_Management.Repositories
             }
         }
 
-        public bool ChangeVendorAction(int ID, string Remarks, string Fstatus, IFormFile? file,string RNotfi, string criticalVendor)
+        public bool ChangeVendorAction(int ID, string Remarks, string Fstatus, IFormFile[]? file,string RNotfi, string criticalVendor)
         {
             try
             {
@@ -141,12 +141,16 @@ namespace Expense_Vendor_Management.Repositories
 
                 if (file != null)
                 {
-                    Media m = new Media();
-                    m.mediaFile = file;
-                    m.belongTo = "Vendor";
-                    m.mediaType = "Approve";
-                    m.createdBy = "";
-                    media.AddMedia(m, ID.ToString());
+                    for (int i = 0; i < file.Length; i++)
+                    {
+                        Media m = new Media();
+                        m.mediaFile = file[i];
+                        m.belongTo = "Vendor";
+                        m.mediaType = "Approve";
+                        m.createdBy = "";
+                        m.belongcate = "Approval Document";
+                        media.AddMedia(m, ID.ToString());
+                    }
                 }
 
                 logs.AddLog("ChangeVendorAction" + $"Changed status for vendor with ID: {ID}");

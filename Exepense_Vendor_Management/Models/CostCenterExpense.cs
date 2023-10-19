@@ -24,7 +24,7 @@ namespace Expense_Vendor_Management.Models
         public string expenseDescription { get; set; }
         public string vandorName { get; set; }
         [NotMapped]
-        public IFormFile SupportingMedia { get; set; }
+        public IFormFile[] SupportingMedia { get; set; }
   
         public string status { get; set; }
 

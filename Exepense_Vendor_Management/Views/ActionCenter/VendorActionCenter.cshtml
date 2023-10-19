@@ -345,9 +345,9 @@
                             <div class="row g-4" id="ApprovalDoc">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-label" style="color:#241c4f" for="full-name-1">Approval DOc</label>
+                                        <label class="form-label" style="color:#241c4f" for="full-name-1">Approval Doc</label>
                                         <div class="form-control-wrap">
-                                            <input type="file" id="Approvaldocfile" name="file" class="form-control">
+                                            <input type="file" id="Approvaldocfile" name="file" multiple class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -391,6 +391,7 @@
                         <th>File Name</th>
                         <th>Attachment</th>
                         <th>Created By</th>
+                        <th>File Category</th>
                   
                   
                     </tr>
@@ -412,7 +413,10 @@
                             <td>
                                 @ViewBag.Media[i].createdBy
                             </td>
-                
+
+                            <td>
+                                @ViewBag.Media[i].belongcate
+                            </td>
                       
                         </tr>
                     }

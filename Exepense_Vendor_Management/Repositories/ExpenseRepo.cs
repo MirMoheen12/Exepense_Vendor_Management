@@ -52,11 +52,17 @@ namespace Expense_Vendor_Management.Repositories
 
                 if (ex.SuportingMedia != null)
                 {
-                    Media m = new Media();
-                    m.mediaFile = ex.SuportingMedia;
-                    m.mediaType = "Add Expense";
-                    m.belongTo = "Expense";
-                    media.AddMedia(m, ex.id.ToString());
+                    for (int i = 0; i < ex.SuportingMedia.Length; i++)
+                    {
+
+
+                        Media m = new Media();
+                        m.mediaFile = ex.SuportingMedia[i];
+                        m.mediaType = "Add Expense";
+                        m.belongTo = "Expense";
+                        m.belongcate = "Supporting Document";
+                        media.AddMedia(m, ex.id.ToString());
+                    }
                 }
 
                 logs.AddLog("AddNewExpense" + "New expense added.");
@@ -104,7 +110,7 @@ namespace Expense_Vendor_Management.Repositories
             }
         }
 
-        public async Task<bool> ChangeExpenseAction(int ID, string Remarks, string Fstatus, IFormFile? file, float Amount)
+        public async Task<bool> ChangeExpenseAction(int ID, string Remarks, string Fstatus, IFormFile[]? file, float Amount)
         {
             try
             {
@@ -130,12 +136,17 @@ namespace Expense_Vendor_Management.Repositories
 
                 if (file != null)
                 {
-                    Media m = new Media();
-                    m.mediaFile = file;
-                    m.mediaType = "Approve";
-                    m.belongTo = "Expense";
-                  
-                    media.AddMedia(m, ID.ToString());
+                    for (int i = 0; i < file.Length; i++)
+                    {
+
+
+                        Media m = new Media();
+                        m.mediaFile = file[i];
+                        m.mediaType = "Approve";
+                        m.belongcate = "Approval Document";
+                        m.belongTo = "Expense";
+                        media.AddMedia(m, ID.ToString());
+                    }
                 }
 
                 logs.AddLog("ChangeExpenseAction" + $"Changed status for expense with ID: {ID}");
