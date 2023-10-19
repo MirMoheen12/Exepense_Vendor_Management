@@ -9,14 +9,13 @@ namespace Exepense_Vendor_Management.Controllers
     public class CommentssideController : Controller
     {
         private readonly ICommentSide commentSide;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IUser user;
 
-        public CommentssideController(ICommentSide commentSide, UserManager<IdentityUser> _userManager, RoleManager<IdentityRole> roleManager)
+        public CommentssideController(ICommentSide commentSide,IUser user)
         {
             this.commentSide = commentSide;
-            this._userManager = _userManager;
-            _roleManager = roleManager;
+            this.user = user;
+        
         }
         public IActionResult Index()
         {
@@ -27,11 +26,18 @@ namespace Exepense_Vendor_Management.Controllers
         [HttpPost]
         public async Task<IActionResult> AddComments(CommentsSection _commentsSection)
         {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var re = await _userManager.FindByNameAsync(claimsIdentity.Name);
-            _commentsSection.Commentsby = re.Id;
+         
+            _commentsSection.Commentsby = user.ActiveUserId().Result;
             var data = commentSide.AddComments(_commentsSection);
-            return RedirectToAction("ExpenseactionCenter", "ActionCenter", new {ID=_commentsSection.ID });
+            if (_commentsSection.Comfor == "Expense")
+            {
+                return RedirectToAction("ExpenseactionCenter", "ActionCenter", new { ID = _commentsSection.ID });
+            }
+            else if((_commentsSection.Comfor == "Cost"))
+                {
+                    return RedirectToAction("CostactionCenter", "ActionCenter", new { ID = _commentsSection.ID });
+                }
+            return View();
 
         }
     }

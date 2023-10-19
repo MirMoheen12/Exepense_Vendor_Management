@@ -56,31 +56,43 @@ namespace Expense_Vendor_Management.Repositories
                 {
                     if (vendor.Contractdoc != null)
                     {
-                        Media m = new Media();
-                        m.mediaFile = vendor.Contractdoc;
-                        m.mediaType = "Add Vendor";
-                        m.belongTo = "Vendor";
-                        media.AddMedia(m, vendor.id.ToString());
+                        for (int i = 0; i < vendor.Contractdoc.Length; i++)
+                        {
+                            Media m = new Media();
+                            m.mediaFile = vendor.Contractdoc[i];
+                            m.mediaType = "Add Vendor";
+                            m.belongTo = "Vendor";
+                            m.belongcate = "Contract Document";
+                            media.AddMedia(m, vendor.id.ToString());
+                        }
+                      
                     }
 
                     if (vendor.assesmentsdoc != null)
                     {
-                        Media m = new Media();
-                        m.mediaFile = vendor.assesmentsdoc;
-                        m.mediaType = "Add Vendor";
-                        m.belongTo = "Vendor";
-                      
-                        media.AddMedia(m, vendor.id.ToString());
+                        for (int i = 0; i < vendor.assesmentsdoc.Length; i++)
+                        {
+                            Media m = new Media();
+                            m.mediaFile = vendor.assesmentsdoc[i];
+                            m.mediaType = "Add Vendor";
+                            m.belongTo = "Vendor";
+                            m.belongcate = "Assesment Document";
+                            media.AddMedia(m, vendor.id.ToString());
+                        }
                     }
 
                     if (vendor.otherdoc != null)
                     {
-                        Media m = new Media();
-                        m.mediaFile = vendor.otherdoc;
-                        m.mediaType = "Add Vendor";
-                        m.createdBy = "";
-                        m.belongTo = "Vendor";
-                        media.AddMedia(m, vendor.id.ToString());
+                        for (int i = 0; i < vendor.otherdoc.Length; i++)
+                        {
+                            Media m = new Media();
+                            m.mediaFile = vendor.otherdoc[i];
+                            m.mediaType = "Add Vendor";
+                            m.createdBy = "";
+                            m.belongTo = "Vendor";
+                            m.belongcate = "Other Document";
+                            media.AddMedia(m, vendor.id.ToString());
+                        }
                     }
                 }
 
@@ -108,7 +120,7 @@ namespace Expense_Vendor_Management.Repositories
             }
         }
 
-        public bool ChangeVendorAction(int ID, string Remarks, string Fstatus, IFormFile? file,string RNotfi)
+        public bool ChangeVendorAction(int ID, string Remarks, string Fstatus, IFormFile? file,string RNotfi, string criticalVendor)
         {
             try
             {
@@ -122,6 +134,7 @@ namespace Expense_Vendor_Management.Repositories
                 data.status = Fstatus;
                 data.modifiedBy = "SAdmin/Finance";
                 data.notes = Remarks;
+                data.criticalVendor=criticalVendor;
                 data.RNotfication= RNotfi;
                 _context.Vendor.Update(data);
                 _context.SaveChanges();

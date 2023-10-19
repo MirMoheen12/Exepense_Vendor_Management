@@ -7,7 +7,7 @@ namespace Expense_Vendor_Management.Interfaces
         public List<Vendor> GetActiveVendorsForms();
         public Task<bool> AddNewVendor(Vendor vendor);
         public Vendor GetVendorById(int vendorId);
-        public bool ChangeVendorAction(int ID, string Remarks, string Fstatus, IFormFile? file, string RNotfi);
+        public bool ChangeVendorAction(int ID, string Remarks, string Fstatus, IFormFile? file, string RNotfi,string criticalVendor);
         public void EditVendor(Vendor v);
     }
 }

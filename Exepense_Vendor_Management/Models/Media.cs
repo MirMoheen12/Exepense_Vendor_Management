@@ -19,5 +19,6 @@ namespace Expense_Vendor_Management.Models
         public bool isDeleted { get; set; }
         public string createdBy { get; set; }
         public string belongTo { get; set; }
+        public string? belongcate { get; set; }
     }
 }

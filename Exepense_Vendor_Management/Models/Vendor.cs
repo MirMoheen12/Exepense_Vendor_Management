@@ -22,18 +22,18 @@ namespace Expense_Vendor_Management.Models
         public string? ContactEmail { get; set; }
         public string? ContactPhone { get; set; }
         public string? ContactWebsite { get; set; }
-        public string criticalVendor { get; set;}
+        public string? criticalVendor { get; set;}
         public string? renewalPeriod { get; set; }
         public string? RNotfication { get; set; }
 
         [NotMapped]
-        public IFormFile? Contractdoc { get; set; } 
+        public IFormFile[]? Contractdoc { get; set; } 
       
         [NotMapped]
-        public IFormFile? assesmentsdoc { get; set; }
+        public IFormFile[]? assesmentsdoc { get; set; }
     
         [NotMapped]
-        public IFormFile? otherdoc { get; set; }
+        public IFormFile[]? otherdoc { get; set; }
         public decimal paymentAmount { get; set;}
         public string autoPayment { get; set;}
         public  DateTime contractExpiration { get; set;}

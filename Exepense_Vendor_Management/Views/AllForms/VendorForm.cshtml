@@ -197,19 +197,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-label" style="color:#241c4f">
-                                Critical Vendor<span class="mandatory">*</span>
-                            </label>
-                            <div class="form-control-wrap">
-                                <select class="form-control" asp-for="criticalVendor">
-                                    <option selected value="Yes">Yes</option>
-                                    <option value="No">NO</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                   
           
 
                     <div class="col-lg-6">
@@ -218,7 +206,7 @@
                                 Contract Documents<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <input type="file" asp-for="Contractdoc" required class="form-control">
+                                <input type="file" name="Contractdoc" multiple required class="form-control">
                             </div>
                         </div>
                     </div>
@@ -229,18 +217,18 @@
                                 Assessments<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <input type="file" required asp-for="assesmentsdoc" class="form-control">
+                                <input type="file" required name="assesmentsdoc" multiple class="form-control">
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-label" style="color:#241c4f" for="otherdocument">
+                            <label class="form-label" style="color:#241c4f"  for="otherdocument">
                                 Other Documents
                             </label>
                             <div class="form-control-wrap">
-                                <input type="file" asp-for="otherdoc" class="form-control">
+                                <input type="file" name="otherdoc" multiple class="form-control">
                             </div>
                         </div>
                     </div>

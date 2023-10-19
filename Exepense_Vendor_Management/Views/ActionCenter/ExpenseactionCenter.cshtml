@@ -5,6 +5,9 @@
 }
 
 <style>
+    .mandatory {
+        color: red;
+    }
     .buttons-pdf {
         display: none;
     }
@@ -122,7 +125,7 @@
             <div class="card-content">
                 <ul class="nav nav-tabs nav-tabs-mb-icon nav-tabs-card">
                     <li class="nav-item">
-                        <a class="nav-link active" href="AllForms/EditExpenseForm?id=@Model.id"><em class="icon ni ni-user-circle"></em><span>Edit</span></a>
+                        <a class="nav-link active" href="AllForms/EditExpenseForm?id=@Model.id"><em class="icon ni ni-edit"></em><span>Edit</span></a>
                     </li>
 
                 </ul><!-- .nav-tabs -->
@@ -194,7 +197,7 @@
                             <div class="row g-4">
                                 <div class="col-lg-6">
                                     <div class="profile-ud wider">
-                                        <span class="profile-ud-label" style="color:#241c4f">Status</span>
+                                        <span class="profile-ud-label" style="color:#241c4f">Status<span class="mandatory">*</span></span>
                                         <span class="profile-ud-value" style="color:#241c4f">
                                             <select required name="Fstatus" id="FormStatus" type="text" class="form-control">
                                                 <option value="">Select Status</option>
@@ -221,7 +224,7 @@
 
                                 <div class="col-lg-6" id="ApprovalAmt" style="display:none;">
                                     <div class="profile-ud wider">
-                                        <span class="profile-ud-label" style="color:#241c4f">Approved Amount</span>
+                                        <span class="profile-ud-label" style="color:#241c4f">Approved Amount<span class="mandatory">*</span></span>
                                         <span class="profile-ud-value" style="color:#241c4f">
                                             <input type="number" id="ApprovedAmount" name="Amount" class="form-control">
                                         </span>
@@ -234,7 +237,7 @@
                            
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label class="form-label" style="color:#241c4f" for="full-name-1">Remarks</label>
+                                        <label class="form-label" style="color:#241c4f" for="full-name-1">Remarks<span class="mandatory">*</span></label>
                                         <div class="form-control-wrap">
                                             <textarea type="text" required name="Remarks" class="form-control"></textarea>
                                         </div>
@@ -245,7 +248,7 @@
                             <div class="row g-4" id="ApprovalDoc">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-label" style="color:#241c4f" for="full-name-1">Approval DOc</label>
+                                        <label class="form-label" style="color:#241c4f" for="full-name-1">Approval Doc <span class="mandatory">*</span></label>
                                         <div class="form-control-wrap">
                                             <input type="file" id="Approvaldocfile" name="file" class="form-control">
                                         </div>
@@ -265,10 +268,12 @@
                         </form>
                     </div><!-- .nk-block -->
                     <form class="comment-form" asp-action="AddComments" asp-controller="Commentsside" method="post">
+                        <h4 style="color:#241c4f;">Comments Section</h4>
                         <input type="hidden" name="ID" value="@Model.id" />
                         <input type="hidden" name="Comfor" value="Expense" />
                         <textarea id="comment" name="Description" required></textarea>
-                        <button type="submit" class="btn btn-primary">Post Comment</button>
+                        <button type="submit" class="btn btn-primary" style="background-color:#241c4f;width:15% !important">Add Comments</button>
+
                     </form>
                     <div class="nk-divider divider md"></div>
 

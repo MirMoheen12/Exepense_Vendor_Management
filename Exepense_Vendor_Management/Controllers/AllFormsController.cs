@@ -41,6 +41,7 @@ namespace Expense_Vendor_Management.Controllers
             {
                 v.poductType = otherserv;
             }
+           
             await vendor.AddNewVendor(v);
             TempData["SuccessMessage"] = "Form submitted successfully!";
             if (newform == "New Val")
