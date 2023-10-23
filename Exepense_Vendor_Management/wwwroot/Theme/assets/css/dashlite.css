@@ -7682,7 +7682,7 @@ ol.linenums li { padding-left: 12px; color: #bebec5; line-height: 18px; text-sha
 .select2-container .select2-search--inline .select2-search__field::-webkit-search-cancel-button { -webkit-appearance: none; }
 
 .select2-dropdown {
-    background-color: #efe5e2;
+    background-color: white;
     border-radius: 4px;
     box-shadow: none;
     border: 1px solid #241c4f;
@@ -7735,7 +7735,7 @@ ol.linenums li { padding-left: 12px; color: #bebec5; line-height: 18px; text-sha
     font-family: Roboto, sans-serif;
     font-size: 13px;
     font-weight: 400;
-    background-color: #efe5e2;
+    background-color: white;
     border: 1px solid #241c4f;
     border-radius: 4px;
     box-shadow: none;
@@ -7795,7 +7795,7 @@ ol.linenums li { padding-left: 12px; color: #bebec5; line-height: 18px; text-sha
 .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow:after { content: ""; }
 
 .select2-container--default .select2-selection--multiple {
-    background-color: #efe5e2;
+    background-color: white;
     border: 1px solid #241c4f;
     border-radius: 4px;
     font-family: Roboto, sans-serif;
