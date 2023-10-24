@@ -178,8 +178,22 @@ namespace Expense_Vendor_Management.Controllers
             return View(data);
         }
         [HttpPost]
-        public IActionResult EditExpenseForm(EmployeeExpense e)
+        public IActionResult EditExpenseForm(EmployeeExpense e, string[] ecatagory, string othercat)
         {
+            string ecat = "";
+            for (int i = 0; i < ecatagory.Count(); i++)
+            {
+                ecat = ecat + ecatagory[i];
+                if (i != ecatagory.Count() - 1)
+                {
+                    ecat = ecat + ",";
+                }
+            }
+            if (othercat != null)
+            {
+                ecat = ecat + "," + othercat;
+            }
+            e.expenseCategory = ecat;
             expense.EditExpense(e);
             TempData["SuccessMessage"] = "Form Edited successfully!";
             return RedirectToAction("Index", "Home");
