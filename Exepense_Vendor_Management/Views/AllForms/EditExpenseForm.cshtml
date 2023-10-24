@@ -108,6 +108,8 @@
                             </div>
                         </div>
                     </div>
+                    <input class="form-control" type="text" id="expensecategoryall" hidden asp-for="expenseCategory" required>
+
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" style="color:#241c4f" for="expenseOccurred">
@@ -135,7 +137,8 @@
                                 Expense Category<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">
-                                <select class="form-select" id="expenseCategory" asp-for="expenseCategory">
+                                <select class="form-select" id="expensecat" required name="ecatagory[]" multiple="multiple" data-placeholder="Select Multiple options">
+
                                     <option value="">Select Expense Category</option>
                                     <option value="Administrative">Administrative</option>
                                     <option value="Communication">Communication</option>
@@ -147,12 +150,22 @@
                                     <option value="Mileage">Mileage</option>
                                     <option value="Office Supplies">Office Supplies</option>
                                     <option value="Travel">Travel</option>
+                                    <option value="Other">Other</option>
 
                                 </select>
                             </div>
                         </div>
                     </div>
-
+                    <div class="col-lg-6" style="display:none;" id="othercatsection">
+                        <div class="form-group">
+                            <label class="form-label" style="color:#241c4f" for="expenseDate">
+                                Other Category<span class="mandatory">*</span>
+                            </label>
+                            <div class="form-control-wrap">
+                                <input class="form-control" type="text" name="othercat" id="othercatnew">
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label tooltip-container" for="vendorName">
@@ -277,3 +290,77 @@
         </div>
     </div>
 </div>
+<script src="~/theme/assets/js/bundle.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var cat = $('#expensecategoryall').val();
+
+        var items = cat.split(",");
+        var notFoundItems = [];
+        $.each(items, function (index, item) {
+            var $selects = $("select#expensecat");
+            var found = false;
+            $selects.each(function () {
+                var $option = $(this).find('option[value="' + item + '"]');
+                if ($option.length) {
+                    $option.prop('selected', true);
+                    found = true;
+                }
+            });
+
+            if (!found) {
+                console.log("Item not found: " + item);
+                notFoundItems.push(item);
+            }
+        });
+        if (notFoundItems.length === 1) {
+
+            $("#othercatsection").show();
+            $("#othercatnew").attr("required", true);
+            $("#othercatnew").val(notFoundItems[0]);
+
+        }
+        else {
+            $("#othercatsection").hide();
+            $("#othercatnew").attr("required", false);
+        }
+
+
+    });
+
+    $(document).ready(function () {
+        $("#expensecat").change(function () {
+            var $select = $('#expensecat');
+
+            var test = "0";
+            var selectedOptions = $select.find('option:selected');
+
+            selectedOptions.each(function () {
+                var selectedValue = $(this).val();
+                if (selectedValue == "Other") {
+                    test = "1";
+                    $("#othercatsection").show();
+                    $("#othercatnew").attr("required", true);
+                }
+            });
+            if (test == "0") {
+                $("#othercatsection").hide();
+                $("#othercatnew").attr("required", false);
+            }
+        });
+
+    });
+    const amountInput = $('#amount');
+
+    amountInput.on('input', function () {
+        // Remove any non-numeric characters
+        const rawValue = amountInput.val().replace(/[^0-9]/g, '');
+
+        // Format the raw value as '20,000'
+        const formattedValue = new Intl.NumberFormat('en-US').format(rawValue);
+
+        // Update the input field with the formatted value
+        amountInput.val(formattedValue);
+    });
+
+</script>

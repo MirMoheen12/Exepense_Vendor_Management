@@ -52,7 +52,20 @@ namespace Expense_Vendor_Management.Controllers
         public IActionResult AllExpenseForms()
         {
 
-            ViewBag.Name = user.GetUserName(user.ActiveUserId().Result).Result.Split(" ").FirstOrDefault();
+            var name= user.GetUserName(user.ActiveUserId().Result).Result.Split(" ").FirstOrDefault();
+            if (name != null)
+            {
+                char lastChar = name[name.Length - 1];
+                if (lastChar != 's' || lastChar != 'S')
+                {
+                    name = name + "'s";
+                }
+                else
+                {
+                    name = name + "'";
+                }
+            }
+            ViewBag.Name = name;
             return View(ex.GetAllExpenses());
         }
         [HttpGet]

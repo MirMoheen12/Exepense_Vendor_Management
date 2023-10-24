@@ -6,9 +6,13 @@
     string displ = username.Substring(username.Length - 1);
     if (displ != "s")
     {
-        username = username + "'s";   
+        username = username + "'s";
     }
-    
+    else
+    {
+        username += "'";    
+    }
+
 }
 <!DOCTYPE html>
 <html lang="zxx" class="js">

@@ -60,8 +60,22 @@ namespace Expense_Vendor_Management.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> ExpenseForm(EmployeeExpense e, string newform)
+        public async Task<IActionResult> ExpenseForm(EmployeeExpense e, string newform, string Othercat, string[] ecatagory)
         {
+            string ecat = "";
+            for (int i = 0; i < ecatagory.Count(); i++)
+            {
+                ecat = ecat + ecatagory[i];
+                if (i != ecatagory.Count() - 1)
+                {
+                    ecat = ecat + ",";
+                }
+            }
+            if (Othercat != null)
+            {
+                ecat = ecat + "," + Othercat;
+            }
+            e.expenseCategory = ecat;
             var res = expense.AddNewExpense(e);
             TempData["SuccessMessage"] = "Form submitted successfully!";
             if (newform == "New Val")
