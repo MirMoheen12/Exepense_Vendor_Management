@@ -93,7 +93,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">$</span>
                                     </div>
-                                    <input type="number" id="amount" asp-for="amount" class="form-control" placeholder="Enter Amount" required>
+                                    <input type="text" id="amount" asp-for="amount" class="form-control" placeholder="Enter Amount" required>
                                 </div>
                             </div>
                         </div>
@@ -279,7 +279,18 @@
         });
 
 
-       
+        const amountInput = $('#amount');
+
+        amountInput.on('input', function () {
+            // Remove any non-numeric characters
+            const rawValue = amountInput.val().replace(/[^0-9]/g, '');
+
+            // Format the raw value as '20,000'
+            const formattedValue = new Intl.NumberFormat('en-US').format(rawValue);
+
+            // Update the input field with the formatted value
+            amountInput.val(formattedValue);
+        });
 
 
 
