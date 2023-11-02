@@ -248,7 +248,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">$</span>
                                     </div>
-                                    <input type="number" id="paymentAmountTextBox" asp-for="paymentAmount" class="form-control" placeholder="Enter Amount">
+                                    <input type="text" id="paymentAmountTextBox" asp-for="paymentAmount" class="form-control" placeholder="Enter Amount">
                                 </div>
                             </div>
                         </div>
@@ -393,6 +393,19 @@
     $(document).ready(function () {
        
 
+        const amountInput = $('#paymentAmountTextBox');
+
+        amountInput.on('input', function () {
+            // Remove any non-numeric characters
+            const rawValue = amountInput.val().replace(/[^0-9]/g, '');
+
+            // Format the raw value as '20,000'
+            const formattedValue = new Intl.NumberFormat('en-US').format(rawValue);
+
+            // Update the input field with the formatted value
+            amountInput.val(formattedValue);
+        });
+
         $("#Newform").click(function () {
             $("#newforminput").val("New Val");
             $("#submitform").click();
@@ -452,6 +465,9 @@
                 $("#ContactWebsite").prop("required", false);
             }
         });
+
+        
+
     });
     function toggleTextBox() {
         var select = document.getElementById("paymentAmount");
