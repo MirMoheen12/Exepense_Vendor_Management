@@ -76,6 +76,7 @@ namespace Expense_Vendor_Management.Controllers
                 ecat = ecat + "," + Othercat;
             }
             e.expenseCategory = ecat;
+            e.expenseOccurred = DateTime.Now;
             var res = expense.AddNewExpense(e);
             TempData["SuccessMessage"] = "Form submitted successfully!";
             if (newform == "New Val")
