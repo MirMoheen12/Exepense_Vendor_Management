@@ -224,6 +224,11 @@
                             <button type="button" class="btn btn-lg btn-primary" id="Newform">Submit and Add New</button>
                         </div>
                     </div>
+                    @if (ViewBag.year!=null)
+                    {
+                        <p class="text-danger">@ViewBag.year</p>
+                    }
+                   
                 </div>
        
             </form>

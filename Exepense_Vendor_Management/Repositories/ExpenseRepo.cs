@@ -22,7 +22,16 @@ namespace Expense_Vendor_Management.Repositories
             this.media = media;
             this.logs = logs;
         }
-
+        public decimal yearlylimt()
+        {
+            var data = appContext.Vendor.Where(x=>x.createdOn.Year==DateTime.Now.Year &&x.createdBy==user.ActiveUserId().Result).Sum(x => x.paymentAmount);
+            return data.Value;
+        }
+        public decimal monthlylimt()
+        {
+            var data = appContext.Vendor.Where(x => x.createdOn.Month == DateTime.Now.Month && x.createdBy == user.ActiveUserId().Result).Sum(x => x.paymentAmount);
+            return data.Value;
+        }
         public async Task<bool> AddNewExpense(EmployeeExpense ex)
         {
             try
