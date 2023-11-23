@@ -18,6 +18,8 @@ namespace Expense_Vendor_Management.Models
         public string costCenter { get; set;}   
         public string poductType { get; set;}
         public string catagory { get; set;}
+        public string? Frequency { get; set; }
+        public string? DlrAmt { get; set; }
         public string? ContactName { get; set; }
         public string? ContactEmail { get; set; }
         public string? ContactPhone { get; set; }
@@ -34,14 +36,14 @@ namespace Expense_Vendor_Management.Models
     
         [NotMapped]
         public IFormFile[]? otherdoc { get; set; }
-        public decimal paymentAmount { get; set;}
-        public string autoPayment { get; set;}
+        public decimal? paymentAmount { get; set;}
+        public string? autoPayment { get; set;}
         public  DateTime contractExpiration { get; set;}
-        public string autoRenew{ get; set;}
+        public string? autoRenew{ get; set;}
         public DateTime dateToCancel { get; set; }
-        public string notes{ get; set;}  
-        public Boolean TechnolgyVendor { get; set; }
-        public Boolean CustomerAccess { get; set; }
+        public string? notes{ get; set;}  
+        public Boolean? TechnolgyVendor { get; set; }
+        public Boolean? CustomerAccess { get; set; }
    
 
     }

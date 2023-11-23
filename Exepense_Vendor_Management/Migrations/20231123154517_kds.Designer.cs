@@ -4,6 +4,7 @@ using Expense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Expense_Vendor_Management.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231123154517_kds")]
+    partial class kds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -400,7 +402,7 @@ namespace Expense_Vendor_Management.Migrations
                     b.Property<string>("ContactWebsite")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("CustomerAccess")
+                    b.Property<bool>("CustomerAccess")
                         .HasColumnType("bit");
 
                     b.Property<string>("DlrAmt")
@@ -412,13 +414,15 @@ namespace Expense_Vendor_Management.Migrations
                     b.Property<string>("RNotfication")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("TechnolgyVendor")
+                    b.Property<bool>("TechnolgyVendor")
                         .HasColumnType("bit");
 
                     b.Property<string>("autoPayment")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("autoRenew")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("catagory")
@@ -453,9 +457,10 @@ namespace Expense_Vendor_Management.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("notes")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("paymentAmount")
+                    b.Property<decimal>("paymentAmount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("poductType")
