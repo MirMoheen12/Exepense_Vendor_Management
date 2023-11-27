@@ -62,6 +62,11 @@ namespace Expense_Vendor_Management.Controllers
         [HttpPost]
         public async Task<IActionResult> ExpenseForm(EmployeeExpense e, string newform, string Othercat, string[] ecatagory)
         {
+            if (e.amount > 3000)
+            {
+                ViewBag.year = " Amount is more then monthly limit";
+                return View();
+            }
             var yearly = expense.monthlylimt();
             var monthly = expense.monthlylimt();
             if (yearly != null)
