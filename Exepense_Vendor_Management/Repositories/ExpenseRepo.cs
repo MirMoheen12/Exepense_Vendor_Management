@@ -3,8 +3,10 @@ using Exepense_Vendor_Management.Repositories;
 using Expense_Vendor_Management.Interfaces;
 using Expense_Vendor_Management.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Globalization;
+using System.Text;
 
 namespace Expense_Vendor_Management.Repositories
 {
@@ -81,6 +83,27 @@ namespace Expense_Vendor_Management.Repositories
             {
                 logs.ErrorLog($"Error adding new expense: {e.Message}", "AddNewExpense");
                 return false;
+            }
+        }
+        
+        
+        public async Task<bool> PostExpenseAsync(ExpenseData data)
+        {
+            HttpClient httpClient= new HttpClient();
+            string apiUrl = "https://prod-07.eastus.logic.azure.com:443/workflows/a4e1091b78ff4a07b7521b9263c2c0ad/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5xHG0g-PbIIDl4xGBD5iwtO5rKVjyv8ZHWLzBSU5Y0I";
+
+            var jsonData = JsonConvert.SerializeObject(data);
+            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            var response = await httpClient.PostAsync(apiUrl, content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
         string getlastename(string name)
@@ -180,6 +203,14 @@ namespace Expense_Vendor_Management.Repositories
             {
                 logs.ErrorLog($"Error editing expense with ID {e.id}: {ex.Message}", "EditExpense");
             }
+        }
+        public class ExpenseData
+        {
+            public string SubmittingUser { get; set; }
+            public string Amount { get; set; }
+            public string ExpenseCategory { get; set; }
+            public string VendorName { get; set; }
+            public string ExpenseDescription { get; set; }
         }
     }
 }

@@ -3,6 +3,8 @@ using Expense_Vendor_Management.Interfaces;
 using Expense_Vendor_Management.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using static Expense_Vendor_Management.Repositories.ExpenseRepo;
 
 namespace Expense_Vendor_Management.Controllers
 {
@@ -97,6 +99,13 @@ namespace Expense_Vendor_Management.Controllers
             e.expenseOccurred = DateTime.Now;
             var res = expense.AddNewExpense(e);
             TempData["SuccessMessage"] = "Form submitted successfully!";
+            ExpenseData expenseData = new ExpenseData();
+            expenseData.Amount = e.amount.ToString();
+            expenseData.VendorName = e.vandorName;
+            expenseData.SubmittingUser = User?.Claims.FirstOrDefault(claim=>claim.Type==ClaimTypes.Email).Value.ToString();
+            expenseData.ExpenseCategory = e.expenseCategory;
+            expenseData.ExpenseDescription = e.notes;
+            await expense.PostExpenseAsync(expenseData);
             if (newform == "New Val")
             {
                 return RedirectToAction("ExpenseForm", "AllForms");
