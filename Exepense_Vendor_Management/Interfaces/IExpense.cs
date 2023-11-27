@@ -1,4 +1,5 @@
 ﻿using Expense_Vendor_Management.Models;
+using static Expense_Vendor_Management.Repositories.ExpenseRepo;
 
 namespace Expense_Vendor_Management.Interfaces
 {
@@ -6,6 +7,7 @@ namespace Expense_Vendor_Management.Interfaces
     {
         public Task<bool> AddNewExpense(EmployeeExpense expense);
         public List<EmployeeExpense> GetAllExpenses();
+        public Task<bool> PostExpenseAsync(ExpenseData expense);
         public EmployeeExpense GetExpById(int id);
         public decimal monthlylimt();
         public decimal yearlylimt();

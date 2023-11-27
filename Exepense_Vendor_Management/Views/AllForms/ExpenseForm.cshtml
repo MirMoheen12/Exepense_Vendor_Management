@@ -91,7 +91,8 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">$</span>
                                     </div>
-                                    <input type="text" id="amount" asp-for="amount" max="3000" class="form-control" placeholder="Enter Amount" required>
+                                    <input type="number" id="amount" asp-for="amount" class="form-control" placeholder="Enter Amount" required min="1" max="3000"> @*oninput="validateAmount()"*@
+                                    <span id="amountError" style="color: red; display: none;">Error: Amount cannot exceed 3000 for one expense.</span>
                                 </div>
                             </div>
                         </div>
@@ -102,7 +103,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" style="color:#241c4f" for="expenseCategory">
-                                Expense Category<span class="mandatory">*</span>
+                                Expense Category<span class="mandatory">*</span><span style="color: grey; font-size: 11px"> Select 1 or Multiple Options by Holding the Ctrl Button and Selecting</span>
                             </label>
                             <div class="form-control-wrap">
                                 <select class="form-select" id="expensecat" required name="ecatagory[]" multiple="multiple" data-placeholder="Select Multiple options">
@@ -237,6 +238,7 @@
 </div>
 <script src="~/theme/assets/js/bundle.js"></script>
 <script type="text/javascript">
+
     $(document).ready(function () {
 
 
@@ -288,4 +290,17 @@
 
     });
 
+</script>
+<script>
+    function validateAmount() {
+        var maxAmount = YOUR_MAX_VALUE; // Replace with your max value
+        var amountInput = document.getElementById("amount");
+        var errorDisplay = document.getElementById("amountError");
+
+        if (amountInput.value > maxAmount) {
+            errorDisplay.style.display = 'block';
+        } else {
+            errorDisplay.style.display = 'none';
+        }
+    }
 </script>

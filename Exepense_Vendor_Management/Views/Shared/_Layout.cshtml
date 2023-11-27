@@ -4,7 +4,7 @@
     var user = await _usermanager.GetUserAsync(User);
     var username = user.DisplayName.Split(" ").FirstOrDefault();
     string displ = username.Substring(username.Length - 1);
-    if (displ != "s")
+    if (displ.ToLower() != "s")
     {
         username = username + "'s";
     }
