@@ -236,7 +236,7 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label class="form-label" style="color:#241c4f" for="full-name-1">Remarks</label>
+                                        <label class="form-label" style="color:#241c4f" for="full-name-1">Remarks to Submitter</label>
                                         <div class="form-control-wrap">
                                             <textarea type="text" required name="Remarks" class="form-control"></textarea>
                                         </div>
@@ -267,7 +267,7 @@
                         </form>
                     </div><!-- .nk-block -->
                     <form class="comment-form" asp-action="AddComments" asp-controller="Commentsside" method="post">
-                        <h4 style="color:#241c4f;">Comments Section</h4>
+                        <h4 style="color:#241c4f;">Comments Section</h4><span style="color: grey; font-size: 11px">Internal Team Only</span>
                         <input type="hidden" name="ID" value="@Model.id" />
                         <input type="hidden" name="Comfor" value="Cost" />
                         <textarea id="comment" name="Description" required></textarea>

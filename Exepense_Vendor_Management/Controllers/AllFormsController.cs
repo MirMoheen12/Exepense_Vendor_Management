@@ -64,7 +64,7 @@ namespace Expense_Vendor_Management.Controllers
         [HttpPost]
         public async Task<IActionResult> ExpenseForm(EmployeeExpense e, string newform, string Othercat, string[] ecatagory)
         {
-            var yearly = expense.monthlylimt();
+            var yearly = expense.yearlylimt();
             var monthly = expense.monthlylimt();
             if (yearly != null)
             {
