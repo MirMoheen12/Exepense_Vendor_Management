@@ -14,6 +14,8 @@ namespace Expense_Vendor_Management.Models
         public Boolean isDeleted { get; set; }
         public string createdBy { get; set; }
         public string vendorName { get; set; }
+        public string? PaymentType { get; set; }
+        public DateTime? DueDate { get; set; }
         public string status { get; set;}
         public string costCenter { get; set;}   
         public string poductType { get; set;}

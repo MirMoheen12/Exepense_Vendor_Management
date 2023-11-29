@@ -46,6 +46,10 @@
                             Status
 
                         </th>
+                        <th>
+                            Last Updated Date
+
+                        </th>
 
                         <th>Details</th>
                     </tr>
@@ -74,7 +78,9 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.status)
                             </td>
-
+                            <td>
+                                @item.ModifiedOn
+                            </td>
 
                             <td>
                                 <a href="~/ActionCenter/ExpenseactionCenter?ID=@item.id">

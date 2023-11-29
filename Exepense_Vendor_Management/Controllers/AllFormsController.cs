@@ -69,11 +69,11 @@ namespace Expense_Vendor_Management.Controllers
                 ViewBag.year = " Amount is more then monthly limit";
                 return View();
             }
-            var yearly = expense.monthlylimt();
+            var yearly = expense.yearlylimt();
             var monthly = expense.monthlylimt();
             if (yearly != null)
             {
-                if (yearly >= 36000)
+                if (yearly+e.amount >= 36000)
                 {
                     ViewBag.year = "Yearly Limit exceeded";
                     return View();

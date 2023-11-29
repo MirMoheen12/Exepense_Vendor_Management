@@ -92,51 +92,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="row">
-                        <div class="col-lg-8">
-                            <div class="form-group">
-                                <label class="form-label" style="color:#241c4f">Contact Information</label>
-                                    <span class="form-note" style="color:#241c4f">Would you like to add contact information?</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <ul class="custom-control-group g-3 align-center flex-wrap">
-                                <div class="custom-control custom-switch" style="margin-left:60PX">
-                                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                                    <label class="custom-control-label" for="customSwitch1">No/Yes</label>
-                                </div>
-
-
-                            </ul>
-                        </div>
-                        </div>
-                    </div>
+                 
 
                     <input type="text" class="custom-control-input" hidden name="newform" value="" id="newforminput">
 
 
-                    <div class="col-lg-6" style="display:none" id="customername">
+                    <div class="col-lg-6" id="customername">
                                 <div class="form-group">
                                     <label class="form-label" style="color:#241c4f">
                                         Contact Name<span class="mandatory">*</span>
                                     </label>
                                     <div class="form-control-wrap">
-                                        <input asp-for="ContactName" id="ContactName" class="form-control" type="text">
+                                        <input asp-for="ContactName" required id="ContactName" class="form-control" type="text">
                                     </div>
                                 </div>
                             </div>
-                    <div class="col-lg-6" style="display:none" id="customerEmail">
+                    <div class="col-lg-6" id="customerEmail">
                                 <div class="form-group">
                                     <label class="form-label" style="color:#241c4f">
                                         Contact Email<span class="mandatory">*</span>
                                     </label>
                                     <div class="form-control-wrap">
-                                        <input asp-for="ContactEmail" id="ContactEmail" class="form-control" type="text">
+                                        <input asp-for="ContactEmail" required id="ContactEmail" class="form-control" type="text">
                                     </div>
                                 </div>
                             </div>
-                    <div class="col-lg-6" style="display:none" id="customerPhone">
+                    <div class="col-lg-6"  id="customerPhone">
                                 <div class="form-group">
 
 
@@ -155,17 +136,17 @@
 
                                 
                                     <div class="form-control-wrap">
-                                        <input asp-for="ContactPhone" id="ContactPhone" class="form-control" type="text">
+                                        <input asp-for="ContactPhone" required id="ContactPhone" class="form-control" type="text">
                                     </div>
                                 </div>
                             </div>
-                    <div class="col-lg-6" style="display:none" id="customerNumber">
+                    <div class="col-lg-6"  id="customerNumber">
                                 <div class="form-group">
                                     <label class="form-label" style="color:#241c4f">
                                         Contact website<span class="mandatory">*</span>
                                     </label>
                                     <div class="form-control-wrap">
-                                        <input asp-for="ContactWebsite" id="ContactWebsite" class="form-control" type="text">
+                                        <input asp-for="ContactWebsite" required id="ContactWebsite" class="form-control" type="text">
                                     </div>
                                 </div>
                             </div>
@@ -478,9 +459,31 @@
                             </ul>
                         </div>
                     </div> *@
-            
-                
-   
+                    <div class="col-lg-6" >
+                        <div class="form-group">
+                            <label class="form-label" style="color:#241c4f">
+                                Payment Type<span class="mandatory">*</span>
+                            </label>
+                            <div class="form-control-wrap">
+                                <select class="form-control" id="Payment Type" required asp-for="PaymentType">
+                                    <option value="ACH">ACH</option>
+                                    <option value="Cheque">Cheque</option>
+                                    <option value="Venmo">Venmo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" style="color:#241c4f" for="otherdocument">
+                                Due Date
+                            </label>
+                            <div class="form-control-wrap">
+                                <input type="date" asp-for="DueDate" class="form-control">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <br />
                 <div class="row">
