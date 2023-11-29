@@ -100,6 +100,31 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-label" style="color:#241c4f">
+                                Payment Type<span class="mandatory">*</span>
+                            </label>
+                            <div class="form-control-wrap">
+                                <select class="form-control" id="Payment Type" required asp-for="PaymentType">
+                                    <option value="ACH">ACH</option>
+                                    <option value="Cheque">Cheque</option>
+                                    <option value="Venmo">Venmo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" style="color:#241c4f" for="otherdocument">
+                                Due Date
+                            </label>
+                            <div class="form-control-wrap">
+                                <input type="date" asp-for="DueDate" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-label" style="color:#241c4f">
                                 Critical Vendor<span class="mandatory">*</span>
                             </label>
                             <div class="form-control-wrap">

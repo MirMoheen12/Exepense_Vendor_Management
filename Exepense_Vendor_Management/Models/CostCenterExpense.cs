@@ -9,6 +9,7 @@ namespace Expense_Vendor_Management.Models
         public int id { get; set; }
         public string displayid { get; set; }
         public DateTime createdOn { get; set; }
+        public DateTime? ModifiedOn { get; set; }
         public string modifiedBy { get; set; }
         public bool isDeleted { get; set; }
         public string createdBy { get; set; }
