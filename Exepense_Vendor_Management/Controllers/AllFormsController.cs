@@ -81,7 +81,7 @@ namespace Expense_Vendor_Management.Controllers
             }
             if (monthly != null)
             {
-                if (monthly >= 3000)
+                if (monthly+e.amount >= 3000)
                 {
                     ViewBag.year = "Monthly Limit exceeded";
                     return View();
