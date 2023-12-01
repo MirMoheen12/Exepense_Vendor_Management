@@ -102,6 +102,7 @@ namespace Expense_Vendor_Management.Controllers
             }
             e.expenseCategory = ecat;
             e.expenseOccurred = DateTime.Now;
+            e.ModifiedOn = DateTime.Now;
             var res = expense.AddNewExpense(e);
             TempData["SuccessMessage"] = "Form submitted successfully!";
             ExpenseData expenseData = new ExpenseData();
@@ -141,6 +142,7 @@ namespace Expense_Vendor_Management.Controllers
             }
             ce.expenseCategory = ecat;
             ce.submissionDate = DateTime.Now;
+            ce.ModifiedOn= DateTime.Now;
             var res = await costExp.AddNewCostExp(ce);
             TempData["SuccessMessage"] = "Form submitted successfully!";
             if (newform == "New Val")
@@ -184,6 +186,7 @@ namespace Expense_Vendor_Management.Controllers
                 ecat = ecat + "," + othercat;
             }
             ce.expenseCategory = ecat;
+            ce.ModifiedOn = DateTime.Now;
             costExp.EditCostExp(ce);
             TempData["SuccessMessage"] = "Form Edited successfully!";
             return RedirectToAction("Index", "Home");
@@ -227,6 +230,7 @@ namespace Expense_Vendor_Management.Controllers
                 ecat = ecat + "," + othercat;
             }
             e.expenseCategory = ecat;
+            e.ModifiedOn = DateTime.Now;
             expense.EditExpense(e);
             TempData["SuccessMessage"] = "Form Edited successfully!";
             return RedirectToAction("Index", "Home");
